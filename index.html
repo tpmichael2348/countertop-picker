@@ -176,7 +176,8 @@
         flex: 0 0 260px; background: var(--card); border-radius: 14px; overflow: hidden;
         display: flex; flex-direction: column; box-shadow: var(--shadow);
     }
-    .compare-col .cimg { width: 100%; aspect-ratio: 1/1; object-fit: cover; cursor: zoom-in; background: var(--accent-soft); }
+    .compare-col .cthumb { position: relative; }
+    .compare-col .cimg { width: 100%; aspect-ratio: 1/1; object-fit: cover; cursor: zoom-in; background: var(--accent-soft); display: block; }
     .compare-col .cbody { padding: 14px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
     .compare-col .cname { font-size: 18px; font-weight: 700; }
     .compare-col .ccode { font-size: 12px; color: var(--muted); }
@@ -838,10 +839,13 @@ function clearSelection() {
 
 function buildCompareColumn(d) {
     const col = el("div", "compare-col");
+    const cthumb = el("div", "cthumb");
     const img = el("img", "cimg");
     img.src = d.img; img.alt = d.code + " " + d.name; img.loading = "lazy";
     img.addEventListener("click", () => openLightbox(d.img, d.code + " " + d.name));
-    col.appendChild(img);
+    cthumb.appendChild(img);
+    cthumb.appendChild(el("span", "badge brand", d.brand));
+    col.appendChild(cthumb);
 
     const cb = el("div", "cbody");
     cb.appendChild(el("div", "cname", d.name));
