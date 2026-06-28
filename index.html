@@ -98,7 +98,9 @@
     .badge { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 6px; color: #fff; }
     .badge.new { background: var(--new); }
     .badge.limit { background: var(--limit); }
-    .badge.brand { position: absolute; top: 8px; right: 8px; background: rgba(0,0,0,.55); font-weight: 500; }
+    .badge.brand { position: absolute; top: 8px; right: 8px; background: rgba(0,0,0,.55); font-weight: 600; }
+    .badge.brand.b-dekton { background: #2f6f8f; }      /* 帝通 — 藍 */
+    .badge.brand.b-silestone { background: #b0612e; }   /* 賽麗 — 暖棕 */
 
     .body { padding: 12px 14px 14px; display: flex; flex-direction: column; gap: 6px; }
     .code { font-size: 12px; color: var(--muted); letter-spacing: .5px; }
@@ -251,6 +253,7 @@
         <span class="switch"></span>
         <span>只看最愛 <b id="favCount">0</b></span>
     </label>
+    <span class="chip" id="selectAll">＋ 全部加入比對</span>
     <label class="toggle">
         <input type="checkbox" id="hidePrice">
         <span class="switch"></span>
@@ -627,6 +630,7 @@ const DATA = [
 
 const state = { brand: "all", finish: "all", sort: "default", favOnly: false };
 const selected = new Set();
+let currentList = [];
 const byCode = Object.fromEntries(DATA.map(d => [d.code, d]));
 
 // 我的最愛（localStorage 持久化）
@@ -649,6 +653,12 @@ function el(tag, cls, text) {
     return n;
 }
 
+// 品牌標籤（依品牌套不同顏色）
+function brandBadge(d) {
+    const cls = d.brand === "帝通" ? "b-dekton" : "b-silestone";
+    return el("span", "badge brand " + cls, d.brand);
+}
+
 function makeCard(d) {
     const card = el("div", "card");
 
@@ -666,7 +676,7 @@ function makeCard(d) {
     if (d.isNew) badges.appendChild(el("span", "badge new", "NEW"));
     if (d.limit) badges.appendChild(el("span", "badge limit", d.limit));
     thumb.appendChild(badges);
-    thumb.appendChild(el("span", "badge brand", d.brand));
+    thumb.appendChild(brandBadge(d));
 
     // 我的最愛按鈕
     const fav = el("div", "fav-btn" + (favorites.has(d.code) ? " on" : ""));
@@ -724,6 +734,7 @@ function render() {
     if (state.sort === "price-desc") list = [...list].sort((a, b) => b.now - a.now);
     if (state.sort === "save-desc") list = [...list].sort((a, b) => pct(b.old, b.now) - pct(a.old, a.now));
 
+    currentList = list;
     countEl.textContent = "共 " + list.length + " 款";
     grid.replaceChildren();
 
@@ -797,6 +808,14 @@ function toggleFav(code) {
 }
 favOnlyChk.addEventListener("change", e => { state.favOnly = e.target.checked; render(); });
 updateFavCount();
+
+// 全部加入比對（依目前篩選結果）
+document.getElementById("selectAll").addEventListener("click", () => {
+    if (!currentList.length) return;
+    currentList.forEach(d => selected.add(d.code));
+    render();      // 重繪卡片以反映勾選狀態
+    updateBar();
+});
 function openLightbox(src, cap) {
     lbImg.src = src;
     lbCap.textContent = cap;
@@ -844,7 +863,7 @@ function buildCompareColumn(d) {
     img.src = d.img; img.alt = d.code + " " + d.name; img.loading = "lazy";
     img.addEventListener("click", () => openLightbox(d.img, d.code + " " + d.name));
     cthumb.appendChild(img);
-    cthumb.appendChild(el("span", "badge brand", d.brand));
+    cthumb.appendChild(brandBadge(d));
     col.appendChild(cthumb);
 
     const cb = el("div", "cbody");
