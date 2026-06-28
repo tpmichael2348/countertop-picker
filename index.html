@@ -254,6 +254,7 @@
         <span>只看最愛 <b id="favCount">0</b></span>
     </label>
     <span class="chip" id="selectAll">＋ 全部加入比對</span>
+    <span class="chip" id="deselectAll">取消全選</span>
     <label class="toggle">
         <input type="checkbox" id="hidePrice">
         <span class="switch"></span>
@@ -816,6 +817,9 @@ document.getElementById("selectAll").addEventListener("click", () => {
     render();      // 重繪卡片以反映勾選狀態
     updateBar();
 });
+
+// 取消全選（清空所有比對勾選）
+document.getElementById("deselectAll").addEventListener("click", clearSelection);
 function openLightbox(src, cap) {
     lbImg.src = src;
     lbCap.textContent = cap;
