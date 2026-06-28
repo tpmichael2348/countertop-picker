@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>廚房檯面優惠挑選 ｜ 帝通石 Dekton × 賽麗石 Silestone</title>
+<style>
+    :root {
+        --bg: #f4f2ee;
+        --card: #ffffff;
+        --ink: #2b2b2b;
+        --muted: #8a8378;
+        --line: #e4e0d8;
+        --accent: #7c6a52;
+        --accent-soft: #efe9df;
+        --price: #b4452f;
+        --new: #2f8f6b;
+        --limit: #c0892b;
+        --shadow: 0 4px 18px rgba(60, 50, 35, .08);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+        font-family: "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", system-ui, sans-serif;
+        background: var(--bg);
+        color: var(--ink);
+        line-height: 1.6;
+        padding-bottom: 60px;
+        -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── 頁首 ── */
+    header {
+        background: linear-gradient(135deg, #3a332a, #5a4f3e);
+        color: #fff;
+        padding: 36px 20px 30px;
+        text-align: center;
+    }
+    header h1 { font-size: 26px; font-weight: 700; letter-spacing: 1px; }
+    header p { margin-top: 8px; font-size: 14px; color: #d8cfc0; }
+    header .tel { margin-top: 12px; font-size: 13px; color: #efe6d6; }
+
+    /* ── 控制列 ── */
+    .toolbar {
+        position: sticky; top: 0; z-index: 20;
+        background: rgba(244, 242, 238, .92);
+        backdrop-filter: blur(8px);
+        border-bottom: 1px solid var(--line);
+        padding: 12px 16px;
+        display: flex; flex-wrap: wrap; gap: 10px;
+        align-items: center; justify-content: center;
+    }
+    .group { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+    .group .label { font-size: 12px; color: var(--muted); margin-right: 2px; }
+    .chip {
+        border: 1px solid var(--line); background: var(--card); color: var(--ink);
+        padding: 6px 14px; border-radius: 999px; font-size: 13px;
+        cursor: pointer; transition: all .15s; user-select: none;
+    }
+    .chip:hover { border-color: var(--accent); }
+    .chip.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+    select.chip { -webkit-appearance: none; appearance: none; padding-right: 28px;
+        background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6'><path d='M0 0l5 6 5-6z' fill='%238a8378'/></svg>");
+        background-repeat: no-repeat; background-position: right 12px center; }
+    .toggle {
+        display: flex; align-items: center; gap: 8px; font-size: 13px;
+        cursor: pointer; user-select: none; padding: 6px 14px;
+        border: 1px solid var(--line); border-radius: 999px; background: var(--card);
+    }
+    .toggle input { display: none; }
+    .switch { width: 36px; height: 20px; background: #cfc8bb; border-radius: 999px;
+        position: relative; transition: background .2s; flex: none; }
+    .switch::after { content: ""; position: absolute; top: 2px; left: 2px;
+        width: 16px; height: 16px; border-radius: 50%; background: #fff; transition: transform .2s; }
+    .toggle input:checked + .switch { background: var(--accent); }
+    .toggle input:checked + .switch::after { transform: translateX(16px); }
+
+    .count { text-align: center; font-size: 12px; color: var(--muted); margin: 16px 0 4px; }
+
+    /* ── 卡片網格 ── */
+    .grid {
+        max-width: 1200px; margin: 10px auto 0; padding: 0 16px;
+        display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 18px;
+    }
+    .card {
+        background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+        overflow: hidden; box-shadow: var(--shadow);
+        display: flex; flex-direction: column; transition: transform .15s, box-shadow .15s;
+    }
+    .card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(60, 50, 35, .14); }
+    .thumb {
+        position: relative; aspect-ratio: 4 / 3;
+        background: var(--accent-soft); overflow: hidden; cursor: zoom-in;
+    }
+    .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    .badges { position: absolute; top: 8px; left: 8px; display: flex; gap: 6px; flex-wrap: wrap; }
+    .badge { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 6px; color: #fff; }
+    .badge.new { background: var(--new); }
+    .badge.limit { background: var(--limit); }
+    .badge.brand { position: absolute; top: 8px; right: 8px; background: rgba(0,0,0,.55); font-weight: 500; }
+
+    .body { padding: 12px 14px 14px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
+    .code { font-size: 12px; color: var(--muted); letter-spacing: .5px; }
+    .name { font-size: 17px; font-weight: 700; }
+    .en { font-size: 12px; color: var(--muted); font-style: italic; margin-top: -3px; }
+    .finish {
+        display: inline-block; align-self: flex-start; font-size: 11px;
+        color: var(--accent); background: var(--accent-soft);
+        padding: 1px 8px; border-radius: 6px; margin-top: 2px;
+    }
+    .price-row { margin-top: auto; padding-top: 8px; display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+    .price-now { font-size: 20px; font-weight: 800; color: var(--price); }
+    .price-now .unit { font-size: 12px; font-weight: 500; }
+    .price-old { font-size: 13px; color: var(--muted); text-decoration: line-through; }
+    .save { font-size: 11px; color: var(--price); border: 1px solid var(--price); border-radius: 6px; padding: 0 6px; }
+    .src-link { font-size: 12px; color: var(--accent); text-decoration: none; margin-top: 4px; }
+    .src-link:hover { text-decoration: underline; }
+
+    /* 多選比對 */
+    .select-btn {
+        position: absolute; bottom: 8px; right: 8px; z-index: 3;
+        width: 30px; height: 30px; border-radius: 50%;
+        background: rgba(255,255,255,.92); border: 1px solid var(--line);
+        display: flex; align-items: center; justify-content: center;
+        cursor: pointer; font-size: 15px; color: var(--accent);
+        box-shadow: 0 2px 6px rgba(0,0,0,.15); transition: all .15s;
+    }
+    .select-btn:hover { transform: scale(1.08); }
+    .card.selected { outline: 3px solid var(--accent); outline-offset: -3px; }
+    .card.selected .select-btn { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+    .compare-bar {
+        position: fixed; left: 50%; bottom: 20px; transform: translateX(-50%);
+        background: #3a332a; color: #fff; border-radius: 999px;
+        padding: 10px 14px 10px 20px; display: none; gap: 14px; align-items: center;
+        box-shadow: 0 8px 30px rgba(0,0,0,.3); z-index: 60;
+    }
+    .compare-bar.show { display: flex; }
+    .compare-bar .info { font-size: 14px; }
+    .compare-bar .info b { font-size: 16px; }
+    .compare-bar button {
+        border: none; border-radius: 999px; padding: 8px 16px;
+        font-size: 14px; cursor: pointer; font-family: inherit;
+    }
+    .compare-bar .go { background: #d9b27a; color: #3a332a; font-weight: 700; }
+    .compare-bar .go:disabled { background: #6b6354; color: #a89f8e; cursor: not-allowed; }
+    .compare-bar .clear { background: transparent; color: #d8cfc0; }
+
+    .compare-modal {
+        position: fixed; inset: 0; background: rgba(20,16,10,.92);
+        display: none; flex-direction: column; z-index: 120; padding: 18px;
+    }
+    .compare-modal.open { display: flex; }
+    .compare-head {
+        display: flex; align-items: center; justify-content: space-between;
+        color: #fff; margin-bottom: 14px; flex: none;
+    }
+    .compare-head h2 { font-size: 18px; font-weight: 700; }
+    .compare-head .close { background: rgba(255,255,255,.15); color: #fff; border: none;
+        width: 38px; height: 38px; border-radius: 50%; font-size: 20px; cursor: pointer; }
+    .compare-scroll { flex: 1; overflow: auto; }
+    .compare-grid { display: flex; gap: 16px; min-height: 100%; padding-bottom: 8px; }
+    .compare-col {
+        flex: 0 0 260px; background: var(--card); border-radius: 14px; overflow: hidden;
+        display: flex; flex-direction: column; box-shadow: var(--shadow);
+    }
+    .compare-col .cimg { width: 100%; aspect-ratio: 1/1; object-fit: cover; cursor: zoom-in; background: var(--accent-soft); }
+    .compare-col .cbody { padding: 14px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
+    .compare-col .cname { font-size: 18px; font-weight: 700; }
+    .compare-col .ccode { font-size: 12px; color: var(--muted); }
+    .compare-col .crow { display: flex; justify-content: space-between; font-size: 13px; padding: 4px 0; border-top: 1px solid var(--line); }
+    .compare-col .crow .k { color: var(--muted); }
+    .compare-col .cprice { color: var(--price); font-weight: 800; }
+    .compare-col .cremove { margin-top: auto; background: var(--accent-soft); color: var(--accent);
+        border: none; border-radius: 8px; padding: 8px; font-size: 13px; cursor: pointer; font-family: inherit; }
+    body.hide-price .compare-col .cprice,
+    body.hide-price .compare-col .crow.price-line .v { visibility: hidden; }
+    @media (max-width: 520px) { .compare-col { flex-basis: 78vw; } }
+
+    /* 一鍵隱藏價格 */
+    body.hide-price .price-row { visibility: hidden; }
+    body.hide-price .price-row::before {
+        content: "價格已隱藏"; visibility: visible; font-size: 12px; color: var(--muted);
+    }
+
+    .empty { text-align: center; color: var(--muted); padding: 60px 20px; grid-column: 1 / -1; }
+
+    footer { max-width: 1000px; margin: 40px auto 0; padding: 0 24px; font-size: 12px; color: var(--muted); line-height: 1.9; }
+    footer h3 { font-size: 13px; color: var(--ink); margin-bottom: 6px; }
+    footer a { color: var(--accent); }
+
+    /* ── 燈箱 ── */
+    .lightbox {
+        position: fixed; inset: 0; background: rgba(20, 16, 10, .85);
+        display: none; align-items: center; justify-content: center;
+        z-index: 100; padding: 24px; cursor: zoom-out;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox figure { text-align: center; max-width: 90vw; max-height: 90vh; }
+    .lightbox img { max-width: 90vw; max-height: 80vh; border-radius: 10px; box-shadow: 0 10px 40px rgba(0,0,0,.5); }
+    .lightbox figcaption { color: #f0e8d8; margin-top: 12px; font-size: 15px; }
+
+    @media (max-width: 520px) {
+        .grid { grid-template-columns: repeat(2, 1fr); gap: 12px; padding: 0 12px; }
+        .name { font-size: 15px; } .price-now { font-size: 17px; } header h1 { font-size: 20px; }
+    }
+</style>
+</head>
+<body>
+
+<header>
+    <h1>廚房檯面優惠挑選</h1>
+    <p>西班牙帝通石 Dekton ｜ 西班牙賽麗石 Silestone（Cosentino）</p>
+    <p class="tel">資料來源：Coallmax 興立富實業　預約專線 (02) 2325-0289</p>
+</header>
+
+<div class="toolbar">
+    <div class="group">
+        <span class="label">品牌</span>
+        <span class="chip active" data-filter="brand" data-value="all">全部</span>
+        <span class="chip" data-filter="brand" data-value="帝通">帝通 Dekton</span>
+        <span class="chip" data-filter="brand" data-value="賽麗">賽麗 Silestone</span>
+    </div>
+    <div class="group">
+        <span class="label">表面</span>
+        <span class="chip active" data-filter="finish" data-value="all">全部</span>
+        <span class="chip" data-filter="finish" data-value="皮紋面">皮紋面</span>
+        <span class="chip" data-filter="finish" data-value="亮面">亮面</span>
+        <span class="chip" data-filter="finish" data-value="鏡面">鏡面</span>
+    </div>
+    <div class="group">
+        <span class="label">排序</span>
+        <select class="chip" id="sort">
+            <option value="default">預設</option>
+            <option value="price-asc">優惠價 低→高</option>
+            <option value="price-desc">優惠價 高→低</option>
+            <option value="save-desc">折扣最多</option>
+        </select>
+    </div>
+    <label class="toggle">
+        <input type="checkbox" id="hidePrice">
+        <span class="switch"></span>
+        <span>隱藏價格</span>
+    </label>
+</div>
+
+<div class="count" id="count"></div>
+<div class="grid" id="grid"></div>
+
+<footer>
+    <h3>優惠須知</h3>
+    帝通石活動期間：<strong>2026/04/01 – 2027/12/31</strong>（以安裝日期為準）。<br>
+    賽麗石活動期間：<strong>2026/01/01 – 2026/12/31</strong>（以安裝日期為準）。<br>
+    DT220 島嶼灰、DT227 珍珠米黃 二色優惠至 <strong>2026/06/30</strong> 止。<br>
+    ★ 所有價格均為<strong>未稅價</strong>，單位為「元／cm」；整體實際計算方式及其他優惠內容，請以各廚具門市實際報價為準。<br>
+    每張卡片可點縮圖放大，或點「查看原頁」前往官方色號頁。<br>
+    原始連結：
+    <a href="https://coallmax.com/2026-2027年│西班牙帝通石－廚房檯面優惠方案/" target="_blank" rel="noopener">帝通石優惠方案</a> ／
+    <a href="https://coallmax.com/2026年│西班牙賽麗石－廚房檯面優惠方案/" target="_blank" rel="noopener">賽麗石優惠方案</a>
+</footer>
+
+<div class="compare-bar" id="compareBar">
+    <span class="info">已選 <b id="selCount">0</b> 款</span>
+    <button class="go" id="goCompare" disabled>開始比對</button>
+    <button class="clear" id="clearSel">清除</button>
+</div>
+
+<div class="compare-modal" id="compareModal">
+    <div class="compare-head">
+        <h2>並排比對</h2>
+        <button class="close" id="closeCompare" aria-label="關閉">×</button>
+    </div>
+    <div class="compare-scroll">
+        <div class="compare-grid" id="compareGrid"></div>
+    </div>
+</div>
+
+<div class="lightbox" id="lightbox">
+    <figure>
+        <img id="lightbox-img" src="" alt="">
+        <figcaption id="lightbox-cap"></figcaption>
+    </figure>
+</div>
+
+<script>
+const DATA = [
+    {
+        "brand": "帝通",
+        "code": "DT111",
+        "name": "愛麗石",
+        "en": "Aeris",
+        "finish": "皮紋面",
+        "now": 129,
+        "old": 238,
+        "isNew": true,
+        "limit": null,
+        "img": "https://silestone.coallmax.com/db/upload/webdata3/coallmax_2024422142759604.jpg",
+        "link": "https://silestone.coallmax.com/coallmax2_3.asp?kind=7&kind2=12&kind3=28&kind4=1345"
+    },
+    {
+        "brand": "帝通",
+        "code": "DT114",
+        "name": "月亮白",
+        "en": "",
+        "finish": "皮紋面",
+        "now": 129,
+        "old": 238,
+        "isNew": true,
+        "limit": null,
+        "img": "https://silestone.coallmax.com/db/upload/webdata3/1coallmax_202612621453194783.jpg",
+        "link": "https://silestone.coallmax.com/coallmax2_3.asp?kind=7&kind2=34&kind3=31&kind4=1416"
+    },
+    {
+        "brand": "帝通",
+        "code": "DT225",
+        "name": "蚵灰石",
+        "en": "Kovik",
+        "finish": "皮紋面",
+        "now": 149,
+        "old": 278,
+        "isNew": false,
+        "limit": null,
+        "img": "https://silestone.coallmax.com/db/upload/webdata3/coallmax_20244261393932319.jpg",
+        "link": "https://silestone.coallmax.com/coallmax2_3.asp?kind=7&kind2=12&kind3=28&kind4=1353"
+    },
+    {
+        "brand": "帝通",
+        "code": "DT248",
+        "name": "光潤白",
+        "en": "",
+        "finish": "鏡面",
+        "now": 165,
+        "old": 278,
+        "isNew": true,
+        "limit": null,
+        "img": "https://silestone.coallmax.com/db/upload/webdata3/1coallmax_202612621552126039.jpg",
+        "link": "https://silestone.coallmax.com/coallmax2_3.asp?kind=7&kind2=12&kind3=28&kind4=1417"
+    },
+    {
+        "brand": "帝通",
+        "code": "DT249",
+        "name": "雲映石",
+        "en": "",
+        "finish": "皮紋面",
+        "now": 165,
+        "old": 278,
+        "isNew": true,
+        "limit": null,
+        "img": "https://silestone.coallmax.com/db/upload/webdata3/1coallmax_20261262242149251.jpg",
+        "link": "https://silestone.coallmax.com/coallmax2_3.asp?kind=7&kind2=34&kind3=31&kind4=1418"
+    },
+    {
+        "brand": "帝通",
+        "code": "DT230",
+        "name": "浪花石",
+        "en": "Marina",
+        "finish": "皮紋面",
+        "now": 165,
+        "old": 278,
+        "isNew": false,
+        "limit": null,
+        "img": "https://silestone.coallmax.com/db/upload/webdata3/coallmax_202441522202773743.jpg",
+        "link": "https://silestone.coallmax.com/coallmax2_3.asp?kind=7&kind2=58&kind3=51&kind4=1368"
+    },
+    {
+        "brand": "帝通",
+        "code": "DT317",
+        "name": "優妮白",
+        "en": "Uyuni",
+        "finish": "皮紋面",
+        "now": 165,
+        "old": 298,
+        "isNew": true,
+        "limit": null,
+        "img": "https://silestone.coallmax.com/db/upload/webdata3/coallmax_20244263315596253.jpg",
+        "link": "https://silestone.coallmax.com/coallmax2_3.asp?kind=7&kind2=58&kind3=51&kind4=1360"
+    },
+    {
+        "brand": "帝通",
+        "code": "DT101",
+        "name": "黛娜米黃",
+        "en": "Danae",
+        "finish": "皮紋面",
+        "now": 179,
+        "old": 238,
+        "isNew": false,
+        "limit": null,
+        "img": "https://silestone.coallmax.com/db/upload/webdata3/coallmax_202441619352873403.jpg",
+        "link": "https://silestone.coallmax.com/coallmax2_3.asp?kind=7&kind2=12&kind3=28&kind4=1182"
+    },
+    {
+        "brand": "帝通",
+        "code": "DT220",
+        "name": "島嶼灰",
+        "en": "Kreta",
+        "finish": "皮紋面",
+        "now": 198,
+        "old": 278,
+        "isNew": false,
+        "limit": "優惠至2026/6/30",
+        "img": "https://silestone.coallmax.com/db/upload/webdata3/coallmax_202442523102576981.jpg",
+        "link": "https://silestone.coallmax.com/coallmax2_3.asp?kind=7&kind2=47&kind3=36&kind4=1349"
+    },
+    {
+        "brand": "帝通",
+        "code": "DT227",
+        "name": "珍珠米黃",
+        "en": "Nacre",
+        "finish": "皮紋面",
+        "now": 198,
+        "old": 278,
+        "isNew": false,
+        "limit": "優惠至2026/6/30",
+        "img": "https://silestone.coallmax.com/db/upload/webdata3/coallmax_20244152054535505.jpg",
+        "link": "https://silestone.coallmax.com/coallmax2_3.asp?kind=7&kind2=56&kind3=50&kind4=1341"
+    },
+    {
+        "brand": "帝通",
+        "code": "DT215",
+        "name": "玉筋石",
+        "en": "Nilium",
+        "finish": "皮紋面",
+        "now": 220,
+        "old": 278,
+        "isNew": true,
+        "limit": null,
+        "img": "https://silestone.coallmax.com/db/upload/webdata3/coallmax_202442522543217017.jpg",
+        "link": "https://silestone.coallmax.com/coallmax2_3.asp?kind=7&kind2=12&kind3=28&kind4=1255"
+    },
+    {
+        "brand": "帝通",
+        "code": "DT305",
+        "name": "彤雲石",
+        "en": "Entzo",
+        "finish": "皮紋面",
+        "now": 220,
+        "old": 298,
+        "isNew": false,
+        "limit": null,
+        "img": "https://silestone.coallmax.com/db/upload/webdata3/coallmax_2024426259651732.jpg",
+        "link": "https://silestone.coallmax.com/coallmax2_3.asp?kind=7&kind2=12&kind3=28&kind4=1232"
+    },
+    {
+        "brand": "賽麗",
+        "code": "CS102",
+        "name": "Gris Expo",
+        "en": "Gris Expo",
+        "finish": "亮面",
+        "now": 109,
+        "old": 139,
+        "isNew": false,
+        "limit": null,
+        "img": "https://silestone.coallmax.com/db/upload/webdata3/soy_201461220545119960.jpg",
+        "link": "https://silestone.coallmax.com/coallmax2_3.asp?kind=8&kind2=20&kind3=20&kind4=1159"
+    },
+    {
+        "brand": "賽麗",
+        "code": "CS201",
+        "name": "Blanco Norte",
+        "en": "Blanco Norte",
+        "finish": "亮面",
+        "now": 109,
+        "old": 139,
+        "isNew": false,
+        "limit": null,
+        "img": "https://silestone.coallmax.com/db/upload/webdata3/soy_20146122339525916.jpg",
+        "link": "https://silestone.coallmax.com/coallmax2_3.asp?kind=8&kind2=20&kind3=20&kind4=1158"
+    },
+    {
+        "brand": "賽麗",
+        "code": "CS601",
+        "name": "Blanco Zeus Extra",
+        "en": "Blanco Zeus Extra",
+        "finish": "亮面",
+        "now": 109,
+        "old": 179,
+        "isNew": false,
+        "limit": null,
+        "img": "https://silestone.coallmax.com/db/upload/webdata3/coallmax_202151019365794983.jpg",
+        "link": "https://silestone.coallmax.com/coallmax2_3.asp?kind=8&kind2=20&kind3=20&kind4=1156"
+    },
+    {
+        "brand": "賽麗",
+        "code": "CS612",
+        "name": "Blanco Maple",
+        "en": "Blanco Maple",
+        "finish": "亮面",
+        "now": 109,
+        "old": 179,
+        "isNew": false,
+        "limit": null,
+        "img": "https://silestone.coallmax.com/db/upload/webdata3/coallmax_20258281945340379.jpg",
+        "link": "https://silestone.coallmax.com/coallmax2_3.asp?kind=8&kind2=26&kind3=14&kind4=1143"
+    },
+    {
+        "brand": "賽麗",
+        "code": "CS641",
+        "name": "CS641",
+        "en": "",
+        "finish": "亮面",
+        "now": 109,
+        "old": 179,
+        "isNew": false,
+        "limit": null,
+        "img": "https://silestone.coallmax.com/db/upload/webdata3/1coallmax_20241221950412412.jpg",
+        "link": "https://silestone.coallmax.com/coallmax2_3.asp?kind=8&kind2=35&kind3=33&kind4=1415"
+    },
+    {
+        "brand": "賽麗",
+        "code": "CS685",
+        "name": "White Storm",
+        "en": "White Storm",
+        "finish": "亮面",
+        "now": 119,
+        "old": 179,
+        "isNew": false,
+        "limit": null,
+        "img": "https://silestone.coallmax.com/db/upload/webdata3/coallmax_20215102042962466.jpg",
+        "link": "https://silestone.coallmax.com/coallmax2_3.asp?kind=8&kind2=17&kind3=23&kind4=1165"
+    },
+    {
+        "brand": "賽麗",
+        "code": "CS602",
+        "name": "Yukon",
+        "en": "Yukon",
+        "finish": "亮面",
+        "now": 139,
+        "old": 179,
+        "isNew": false,
+        "limit": null,
+        "img": "https://silestone.coallmax.com/db/upload/webdata3/coallmax_20215172255189783.jpg",
+        "link": "https://silestone.coallmax.com/coallmax2_3.asp?kind=8&kind2=19&kind3=21&kind4=1162"
+    },
+    {
+        "brand": "賽麗",
+        "code": "CS611",
+        "name": "Bianco River",
+        "en": "Bianco River",
+        "finish": "亮面",
+        "now": 139,
+        "old": 179,
+        "isNew": false,
+        "limit": null,
+        "img": "https://silestone.coallmax.com/db/upload/webdata3/coallmax_20215132121274323.jpg",
+        "link": "https://silestone.coallmax.com/coallmax2_3.asp?kind=8&kind2=19&kind3=21&kind4=1160"
+    },
+    {
+        "brand": "賽麗",
+        "code": "CS637",
+        "name": "CS637",
+        "en": "",
+        "finish": "皮紋面",
+        "now": 139,
+        "old": 179,
+        "isNew": false,
+        "limit": null,
+        "img": "https://silestone.coallmax.com/db/upload/webdata3/coallmax_2023121920787263.jpg",
+        "link": "https://silestone.coallmax.com/coallmax2_3.asp?kind=8&kind2=60&kind3=54&kind4=1386"
+    },
+    {
+        "brand": "賽麗",
+        "code": "CS639",
+        "name": "CS639",
+        "en": "",
+        "finish": "皮紋面",
+        "now": 139,
+        "old": 179,
+        "isNew": false,
+        "limit": null,
+        "img": "https://silestone.coallmax.com/db/upload/webdata3/1coallmax_20231219294278048.jpg",
+        "link": "https://silestone.coallmax.com/coallmax2_3.asp?kind=8&kind2=60&kind3=54&kind4=1388"
+    },
+    {
+        "brand": "賽麗",
+        "code": "CS516",
+        "name": "Calypso",
+        "en": "Calypso",
+        "finish": "亮面",
+        "now": 179,
+        "old": 239,
+        "isNew": false,
+        "limit": null,
+        "img": "https://silestone.coallmax.com/db/upload/webdata3/1longyang_201411170234118938.png",
+        "link": "https://silestone.coallmax.com/coallmax2_3.asp?kind=8&kind2=39&kind3=40&kind4=1211"
+    },
+    {
+        "brand": "賽麗",
+        "code": "CS527",
+        "name": "Yukon",
+        "en": "Yukon",
+        "finish": "皮紋面",
+        "now": 179,
+        "old": 239,
+        "isNew": false,
+        "limit": null,
+        "img": "https://silestone.coallmax.com/db/upload/webdata3/coallmax_20215172252179621.jpg",
+        "link": "https://silestone.coallmax.com/coallmax2_3.asp?kind=8&kind2=15&kind3=25&kind4=1175"
+    },
+    {
+        "brand": "賽麗",
+        "code": "CS545",
+        "name": "Nolita",
+        "en": "Nolita",
+        "finish": "皮紋面",
+        "now": 179,
+        "old": 239,
+        "isNew": false,
+        "limit": null,
+        "img": "https://silestone.coallmax.com/db/upload/webdata3/coallmax_202411519532972334.jpg",
+        "link": "https://silestone.coallmax.com/coallmax2_3.asp?kind=8&kind2=54&kind3=45&kind4=1299"
+    }
+];
+
+const state = { brand: "all", finish: "all", sort: "default" };
+const selected = new Set();
+const byCode = Object.fromEntries(DATA.map(d => [d.code, d]));
+const grid = document.getElementById("grid");
+const countEl = document.getElementById("count");
+
+const pct = (o, n) => Math.round((1 - n / o) * 100);
+
+// 以安全 DOM 方式建立節點（不使用 innerHTML 注入資料）
+function el(tag, cls, text) {
+    const n = document.createElement(tag);
+    if (cls) n.className = cls;
+    if (text != null) n.textContent = text;
+    return n;
+}
+
+function makeCard(d) {
+    const card = el("div", "card");
+
+    // 縮圖
+    const thumb = el("div", "thumb");
+    thumb.dataset.img = d.img;
+    thumb.dataset.cap = d.code + " " + d.name;
+    const img = el("img");
+    img.loading = "lazy";
+    img.src = d.img;
+    img.alt = d.code + " " + d.name;
+    thumb.appendChild(img);
+
+    const badges = el("div", "badges");
+    if (d.isNew) badges.appendChild(el("span", "badge new", "NEW"));
+    if (d.limit) badges.appendChild(el("span", "badge limit", d.limit));
+    thumb.appendChild(badges);
+    thumb.appendChild(el("span", "badge brand", d.brand));
+
+    // 多選按鈕
+    const sel = el("div", "select-btn");
+    sel.dataset.select = d.code;
+    sel.title = "加入比對";
+    sel.textContent = selected.has(d.code) ? "✓" : "+";
+    thumb.appendChild(sel);
+    if (selected.has(d.code)) card.classList.add("selected");
+
+    card.appendChild(thumb);
+
+    // 內文
+    const body = el("div", "body");
+    body.appendChild(el("div", "code", d.code));
+    body.appendChild(el("div", "name", d.name));
+    if (d.en && d.en !== d.name) body.appendChild(el("div", "en", d.en));
+    body.appendChild(el("span", "finish", d.finish));
+
+    const pr = el("div", "price-row");
+    const now = el("span", "price-now");
+    now.appendChild(document.createTextNode(d.now));
+    now.appendChild(el("span", "unit", " 元/cm"));
+    pr.appendChild(now);
+    pr.appendChild(el("span", "price-old", "原 " + d.old));
+    pr.appendChild(el("span", "save", "省 " + pct(d.old, d.now) + "%"));
+    body.appendChild(pr);
+
+    if (d.link) {
+        const a = el("a", "src-link", "查看原頁 ↗");
+        a.href = d.link;
+        a.target = "_blank";
+        a.rel = "noopener";
+        body.appendChild(a);
+    }
+
+    card.appendChild(body);
+    return card;
+}
+
+function render() {
+    let list = DATA.filter(d =>
+        (state.brand === "all" || d.brand === state.brand) &&
+        (state.finish === "all" || d.finish === state.finish)
+    );
+
+    if (state.sort === "price-asc") list = [...list].sort((a, b) => a.now - b.now);
+    if (state.sort === "price-desc") list = [...list].sort((a, b) => b.now - a.now);
+    if (state.sort === "save-desc") list = [...list].sort((a, b) => pct(b.old, b.now) - pct(a.old, a.now));
+
+    countEl.textContent = "共 " + list.length + " 款";
+    grid.replaceChildren();
+
+    if (!list.length) {
+        grid.appendChild(el("div", "empty", "沒有符合條件的款式"));
+        return;
+    }
+    const frag = document.createDocumentFragment();
+    list.forEach(d => frag.appendChild(makeCard(d)));
+    grid.appendChild(frag);
+}
+
+document.querySelectorAll('.chip[data-filter]').forEach(chip => {
+    chip.addEventListener("click", () => {
+        const f = chip.dataset.filter;
+        document.querySelectorAll('.chip[data-filter="' + f + '"]').forEach(c => c.classList.remove("active"));
+        chip.classList.add("active");
+        state[f] = chip.dataset.value;
+        render();
+    });
+});
+
+document.getElementById("sort").addEventListener("change", e => { state.sort = e.target.value; render(); });
+document.getElementById("hidePrice").addEventListener("change", e => {
+    document.body.classList.toggle("hide-price", e.target.checked);
+});
+
+// 燈箱
+const lb = document.getElementById("lightbox");
+const lbImg = document.getElementById("lightbox-img");
+const lbCap = document.getElementById("lightbox-cap");
+grid.addEventListener("click", e => {
+    // 多選按鈕優先
+    const s = e.target.closest("[data-select]");
+    if (s) {
+        e.stopPropagation();
+        toggleSelect(s.dataset.select);
+        return;
+    }
+    const t = e.target.closest(".thumb[data-img]");
+    if (!t) return;
+    openLightbox(t.dataset.img, t.dataset.cap);
+});
+function openLightbox(src, cap) {
+    lbImg.src = src;
+    lbCap.textContent = cap;
+    lb.classList.add("open");
+}
+lb.addEventListener("click", () => lb.classList.remove("open"));
+
+// ── 多選比對 ──
+const bar = document.getElementById("compareBar");
+const selCount = document.getElementById("selCount");
+const goCompare = document.getElementById("goCompare");
+const compareModal = document.getElementById("compareModal");
+const compareGrid = document.getElementById("compareGrid");
+
+function toggleSelect(code) {
+    if (selected.has(code)) selected.delete(code);
+    else selected.add(code);
+    // 更新該卡片外觀
+    const btn = grid.querySelector('[data-select="' + code + '"]');
+    if (btn) {
+        const card = btn.closest(".card");
+        const on = selected.has(code);
+        card.classList.toggle("selected", on);
+        btn.textContent = on ? "✓" : "+";
+    }
+    updateBar();
+}
+function updateBar() {
+    selCount.textContent = selected.size;
+    bar.classList.toggle("show", selected.size > 0);
+    goCompare.disabled = selected.size < 2;
+    goCompare.textContent = selected.size < 2 ? "至少選 2 款" : "開始比對 (" + selected.size + ")";
+}
+function clearSelection() {
+    selected.clear();
+    grid.querySelectorAll(".card.selected").forEach(c => c.classList.remove("selected"));
+    grid.querySelectorAll("[data-select]").forEach(b => b.textContent = "+");
+    updateBar();
+}
+
+function buildCompareColumn(d) {
+    const col = el("div", "compare-col");
+    const img = el("img", "cimg");
+    img.src = d.img; img.alt = d.code + " " + d.name; img.loading = "lazy";
+    img.addEventListener("click", () => openLightbox(d.img, d.code + " " + d.name));
+    col.appendChild(img);
+
+    const cb = el("div", "cbody");
+    cb.appendChild(el("div", "cname", d.name));
+    cb.appendChild(el("div", "ccode", d.code + (d.en && d.en !== d.name ? " · " + d.en : "")));
+
+    const rows = [
+        ["品牌", d.brand],
+        ["表面", d.finish],
+        ["原價", d.old + " 元/cm", true],
+        ["折扣", "省 " + pct(d.old, d.now) + "%", true],
+    ];
+    rows.forEach(([k, v, isPrice]) => {
+        const r = el("div", "crow" + (isPrice ? " price-line" : ""));
+        r.appendChild(el("span", "k", k));
+        r.appendChild(el("span", "v", v));
+        cb.appendChild(r);
+    });
+    const pr = el("div", "crow price-line");
+    pr.appendChild(el("span", "k", "優惠價"));
+    pr.appendChild(el("span", "cprice", d.now + " 元/cm"));
+    cb.appendChild(pr);
+
+    const rm = el("button", "cremove", "✕ 移除");
+    rm.addEventListener("click", () => {
+        toggleSelect(d.code);
+        if (selected.size < 2) closeCompareModal();
+        else openCompare();
+    });
+    cb.appendChild(rm);
+
+    col.appendChild(cb);
+    return col;
+}
+function openCompare() {
+    compareGrid.replaceChildren();
+    const frag = document.createDocumentFragment();
+    DATA.filter(d => selected.has(d.code)).forEach(d => frag.appendChild(buildCompareColumn(d)));
+    compareGrid.appendChild(frag);
+    compareModal.classList.add("open");
+}
+function closeCompareModal() { compareModal.classList.remove("open"); }
+
+goCompare.addEventListener("click", () => { if (selected.size >= 2) openCompare(); });
+document.getElementById("clearSel").addEventListener("click", clearSelection);
+document.getElementById("closeCompare").addEventListener("click", closeCompareModal);
+compareModal.addEventListener("click", e => { if (e.target === compareModal) closeCompareModal(); });
+
+document.addEventListener("keydown", e => {
+    if (e.key === "Escape") {
+        if (lb.classList.contains("open")) lb.classList.remove("open");
+        else if (compareModal.classList.contains("open")) closeCompareModal();
+    }
+});
+
+render();
+</script>
+</body>
+</html>
