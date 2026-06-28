@@ -130,6 +130,17 @@
     .card.selected { outline: 3px solid var(--accent); outline-offset: -3px; }
     .card.selected .select-btn { background: var(--accent); color: #fff; border-color: var(--accent); }
 
+    .fav-btn {
+        position: absolute; bottom: 8px; left: 8px; z-index: 3;
+        width: 30px; height: 30px; border-radius: 50%;
+        background: rgba(255,255,255,.92); border: 1px solid var(--line);
+        display: flex; align-items: center; justify-content: center;
+        cursor: pointer; font-size: 16px; line-height: 1; color: #c9c2b6;
+        box-shadow: 0 2px 6px rgba(0,0,0,.15); transition: all .15s;
+    }
+    .fav-btn:hover { transform: scale(1.08); }
+    .fav-btn.on { color: #e0405a; border-color: #e0405a; }
+
     .compare-bar {
         position: fixed; left: 50%; bottom: 20px; transform: translateX(-50%);
         background: #3a332a; color: #fff; border-radius: 999px;
@@ -234,6 +245,11 @@
             <option value="save-desc">折扣最多</option>
         </select>
     </div>
+    <label class="toggle">
+        <input type="checkbox" id="favOnly">
+        <span class="switch"></span>
+        <span>只看最愛 <b id="favCount">0</b></span>
+    </label>
     <label class="toggle">
         <input type="checkbox" id="hidePrice">
         <span class="switch"></span>
@@ -608,9 +624,17 @@ const DATA = [
     }
 ];
 
-const state = { brand: "all", finish: "all", sort: "default" };
+const state = { brand: "all", finish: "all", sort: "default", favOnly: false };
 const selected = new Set();
 const byCode = Object.fromEntries(DATA.map(d => [d.code, d]));
+
+// 我的最愛（localStorage 持久化）
+const FAV_KEY = "ctp_favorites";
+let favorites = new Set();
+try { favorites = new Set(JSON.parse(localStorage.getItem(FAV_KEY) || "[]")); } catch (e) {}
+function saveFavorites() {
+    try { localStorage.setItem(FAV_KEY, JSON.stringify([...favorites])); } catch (e) {}
+}
 const grid = document.getElementById("grid");
 const countEl = document.getElementById("count");
 
@@ -642,6 +666,13 @@ function makeCard(d) {
     if (d.limit) badges.appendChild(el("span", "badge limit", d.limit));
     thumb.appendChild(badges);
     thumb.appendChild(el("span", "badge brand", d.brand));
+
+    // 我的最愛按鈕
+    const fav = el("div", "fav-btn" + (favorites.has(d.code) ? " on" : ""));
+    fav.dataset.fav = d.code;
+    fav.title = "加入我的最愛";
+    fav.textContent = favorites.has(d.code) ? "♥" : "♡";
+    thumb.appendChild(fav);
 
     // 多選按鈕
     const sel = el("div", "select-btn");
@@ -684,7 +715,8 @@ function makeCard(d) {
 function render() {
     let list = DATA.filter(d =>
         (state.brand === "all" || d.brand === state.brand) &&
-        (state.finish === "all" || d.finish === state.finish)
+        (state.finish === "all" || d.finish === state.finish) &&
+        (!state.favOnly || favorites.has(d.code))
     );
 
     if (state.sort === "price-asc") list = [...list].sort((a, b) => a.now - b.now);
@@ -695,7 +727,10 @@ function render() {
     grid.replaceChildren();
 
     if (!list.length) {
-        grid.appendChild(el("div", "empty", "沒有符合條件的款式"));
+        const msg = state.favOnly && favorites.size === 0
+            ? "尚未加入任何最愛，點卡片左下角的 ♡ 收藏吧"
+            : "沒有符合條件的款式";
+        grid.appendChild(el("div", "empty", msg));
         return;
     }
     const frag = document.createDocumentFragment();
@@ -723,7 +758,14 @@ const lb = document.getElementById("lightbox");
 const lbImg = document.getElementById("lightbox-img");
 const lbCap = document.getElementById("lightbox-cap");
 grid.addEventListener("click", e => {
-    // 多選按鈕優先
+    // 我的最愛按鈕
+    const fv = e.target.closest("[data-fav]");
+    if (fv) {
+        e.stopPropagation();
+        toggleFav(fv.dataset.fav);
+        return;
+    }
+    // 多選按鈕
     const s = e.target.closest("[data-select]");
     if (s) {
         e.stopPropagation();
@@ -734,6 +776,26 @@ grid.addEventListener("click", e => {
     if (!t) return;
     openLightbox(t.dataset.img, t.dataset.cap);
 });
+
+// ── 我的最愛 ──
+const favCount = document.getElementById("favCount");
+const favOnlyChk = document.getElementById("favOnly");
+function updateFavCount() { favCount.textContent = favorites.size; }
+function toggleFav(code) {
+    if (favorites.has(code)) favorites.delete(code);
+    else favorites.add(code);
+    saveFavorites();
+    const btn = grid.querySelector('[data-fav="' + code + '"]');
+    if (btn) {
+        const on = favorites.has(code);
+        btn.classList.toggle("on", on);
+        btn.textContent = on ? "♥" : "♡";
+    }
+    updateFavCount();
+    if (state.favOnly) render(); // 只看最愛模式下，取消最愛要即時消失
+}
+favOnlyChk.addEventListener("change", e => { state.favOnly = e.target.checked; render(); });
+updateFavCount();
 function openLightbox(src, cap) {
     lbImg.src = src;
     lbCap.textContent = cap;
