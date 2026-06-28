@@ -80,6 +80,7 @@
     .grid {
         max-width: 1200px; margin: 10px auto 0; padding: 0 16px;
         display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 18px;
+        align-items: start;
     }
     .card {
         background: var(--card); border: 1px solid var(--line); border-radius: 14px;
@@ -99,7 +100,7 @@
     .badge.limit { background: var(--limit); }
     .badge.brand { position: absolute; top: 8px; right: 8px; background: rgba(0,0,0,.55); font-weight: 500; }
 
-    .body { padding: 12px 14px 14px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
+    .body { padding: 12px 14px 14px; display: flex; flex-direction: column; gap: 6px; }
     .code { font-size: 12px; color: var(--muted); letter-spacing: .5px; }
     .name { font-size: 17px; font-weight: 700; }
     .en { font-size: 12px; color: var(--muted); font-style: italic; margin-top: -3px; }
@@ -108,7 +109,7 @@
         color: var(--accent); background: var(--accent-soft);
         padding: 1px 8px; border-radius: 6px; margin-top: 2px;
     }
-    .price-row { margin-top: auto; padding-top: 8px; display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+    .price-row { padding-top: 4px; display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
     .price-now { font-size: 20px; font-weight: 800; color: var(--price); }
     .price-now .unit { font-size: 12px; font-weight: 500; }
     .price-old { font-size: 13px; color: var(--muted); text-decoration: line-through; }
@@ -178,10 +179,7 @@
     @media (max-width: 520px) { .compare-col { flex-basis: 78vw; } }
 
     /* 一鍵隱藏價格 */
-    body.hide-price .price-row { visibility: hidden; }
-    body.hide-price .price-row::before {
-        content: "價格已隱藏"; visibility: visible; font-size: 12px; color: var(--muted);
-    }
+    body.hide-price .price-row { display: none; }
 
     .empty { text-align: center; color: var(--muted); padding: 60px 20px; grid-column: 1 / -1; }
 
