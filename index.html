@@ -39,6 +39,59 @@
     header p { margin-top: 8px; font-size: 14px; color: #d8cfc0; }
     header .tel { margin-top: 12px; font-size: 13px; color: #efe6d6; }
 
+    /* ── 分頁 ── */
+    .tabs {
+        display: flex; justify-content: center; gap: 8px;
+        background: #4a4031; padding: 10px 12px 0;
+    }
+    .tab {
+        border: none; background: transparent; color: #d8cfc0;
+        font-family: inherit; font-size: 15px; font-weight: 600;
+        padding: 10px 22px; border-radius: 12px 12px 0 0; cursor: pointer;
+        transition: all .15s;
+    }
+    .tab:hover { color: #fff; background: rgba(255,255,255,.08); }
+    .tab.active { background: var(--bg); color: var(--ink); }
+
+    /* ── 裝潢案例 ── */
+    .target {
+        max-width: 760px; margin: 26px auto 10px; padding: 0 20px; text-align: center;
+    }
+    .target h2 { font-size: 20px; font-weight: 700; }
+    .target-note {
+        font-size: 14px; color: var(--accent); background: var(--accent-soft);
+        display: inline-block; padding: 6px 14px; border-radius: 999px; margin: 10px 0 14px;
+    }
+    .target-img {
+        width: 100%; border-radius: 14px; box-shadow: var(--shadow); display: block;
+    }
+    .cases-title { text-align: center; font-size: 19px; font-weight: 700; margin: 34px 0 4px; }
+    .cases-sub { text-align: center; font-size: 13px; color: var(--muted); margin-bottom: 16px; padding: 0 20px; }
+    .cases-grid {
+        max-width: 1200px; margin: 0 auto; padding: 0 16px;
+        display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 18px;
+        align-items: start;
+    }
+    .case-card {
+        background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+        overflow: hidden; box-shadow: var(--shadow); text-decoration: none; color: inherit;
+        display: flex; flex-direction: column; transition: transform .15s, box-shadow .15s;
+    }
+    .case-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(60,50,35,.14); }
+    .case-thumb { aspect-ratio: 16/10; background: var(--accent-soft); position: relative; overflow: hidden; }
+    .case-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .case-thumb .ph {
+        position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+        font-size: 40px; color: var(--accent); opacity: .5;
+        background: repeating-linear-gradient(45deg, #efe9df, #efe9df 12px, #e8e1d4 12px, #e8e1d4 24px);
+    }
+    .case-body { padding: 14px; display: flex; flex-direction: column; gap: 8px; }
+    .case-src { font-size: 12px; color: var(--accent); font-weight: 600; }
+    .case-name { font-size: 15px; font-weight: 700; line-height: 1.45; }
+    .case-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .case-tag { font-size: 11px; color: var(--muted); background: var(--accent-soft); padding: 2px 8px; border-radius: 6px; }
+    .case-go { font-size: 13px; color: var(--accent); margin-top: 2px; }
+
     /* ── 控制列 ── */
     .toolbar {
         position: sticky; top: 0; z-index: 20;
@@ -220,11 +273,17 @@
 <body>
 
 <header>
-    <h1>廚房檯面優惠挑選</h1>
-    <p>西班牙帝通石 Dekton ｜ 西班牙賽麗石 Silestone（Cosentino）</p>
+    <h1>居家裝潢挑選</h1>
+    <p>廚房檯面優惠 ｜ 裝潢配置靈感</p>
     <p class="tel">資料來源：Coallmax 興立富實業　預約專線 (02) 2325-0289</p>
 </header>
 
+<nav class="tabs">
+    <button class="tab active" data-view="deals">🪨 檯面優惠</button>
+    <button class="tab" data-view="cases">🛋️ 裝潢案例</button>
+</nav>
+
+<div id="view-deals">
 <div class="toolbar">
     <div class="group">
         <span class="label">品牌</span>
@@ -264,6 +323,18 @@
 
 <div class="count" id="count"></div>
 <div class="grid" id="grid"></div>
+</div><!-- /view-deals -->
+
+<div id="view-cases" hidden>
+    <section class="target">
+        <h2>我的目標配置</h2>
+        <p class="target-note">窗邊臥榻 ＋ 一字型懸浮電視櫃 ＋ 電視牆旁整合高櫃／隱藏門 ＋ 木地板</p>
+        <img src="assets/my-target.png" alt="我的目標客廳配置" class="target-img">
+    </section>
+    <h2 class="cases-title">類似配置的參考案例</h2>
+    <p class="cases-sub">以「格局配置」為主挑選（風格、色調不限），點卡片前往原文參考。</p>
+    <div class="cases-grid" id="casesGrid"></div>
+</div><!-- /view-cases -->
 
 <footer>
     <h3>優惠須知</h3>
@@ -923,6 +994,106 @@ document.addEventListener("keydown", e => {
     }
 });
 
+// ── 裝潢案例分享 ──
+const CASES = [
+    {
+        src: "PIIN 品系統設計",
+        name: "小宅格局電視牆卡卡？用「隱藏門設計」巧解視覺分割困境",
+        tags: ["電視牆旁隱藏門", "整面櫃體", "小宅"],
+        img: "https://piinterior-net.sfo3.digitaloceanspaces.com/wp-content/uploads/2025/09/scimgcdww7Q.webp",
+        link: "https://piinterior.net/category-columns-interior-inspirations-hidden-door-tv-wall/"
+    },
+    {
+        src: "設計家 Searchome",
+        name: "窗邊空間怎麼運用？除了規劃臥榻與收納、還有更好的選擇",
+        tags: ["窗邊臥榻", "臥榻收納"],
+        img: null,
+        link: "https://www.searchome.net/article.aspx?id=76054"
+    },
+    {
+        src: "PULO 裝潢平台",
+        name: "高收納電視櫃怎麼規劃？45 款電視櫃設計攻略（含臥榻延伸、懸浮櫃）",
+        tags: ["懸浮電視櫃", "臥榻延伸電視櫃"],
+        img: "https://www.puloapp.com/wp-content/uploads/2023/03/0FB封面-112.03月-1.jpg",
+        link: "https://www.puloapp.com/45-kinds-of-tv-cabinet-in-your-house/"
+    },
+    {
+        src: "橙果創意",
+        name: "電視牆設計攻略！45 款電視牆案例，格局分析、材質、收納櫃",
+        tags: ["電視牆格局", "收納櫃整合"],
+        img: "https://www.corange.design/wp-content/uploads/2024/03/封面-01.jpg",
+        link: "https://www.corange.design/blog/tvwall-ideas"
+    },
+    {
+        src: "設計家 Searchome",
+        name: "多功能室、和室、臥榻，那一個適合我家？15 款應用範例",
+        tags: ["臥榻配置", "多功能"],
+        img: null,
+        link: "https://www.searchome.net/article.aspx?id=68413"
+    },
+    {
+        src: "設計家 Searchome",
+        name: "6 種「去電視櫃」電視牆設計，打造簡約舒適的客廳觀影空間",
+        tags: ["懸浮電視櫃", "極簡電視牆"],
+        img: null,
+        link: "https://www.searchome.net/article.aspx?id=80909"
+    },
+];
+
+function makeCaseCard(c) {
+    const a = el("a", "case-card");
+    a.href = c.link; a.target = "_blank"; a.rel = "noopener";
+
+    const thumb = el("div", "case-thumb");
+    if (c.img) {
+        const img = el("img");
+        img.src = c.img; img.alt = c.name; img.loading = "lazy";
+        img.addEventListener("error", () => {
+            img.remove();
+            if (!thumb.querySelector(".ph")) thumb.appendChild(el("div", "ph", "🛋️"));
+        });
+        thumb.appendChild(img);
+    } else {
+        thumb.appendChild(el("div", "ph", "🛋️"));
+    }
+    a.appendChild(thumb);
+
+    const body = el("div", "case-body");
+    body.appendChild(el("div", "case-src", c.src));
+    body.appendChild(el("div", "case-name", c.name));
+    const tags = el("div", "case-tags");
+    c.tags.forEach(t => tags.appendChild(el("span", "case-tag", t)));
+    body.appendChild(tags);
+    body.appendChild(el("div", "case-go", "查看案例 ↗"));
+    a.appendChild(body);
+    return a;
+}
+
+const casesGrid = document.getElementById("casesGrid");
+function renderCases() {
+    casesGrid.replaceChildren();
+    const frag = document.createDocumentFragment();
+    CASES.forEach(c => frag.appendChild(makeCaseCard(c)));
+    casesGrid.appendChild(frag);
+}
+
+// 分頁切換
+const viewDeals = document.getElementById("view-deals");
+const viewCases = document.getElementById("view-cases");
+document.querySelectorAll(".tab").forEach(tab => {
+    tab.addEventListener("click", () => {
+        document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
+        tab.classList.add("active");
+        const isDeals = tab.dataset.view === "deals";
+        viewDeals.hidden = !isDeals;
+        viewCases.hidden = isDeals;
+        // 切到案例頁時收起比對列
+        bar.classList.toggle("show", isDeals && selected.size > 0);
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+});
+
+renderCases();
 render();
 </script>
 </body>
