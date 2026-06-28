@@ -174,8 +174,7 @@
     .compare-col .cprice { color: var(--price); font-weight: 800; }
     .compare-col .cremove { margin-top: auto; background: var(--accent-soft); color: var(--accent);
         border: none; border-radius: 8px; padding: 8px; font-size: 13px; cursor: pointer; font-family: inherit; }
-    body.hide-price .compare-col .cprice,
-    body.hide-price .compare-col .crow.price-line .v { visibility: hidden; }
+    body.hide-price .compare-col .crow.price-line { display: none; }
     @media (max-width: 520px) { .compare-col { flex-basis: 78vw; } }
 
     /* 一鍵隱藏價格 */
