@@ -31,12 +31,6 @@
     display:flex;flex-direction:column;align-items:center;line-height:1.2;min-width:58px}
   .tab small{font-size:10px;font-weight:500;opacity:.85;margin-top:1px}
   .tab.active{background:var(--hanji);color:var(--jade-d);border-color:var(--hanji)}
-  .staycard{background:var(--panel);border:1px solid var(--line);border-radius:12px;
-    padding:11px 13px;margin-top:16px;font-size:13px;display:flex;gap:8px;align-items:flex-start;
-    box-shadow:0 1px 2px rgba(32,27,22,.05)}
-  .staycard b{font-size:14px}
-  .staycard .ko{color:var(--ink-soft);display:block;margin-top:2px}
-  .staycard a.map{margin-top:0}
   .day{display:none;padding-top:16px}
   .day.active{display:block;animation:fade .25s ease}
   @keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
@@ -100,14 +94,6 @@
 </header>
 
 <div class="wrap">
-  <div class="staycard">
-    <span>🏨</span>
-    <div>
-      <b>Neverland DMC</b> · DMC 站 9 號出口 5 分
-      <span class="ko">서울 마포구 상암동 11-9 아트빌 501호</span>
-    </div>
-    <a class="map" href="https://www.google.com/maps/search/?api=1&query=서울 마포구 상암동 11-9" target="_blank" rel="noopener">地圖</a>
-  </div>
 
   <!-- DAY 1 -->
   <section class="day active" id="d1">
@@ -121,7 +107,9 @@
       </div></li>
       <li class="stop move"><div class="num">2</div><div class="card">
         <div class="name">AREX → DMC 站入住<span class="tag t-move">交通</span></div>
-        <div class="meta">🚄 AREX 約 50 分 · 約 21:00 到 · DMC 站步行 5 分到住宿</div>
+        <div class="addr">🏨 Neverland DMC · DMC 站 9 號出口 5 分<span class="ko">서울 마포구 상암동 11-9 아트빌 501호</span></div>
+        <div class="meta">🚄 AREX 約 50 分 · 約 21:00 到住宿</div>
+        <a class="map" href="https://www.google.com/maps/search/?api=1&query=서울 마포구 상암동 11-9" target="_blank" rel="noopener">地圖</a>
         <div class="next">↓ 晚餐　<span class="m">🛵 PURADAK 外送到房（免移動）</span></div>
       </div></li>
       <li class="stop meal"><div class="num">3</div><div class="card">
