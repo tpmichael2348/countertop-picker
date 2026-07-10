@@ -18,21 +18,16 @@
     background-image:radial-gradient(circle at 20% 30%,rgba(169,133,43,.045) 0 1px,transparent 1px);
     background-size:15px 15px;}
   .wrap{max-width:640px;margin:0 auto;padding:0 14px 60px}
-
-  /* header */
   header{position:sticky;top:0;z-index:20;background:var(--jade);color:#F4EDDD;
     padding:12px 14px 10px;box-shadow:0 2px 10px rgba(32,27,22,.18)}
   header .h-in{max-width:640px;margin:0 auto}
   header h1{margin:0;font-family:var(--serif);font-size:19px;letter-spacing:.02em}
   header .sub{font-size:12px;opacity:.9;margin-top:2px}
-  /* 住宿 bar */
   .stay{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.25);
     border-radius:10px;padding:7px 10px;margin-top:8px;font-size:12.5px;display:flex;gap:8px;align-items:flex-start}
   .stay b{color:#fff}
   .stay .ko{color:#e7eee9}
   .stay a{color:#fff;text-decoration:underline;white-space:nowrap;font-weight:600}
-
-  /* tabs */
   .tabs{position:sticky;top:0;z-index:15;display:flex;gap:6px;overflow-x:auto;
     background:var(--hanji);padding:10px 14px;border-bottom:1px solid var(--line);
     -webkit-overflow-scrolling:touch;scrollbar-width:none}
@@ -42,16 +37,14 @@
     display:flex;flex-direction:column;align-items:center;line-height:1.2;min-width:62px}
   .tab small{font-size:10px;font-weight:500;opacity:.75;margin-top:1px}
   .tab.active{background:var(--jade);color:#fff;border-color:var(--jade)}
-
   .day{display:none;padding-top:16px}
   .day.active{display:block;animation:fade .25s ease}
   @keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
-
-  .dayhead{margin:0 0 14px}
+  .dayhead{margin:0 0 12px}
   .dayhead .date{font-size:13px;color:var(--jade-d);font-weight:700;letter-spacing:.05em}
   .dayhead h2{margin:2px 0 0;font-family:var(--serif);font-size:22px}
-
-  /* timeline */
+  .startleg{margin:0 0 14px;font-size:12.5px;color:var(--jade-d);background:rgba(85,127,110,.10);
+    border:1px solid rgba(85,127,110,.28);border-radius:10px;padding:8px 11px;font-weight:600}
   ol.tl{list-style:none;margin:0;padding:0;position:relative}
   ol.tl::before{content:"";position:absolute;left:15px;top:6px;bottom:14px;width:2px;background:var(--line)}
   .stop{position:relative;padding:0 0 14px 44px}
@@ -79,8 +72,8 @@
   a.site{display:inline-block;margin-top:5px;margin-left:6px;font-size:12px;font-weight:700;color:var(--cheong);
     border:1px solid var(--cheong);border-radius:7px;padding:2px 9px;text-decoration:none}
   a.site:active{background:var(--cheong);color:#fff}
-
-  /* backup */
+  .next{margin-top:9px;padding-top:7px;border-top:1px dashed var(--line);font-size:12px;color:var(--jade-d);font-weight:700}
+  .next .m{color:var(--ink-soft);font-weight:500}
   .backup{margin-top:6px;border:1px dashed var(--gold);border-radius:12px;padding:12px 13px;
     background:rgba(169,133,43,.06)}
   .backup h4{margin:0 0 8px;font-size:13px;color:var(--gold);letter-spacing:.04em}
@@ -122,14 +115,17 @@
   <!-- DAY 1 -->
   <section class="day active" id="d1">
     <div class="dayhead"><div class="date">7/20(一)</div><h2>抵達(晚)</h2></div>
+    <div class="startleg">✈️ 班機 15:30 出發 → 19:05 抵達仁川機場</div>
     <ol class="tl">
       <li class="stop move"><div class="num">1</div><div class="card">
         <div class="name">仁川機場 抵達<span class="tag t-move">交通</span></div>
         <div class="meta">TPE 15:30 → ICN 19:05</div>
+        <div class="next">↓ 前往住宿　<span class="m">🚄 AREX 機場鐵路約 50 分 → DMC 站</span></div>
       </div></li>
       <li class="stop move"><div class="num">2</div><div class="card">
-        <div class="name">AREX 機場鐵路 → DMC 站入住<span class="tag t-move">交通</span></div>
-        <div class="meta">約 21:00 抵達住宿</div>
+        <div class="name">AREX → DMC 站入住<span class="tag t-move">交通</span></div>
+        <div class="meta">🚄 AREX 約 50 分 · 約 21:00 到 · DMC 站步行 5 分到住宿</div>
+        <div class="next">↓ 晚餐　<span class="m">🛵 PURADAK 外送到房（免移動）</span></div>
       </div></li>
       <li class="stop meal"><div class="num">3</div><div class="card">
         <div class="name">PURADAK 푸라닭 炸雞（外送到房）<span class="tag t-food">晚餐</span></div>
@@ -145,28 +141,34 @@
   <!-- DAY 2 -->
   <section class="day" id="d2">
     <div class="dayhead"><div class="date">7/21(二)</div><h2>樂天世界塔 + 東大門</h2></div>
+    <div class="startleg">🏨 住宿 DMC → 樂天世界塔　🚇 地鐵約 50 分（DMC 6 號線→合井轉 2 號線→蠶室）</div>
     <ol class="tl">
       <li class="stop"><div class="num">1</div><div class="card">
         <div class="name">樂天世界塔 Seoul Sky 展望台<span class="tag t-sight">展望</span></div>
         <div class="meta">잠실 · 高空俯瞰首爾全景</div>
         <a class="map" href="https://www.google.com/maps/search/?api=1&query=롯데월드타워 서울스카이" target="_blank" rel="noopener">地圖</a>
+        <div class="next">↓ <span class="m">🚶 步行 3 分（同棟相連）</span></div>
       </div></li>
       <li class="stop shop"><div class="num">2</div><div class="card">
         <div class="name">樂天世界購物中心<span class="tag t-shop">午餐·逛街</span></div>
         <div class="meta">잠실 站直結</div>
+        <div class="next">↓ <span class="m">🚇 2 號線約 20 分（蠶室→東大門歷史文化公園）</span></div>
       </div></li>
       <li class="stop sight"><div class="num">3</div><div class="card">
         <div class="name">東大門 DDP<span class="tag t-sight">景點</span></div>
         <div class="meta">未來感建築、好拍</div>
         <a class="map" href="https://www.google.com/maps/search/?api=1&query=DDP 동대문디자인플라자" target="_blank" rel="noopener">地圖</a>
+        <div class="next">↓ <span class="m">🚶 步行 5 分</span></div>
       </div></li>
       <li class="stop shop"><div class="num">4</div><div class="card">
         <div class="name">東大門購物商城<span class="tag t-shop">逛街</span></div>
         <div class="meta">營業到深夜</div>
+        <div class="next">↓ <span class="m">🚶 步行（東大門周邊）</span></div>
       </div></li>
       <li class="stop meal"><div class="num">5</div><div class="card">
         <div class="name">晚餐：部隊鍋 / 炸雞續攤<span class="tag t-food">晚餐</span></div>
         <div class="meta">東大門周邊</div>
+        <div class="next">↩ 回住宿　<span class="m">🚇 地鐵約 40 分（東大門→合井轉 6 號線→DMC）</span></div>
       </div></li>
     </ol>
     <div class="backup"><h4>◇ 備用（順路）</h4>
@@ -181,10 +183,12 @@
   <!-- DAY 3 -->
   <section class="day" id="d3">
     <div class="dayhead"><div class="date">7/22(三)</div><h2>弘大追星日</h2></div>
+    <div class="startleg">🏨 住宿 DMC → 弘大　🚇 京義中央線/機場鐵路 1 站約 5 分（DMC→弘大入口）</div>
     <ol class="tl">
       <li class="stop shop"><div class="num">1</div><div class="card">
         <div class="name">弘大商圈逛街<span class="tag t-shop">逛街</span></div>
         <div class="meta">潮流店、街頭藝人表演</div>
+        <div class="next">↓ <span class="m">🚶 步行 5 分</span></div>
       </div></li>
       <li class="stop meal"><div class="num">2</div><div class="card">
         <div class="name">두끼 Dookki 弘大店<span class="tag t-food">午餐·可不辣</span></div>
@@ -192,6 +196,7 @@
         <div class="meta">弘大入口站 · 12:00–22:00 · 醬料自選可全不辣</div>
         <a class="map" href="https://www.google.com/maps/search/?api=1&query=서울 마포구 홍익로6길 8 두끼" target="_blank" rel="noopener">地圖</a>
         <a class="site" href="https://www.dookki.co.kr" target="_blank" rel="noopener">官網</a>
+        <div class="next">↓ <span class="m">🚶 步行 8 分</span></div>
       </div></li>
       <li class="stop star"><div class="num">3</div><div class="card">
         <div class="name">Ducky World<span class="tag t-star">卡套</span></div>
@@ -199,6 +204,7 @@
         <div class="meta">弘大入口站 7/9 出口步行 8 分</div>
         <a class="map" href="https://www.google.com/maps/search/?api=1&query=서울 마포구 와우산로29길 60" target="_blank" rel="noopener">地圖</a>
         <a class="site" href="https://www.instagram.com/duckyworld_kr" target="_blank" rel="noopener">IG</a>
+        <div class="next">↓ <span class="m">🚶 步行 5 分</span></div>
       </div></li>
       <li class="stop star"><div class="num">4</div><div class="card">
         <div class="name">POCA SPOT 弘大店<span class="tag t-star">小卡</span></div>
@@ -206,12 +212,14 @@
         <div class="meta">弘大入口站附近（以地圖為準）</div>
         <a class="map" href="https://www.google.com/maps/search/?api=1&query=서울 마포구 서교동 328-28 포카스팟" target="_blank" rel="noopener">地圖</a>
         <a class="site" href="https://www.instagram.com/pocaspot" target="_blank" rel="noopener">IG</a>
+        <div class="next">↓ <span class="m">🚶 步行約 15 分（或弘大入口→合井 1 站）</span></div>
       </div></li>
       <li class="stop star"><div class="num">5</div><div class="card">
         <div class="name">YG 娛樂 朝聖<span class="tag t-star">追星</span></div>
         <div class="addr">麻浦區喜雨亭路1街 7 號<span class="ko">서울 마포구 희우정로1길 7</span></div>
         <div class="meta">合井站 · 外觀拍照 + 附近咖啡</div>
         <a class="map" href="https://www.google.com/maps/search/?api=1&query=서울 마포구 희우정로1길 7 YG" target="_blank" rel="noopener">地圖</a>
+        <div class="next">↓ <span class="m">🚶 步行約 15 分（合井→延南洞）</span></div>
       </div></li>
       <li class="stop"><div class="num">6</div><div class="card">
         <div class="name">延南洞 + 自然島鹽麵包<span class="tag t-food">咖啡·點心</span></div>
@@ -219,12 +227,14 @@
         <div class="meta">弘大入口站附近 · 09:00–22:00 · 現烤鹽可頌</div>
         <a class="map" href="https://www.google.com/maps/search/?api=1&query=서울 마포구 양화로21길 33 자연도소금빵" target="_blank" rel="noopener">地圖</a>
         <a class="site" href="https://alinalife.tw/jayeondo-saltbread-seoul/" target="_blank" rel="noopener">介紹</a>
+        <div class="next">↓ <span class="m">🚶 步行 5 分</span></div>
       </div></li>
       <li class="stop meal"><div class="num">7</div><div class="card">
         <div class="name">水芹菜烤肉<span class="tag t-food">晚餐</span></div>
         <div class="addr">麻浦區世界盃北路4街 8 號 1 樓<span class="ko">서울 마포구 월드컵북로4길 8 1층</span></div>
         <div class="meta">弘大入口站 1 出口步行 5 分 · 延南洞旁順路收尾</div>
         <a class="map" href="https://www.google.com/maps/search/?api=1&query=서울 마포구 월드컵북로4길 8" target="_blank" rel="noopener">地圖</a>
+        <div class="next">↩ 回住宿　<span class="m">🚇 弘大入口→DMC 1 站約 5 分</span></div>
       </div></li>
     </ol>
     <div class="backup"><h4>◇ 備用（順路）</h4>
@@ -248,19 +258,23 @@
   <!-- DAY 4 -->
   <section class="day" id="d4">
     <div class="dayhead"><div class="date">7/23(四)</div><h2>景福宮 + 明洞 + 南山塔</h2></div>
+    <div class="startleg">🏨 住宿 DMC → 景福宮　🚇 地鐵約 35–40 分（DMC 6 號線→佛光轉 3 號線→景福宮）</div>
     <ol class="tl">
       <li class="stop sight"><div class="num">1</div><div class="card">
         <div class="name">景福宮<span class="tag t-sight">景點</span></div>
         <div class="meta">穿便服入場 · 週四有開（週二公休已避開）</div>
         <a class="map" href="https://www.google.com/maps/search/?api=1&query=경복궁" target="_blank" rel="noopener">地圖</a>
+        <div class="next">↓ <span class="m">🚶 步行約 12 分（往北村）</span></div>
       </div></li>
       <li class="stop sight"><div class="num">2</div><div class="card">
         <div class="name">北村韓屋村 / 仁寺洞<span class="tag t-sight">散步</span></div>
         <div class="meta">傳統巷弄 + 文創</div>
+        <div class="next">↓ <span class="m">🚶 步行 5 分（仁寺洞內）</span></div>
       </div></li>
       <li class="stop"><div class="num">3</div><div class="card">
         <div class="name">韓國龍鬚糖小哥 궁중꿀타래<span class="tag t-sight">體驗</span></div>
         <div class="meta">仁寺洞攤 · 多國語言搞笑叫賣表演</div>
+        <div class="next">↓ <span class="m">🚇 約 10 分（或步行 15 分）→ 明洞</span></div>
       </div></li>
       <li class="stop shop"><div class="num">4</div><div class="card">
         <div class="name">明洞逛街 + Olive Young 美妝<span class="tag t-shop">逛街·退稅</span></div>
@@ -268,15 +282,18 @@
         <div class="meta">明洞站 · 10:00–22:30 · 伴手禮先買齊</div>
         <a class="map" href="https://www.google.com/maps/search/?api=1&query=서울 중구 명동길 53 올리브영" target="_blank" rel="noopener">地圖</a>
         <a class="site" href="https://myeongdongtown.oliveyoung.com" target="_blank" rel="noopener">官網</a>
+        <div class="next">↓ <span class="m">🚶 步行（明洞商圈內）</span></div>
       </div></li>
       <li class="stop meal"><div class="num">5</div><div class="card">
         <div class="name">明洞夜市<span class="tag t-food">小吃</span></div>
         <div class="meta">雞蛋糕、糖餅、街邊小吃</div>
+        <div class="next">↓ <span class="m">🚶 步行 10 分 + 🚡 纜車 3 分 → 南山塔</span></div>
       </div></li>
       <li class="stop sight"><div class="num">6</div><div class="card">
         <div class="name">南山 N 首爾塔<span class="tag t-sight">夜景</span></div>
         <div class="meta">搭纜車上塔看夜景</div>
         <a class="map" href="https://www.google.com/maps/search/?api=1&query=남산서울타워" target="_blank" rel="noopener">地圖</a>
+        <div class="next">↩ 回住宿　<span class="m">🚇 地鐵約 40 分</span></div>
       </div></li>
     </ol>
     <div class="backup"><h4>◇ 備用（順路）</h4>
@@ -330,14 +347,17 @@
   <!-- DAY 5 -->
   <section class="day" id="d5">
     <div class="dayhead"><div class="date">7/24(五)</div><h2>返程</h2></div>
+    <div class="startleg">🧳 退房前把伴手禮打包好（Olive Young / 大創 建議 Day4 先買齊）</div>
     <ol class="tl">
       <li class="stop"><div class="num">1</div><div class="card">
         <div class="name">打包 + 便利商店早餐 / 補貨<span class="tag t-shop">整理</span></div>
-        <div class="meta">伴手禮建議 Day4 先買好</div>
+        <div class="meta">住宿樓下便利商店解決早餐</div>
+        <div class="next">↓ <span class="m">🚶 住宿 → DMC 站步行 5 分</span></div>
       </div></li>
       <li class="stop move"><div class="num">2</div><div class="card">
         <div class="name">DMC 出發 → AREX → 仁川機場<span class="tag t-move">交通</span></div>
-        <div class="meta">約 09:30 出發 · 預留 2 小時</div>
+        <div class="meta">🚄 AREX 約 50 分 · 約 09:30 出發 · 預留 2 小時</div>
+        <div class="next">↓ <span class="m">✈️ 抵達仁川機場、辦理登機/退稅</span></div>
       </div></li>
       <li class="stop move"><div class="num">3</div><div class="card">
         <div class="name">ICN 12:45 → TPE 14:20<span class="tag t-move">航班</span></div>
@@ -347,7 +367,7 @@
     <div class="backup"><h4>◇ 備用（順路）</h4><div class="none">返程日，無備用</div></div>
   </section>
 
-  <footer>首爾 5 天 4 夜 · 上岩 DMC · ★ 排定　◇ 備用<br>地圖連結用韓文地址搜尋，導航最準</footer>
+  <footer>首爾 5 天 4 夜 · 上岩 DMC · ★ 排定　◇ 備用<br>交通時間為預估，實際以 Naver / Kakao Map 即時為準</footer>
 </div>
 
 <script>
