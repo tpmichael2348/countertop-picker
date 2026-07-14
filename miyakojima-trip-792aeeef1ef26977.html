@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex, nofollow">
   <title>宮古島 5天4夜｜行程與時間表</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="anonymous">
   <style>
     :root { --ink:#18314a; --muted:#61738a; --bg:#f3f8fb; --card:#fff; --blue:#147db8; --teal:#129a91; --orange:#e7862f; --violet:#7352a7; --red:#c0453b; --line:#d6e3eb; }
     * { box-sizing:border-box; }
@@ -46,6 +48,10 @@
     .shot img { width:100%; height:100%; object-fit:cover; display:block; }
     .shot::after { content:"↗"; position:absolute; right:4px; bottom:3px; width:17px; height:17px; display:grid; place-items:center; border-radius:6px; background:#0d2f47cc; color:#fff; font-size:.72rem; line-height:1; }
     .card::after { content:""; display:block; clear:both; }
+    .acts { margin-top:9px; }
+    .nav { display:inline-flex; align-items:center; gap:5px; padding:5px 11px; border-radius:999px; border:1px solid #bcd6e6; background:#f2f9fd; color:#12669b; font-size:.83rem; font-weight:650; text-decoration:none; }
+    .nav::before { content:"\27A4"; font-size:.72rem; transform:rotate(-45deg); }
+    .nav:hover { background:var(--blue); border-color:var(--blue); color:#fff; }
 
     .notes { margin-top:18px; padding:16px; }
     .backup { margin-top:18px; padding:16px; }
@@ -55,6 +61,17 @@
     .notes ul { margin:8px 0 0; padding-left:20px; font-size:.92rem; }
     .notes li { margin-bottom:5px; }
     footer { padding:28px 6px 0; color:var(--muted); font-size:.79rem; text-align:center; line-height:1.7; }
+
+    .maplegend { display:flex; gap:7px; flex-wrap:wrap; margin:0 0 12px; }
+    .chip { display:inline-flex; align-items:center; gap:6px; padding:6px 13px; border-radius:999px; border:1.5px solid; background:var(--card); font:inherit; font-size:.86rem; font-weight:650; cursor:pointer; transition:opacity .15s; }
+    .chip .swatch { width:11px; height:11px; border-radius:50%; }
+    .chip.off { opacity:.35; }
+    #map { height:64vh; min-height:400px; border-radius:16px; box-shadow:0 3px 16px #17314a0c; }
+    .pin span { display:grid; place-items:center; width:25px; height:25px; border-radius:50%; color:#fff; font-weight:750; font-size:12px; box-shadow:0 0 0 2px #fff, 0 2px 6px #17314a55; }
+    .pin.home span { border-radius:7px; }
+    .leaflet-popup-content { margin:11px 13px; font-family:inherit; line-height:1.5; }
+    .pop-t { color:var(--blue); font-weight:750; font-variant-numeric:tabular-nums; }
+    .pop-n { font-weight:700; font-size:1rem; margin:1px 0 6px; }
 
     @media (max-width:560px) {
       .wrap { padding:18px 12px 38px; }
@@ -81,6 +98,7 @@
         <button class="tab" data-day="d3"><span class="tab-day">Day 3</span><span class="tab-date">8/14 五</span></button>
         <button class="tab" data-day="d4"><span class="tab-day">Day 4</span><span class="tab-date">8/15 六</span></button>
         <button class="tab" data-day="d5"><span class="tab-day">Day 5</span><span class="tab-date">8/16 日</span></button>
+        <button class="tab" data-day="dmap"><span class="tab-day">地圖</span><span class="tab-date">全部景點</span></button>
       </nav>
     </div>
 
@@ -98,6 +116,7 @@
           <div class="card">
             <div class="name">下地島機場 入境<span class="tag move">抵達</span></div>
             <div class="meta">JX308 落地。小型航廈、單一航班，入境審查＋提領行李約 40–60 分。可先用 Visit Japan Web 備妥 QR 加速。</div>
+            <div class="acts"><a class="nav" href="https://www.google.com/maps/dir/?api=1&amp;destination=24.82453,125.14684" target="_blank" rel="noopener">Google Maps 導航</a></div>
             <div class="next">↓ 出關後步行至航廈內租車櫃檯</div>
           </div></li>
 
@@ -106,6 +125,7 @@
             <div class="name">租車取車<span class="tag move">租車</span></div>
             <div class="meta">機場內櫃檯（OTS／Orix／Toyota／Pine 皆在航廈，不需接駁）。手續約 15–25 分，旺季排隊可能更久。</div>
             <div class="warn"><b>訂車請優先選 OTS。</b>回程日 8/16 早上只有 OTS 08:00 開門，其餘三家都要 09:00，會壓縮報到時間（詳見 Day 5）。</div>
+            <div class="acts"><a class="nav" href="https://www.google.com/maps/dir/?api=1&amp;destination=24.82453,125.14684" target="_blank" rel="noopener">Google Maps 導航</a></div>
             <div class="next">↓ 開車約 30–35 分，經伊良部大橋 → 平良</div>
           </div></li>
 
@@ -113,6 +133,7 @@
           <div class="card">
             <div class="name">宮古島微笑飯店 放行李</div>
             <div class="meta">未到入住時間可先寄放行李，晚上回來再正式入住。</div>
+            <div class="acts"><a class="nav" href="https://www.google.com/maps/dir/?api=1&amp;destination=24.80504,125.28084" target="_blank" rel="noopener">Google Maps 導航</a></div>
             <div class="next">↓ 開車約 10 分</div>
           </div></li>
 
@@ -123,6 +144,7 @@
             </a>
             <div class="name">Doug's Burger 宮古島本店<span class="tag food">午餐</span></div>
             <div class="meta">島上人氣漢堡店，份量大。夏季每日營業，尖峰需候位，抓 75 分較從容。</div>
+            <div class="acts"><a class="nav" href="https://www.google.com/maps/dir/?api=1&amp;destination=24.79574,125.28682" target="_blank" rel="noopener">Google Maps 導航</a></div>
             <div class="next">↓ 開車約 15–20 分</div>
           </div></li>
 
@@ -133,6 +155,7 @@
             </a>
             <div class="name">與那霸前濱海灘<span class="tag sea">海灘</span></div>
             <div class="meta">號稱東洋第一的白沙灘。這是一天中紫外線最強的時段，請備遮陽、勤補防曬，適時到樹蔭下休息。第一天不排水上活動。</div>
+            <div class="acts"><a class="nav" href="https://www.google.com/maps/dir/?api=1&amp;destination=24.73604,125.26119" target="_blank" rel="noopener">Google Maps 導航</a></div>
             <div class="next">↓ 開車約 25 分 → 飯店</div>
           </div></li>
 
@@ -140,6 +163,7 @@
           <div class="card">
             <div class="name">回飯店 入住・沖澡・休息<span class="tag move">休息</span></div>
             <div class="meta">今天 04:30 就起床搭機，這段休息是刻意排的：沖掉海水鹽分、補個眠，晚上才有精神。</div>
+            <div class="acts"><a class="nav" href="https://www.google.com/maps/dir/?api=1&amp;destination=24.80504,125.28084" target="_blank" rel="noopener">Google Maps 導航</a></div>
             <div class="next">↓ 18:30 出發，開車約 25 分，經來間大橋</div>
           </div></li>
 
@@ -150,6 +174,7 @@
             </a>
             <div class="name">竜宮城展望台・來間島夕陽<span class="tag spot">夕陽</span></div>
             <div class="meta">三層樓展望台，可一次看盡前濱海灘、來間大橋與夕陽。<b>今日日落 19:16</b>，19:35 左右離開。日落後不要在偏僻海岸久留。</div>
+            <div class="acts"><a class="nav" href="https://www.google.com/maps/dir/?api=1&amp;destination=24.72604,125.25167" target="_blank" rel="noopener">Google Maps 導航</a></div>
             <div class="next">↓ 開車約 25 分 → 平良市區</div>
           </div></li>
 
@@ -161,6 +186,7 @@
             <div class="name">郷家（ごーや）<span class="tag food">晚餐</span></div>
             <div class="meta">沖繩鄉土料理＋泡盛，17:30–24:00 營業。距飯店步行約 6–8 分，吃完可散步回去。人均約 ¥2,800。</div>
             <div class="warn"><b>兩件事：</b>①「不定休」，8/12 是否營業請先電話確認（0980-74-2358）；旺季建議訂位。② 每晚 <b>19:30 有約 50 分鐘的三線島唄現場演唱</b>，20:00 到只聽得到後半場——想聽完整場得 19:15 到店，但那就會錯過 19:16 的日落，兩者只能擇一。</div>
+            <div class="acts"><a class="nav" href="https://www.google.com/maps/dir/?api=1&amp;destination=24.80198,125.28341" target="_blank" rel="noopener">Google Maps 導航</a></div>
             <div class="next">↓ 步行約 6–8 分 → 飯店</div>
           </div></li>
 
@@ -196,6 +222,7 @@
             </a>
             <div class="name">伊良部大橋<span class="tag spot">景觀</span></div>
             <div class="meta">全長 3,540 公尺，日本免費通行的跨海大橋中最長。橋本身就是景點——但請由駕駛專心開車，拍照交給乘客，或在橋頭的見學停車場停靠。</div>
+            <div class="acts"><a class="nav" href="https://www.google.com/maps/dir/?api=1&amp;destination=24.79676,125.23928" target="_blank" rel="noopener">Google Maps 導航</a></div>
             <div class="next">↓ 開車約 20 分</div>
           </div></li>
 
@@ -206,6 +233,7 @@
             </a>
             <div class="name">佐和田之濱<span class="tag sea">海景</span></div>
             <div class="meta">海面上散布大量礁岩，是 1771 年明和大海嘯留下的巨石。短停拍照、看海即可，不必久留。</div>
+            <div class="acts"><a class="nav" href="https://www.google.com/maps/dir/?api=1&amp;destination=24.84051,125.15999" target="_blank" rel="noopener">Google Maps 導航</a></div>
             <div class="next">↓ 開車約 8 分</div>
           </div></li>
 
@@ -216,6 +244,7 @@
             </a>
             <div class="name">通り池<span class="tag spot">地形</span></div>
             <div class="meta">兩個相連的天然大洞穴池，地下與海相通，國家指定名勝。有木棧步道，來回約 30–40 分。</div>
+            <div class="acts"><a class="nav" href="https://www.google.com/maps/dir/?api=1&amp;destination=24.8242,125.13628" target="_blank" rel="noopener">Google Maps 導航</a></div>
             <div class="next">↓ 開車約 10 分</div>
           </div></li>
 
@@ -227,6 +256,7 @@
             <div class="name">Blue Turtle<span class="tag food">午餐</span></div>
             <div class="meta">正對渡口之濱的海景餐廳，11:00 開始供餐、無固定公休。</div>
             <div class="warn"><b>午餐時段不接受訂位，只能現場候位。</b>建議 11:20 前抵達避開尖峰；若客滿就改吃伊良部島其他店。</div>
+            <div class="acts"><a class="nav" href="https://www.google.com/maps/dir/?api=1&amp;destination=24.81232,125.18264" target="_blank" rel="noopener">Google Maps 導航</a></div>
             <div class="next">↓ 開車約 15 分</div>
           </div></li>
 
@@ -237,6 +267,7 @@
             </a>
             <div class="name">17END<span class="tag sea">海景</span></div>
             <div class="meta">下地島機場 17 號跑道末端的海岸，退潮時會現出白沙洲，也是知名的飛機起降拍攝點。請遵守現場規範，不進入限制區。</div>
+            <div class="acts"><a class="nav" href="https://www.google.com/maps/dir/?api=1&amp;destination=24.84121,125.1399" target="_blank" rel="noopener">Google Maps 導航</a></div>
             <div class="next">↓ 開車約 12 分</div>
           </div></li>
 
@@ -247,6 +278,7 @@
             </a>
             <div class="name">渡口之濱<span class="tag sea">海灘</span></div>
             <div class="meta">伊良部島最漂亮的沙灘，細白沙質。順路收尾，時間不夠可直接略過回飯店。</div>
+            <div class="acts"><a class="nav" href="https://www.google.com/maps/dir/?api=1&amp;destination=24.81153,125.17794" target="_blank" rel="noopener">Google Maps 導航</a></div>
             <div class="next">↓ 開車約 30–35 分，經伊良部大橋 → 飯店</div>
           </div></li>
 
@@ -254,6 +286,7 @@
           <div class="card">
             <div class="name">回飯店 休息・補眠<span class="tag move">休息</span></div>
             <div class="meta">今晚要撐到 22:30，這段補眠不是可有可無的。</div>
+            <div class="acts"><a class="nav" href="https://www.google.com/maps/dir/?api=1&amp;destination=24.80504,125.28084" target="_blank" rel="noopener">Google Maps 導航</a></div>
             <div class="next">↓ 17:00 出發（步行 12–15 分或開車 4 分）</div>
           </div></li>
 
@@ -265,13 +298,14 @@
             <div class="name">大和食堂<span class="tag food">晚餐</span></div>
             <div class="meta">老字號在地食堂，宮古そば大碗 ¥550、人均不到 ¥1,000。上菜快，正好配今晚的行程。</div>
             <div class="warn"><b>晚間只開 17:15–19:00（最後點餐 18:30），且不接受訂位。</b>只有 28 席，建議 17:15 一開門就到，把星空導覽的緩衝拉大。週二公休，8/13 有營業。</div>
+            <div class="acts"><a class="nav" href="https://www.google.com/maps/dir/?api=1&amp;destination=24.79971,125.29259" target="_blank" rel="noopener">Google Maps 導航</a></div>
             <div class="next">↓ 回飯店整裝，準備長袖與防蚊液</div>
           </div></li>
 
         <li class="stop"><div class="clock">19:45<small>約 2.5 小時</small></div><div class="dot"></div>
           <div class="card">
             <a class="shot" href="https://massi.tw/starry-sky-okinawa/" target="_blank" rel="noopener">
-              <img src="https://miyako-tour.com/wp-content/uploads/2018/12/nighttour_hs-11-825x510.jpg" alt="宮古島星空導覽" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+              <img src="miyakojima-stars.jpg" alt="宮古島星空" loading="lazy" onerror="this.remove()">
             </a>
             <div class="name">星空導覽<span class="tag night">夜間</span></div>
             <div class="meta">19:45 集合、20:00–22:00 觀星、約 22:30 回到飯店。<b>8/13 接近新月</b>，月光干擾最小，是這五天條件最好的一晚。請務必參加有在地導覽的行程，不要自行夜駕到偏遠海岸。雲量、風雨與導覽方的判斷優先。</div>
@@ -310,6 +344,7 @@
             <div class="name">Shigira Beach 浮潛 報到<span class="tag sea">浮潛</span></div>
             <div class="meta">集合地點：シギラビーチハウス。<b>須於開始前 15 分鐘完成報到並換好泳衣</b>，所以 10:00 就要抵達。夏季（7–8 月）費用 ¥8,800／人，2 人以上成行。</div>
             <div class="warn"><b>請預約 10:30–12:00 這個場次。</b>夏季場次為 9:00 / 10:30 / 13:30 / 15:00 開始，各 1.5 小時。選 10:30 場，結束後正好接午餐。海況與是否下水以業者現場判斷為準。</div>
+            <div class="acts"><a class="nav" href="https://www.google.com/maps/dir/?api=1&amp;destination=24.72009,125.34076" target="_blank" rel="noopener">Google Maps 導航</a></div>
           </div></li>
 
         <li class="stop"><div class="clock">10:30<small>90 分</small></div><div class="dot"></div>
@@ -326,6 +361,7 @@
             </a>
             <div class="name">Shigira Beach 食物街<span class="tag food">午餐</span></div>
             <div class="meta">就在 Center Beach House 1F，上岸沖洗完走過去就是，<b>完全不用開車</b>。11:00–17:00 供餐（最後點餐 16:00），琉球咖哩、Taco Rice 等輕食，人均約 ¥1,000–2,000。</div>
+            <div class="acts"><a class="nav" href="https://www.google.com/maps/dir/?api=1&amp;destination=24.72087,125.34142" target="_blank" rel="noopener">Google Maps 導航</a></div>
             <div class="next">↓ 開車約 40–45 分（南岸 → 北端）</div>
           </div></li>
 
@@ -336,6 +372,7 @@
             </a>
             <div class="name">雪鹽 Museum<span class="tag spot">室內／伴手禮</span></div>
             <div class="meta">8 月營業至 18:00。招牌雪鹽霜淇淋必吃，也是採買伴手禮的好地方。<b>15:00 有免費定時導覽</b>（約 10–15 分、免預約，另有 16:00 場），14:45 到剛好趕得上。</div>
+            <div class="acts"><a class="nav" href="https://www.google.com/maps/dir/?api=1&amp;destination=24.90221,125.26821" target="_blank" rel="noopener">Google Maps 導航</a></div>
             <div class="next">↓ 開車約 20 分</div>
           </div></li>
 
@@ -346,6 +383,7 @@
             </a>
             <div class="name">砂山海灘<span class="tag sea">海灘</span></div>
             <div class="meta">招牌是天然的拱門岩。從停車場要先走一段沙丘上坡再下到海灘，穿好走的鞋。這時段陽光已轉柔，適合拍照。</div>
+            <div class="acts"><a class="nav" href="https://www.google.com/maps/dir/?api=1&amp;destination=24.83939,125.28056" target="_blank" rel="noopener">Google Maps 導航</a></div>
             <div class="next">↓ 開車約 15 分 → 飯店沖澡休息</div>
           </div></li>
 
@@ -357,6 +395,7 @@
             <div class="name">ぽうちゃたつや<span class="tag food">晚餐</span></div>
             <div class="meta">島料理海鮮居酒屋，距飯店步行約 2–3 分。人均 ¥5,000–6,000，僅 23 席。18:00–22:00（餐點最後點餐 21:00）。</div>
             <div class="warn"><b>必須訂位，而且只收電話（0980-73-3931），可從用餐日往前兩週的下午 4 點開始訂。</b>旺季週五幾乎一定客滿。另注意：<b>高中生以下兒童不可入店</b>，若有小孩同行請改去郷家。</div>
+            <div class="acts"><a class="nav" href="https://www.google.com/maps/dir/?api=1&amp;destination=24.80279,125.2819" target="_blank" rel="noopener">Google Maps 導航</a></div>
             <div class="next">↓ 開車約 5–10 分</div>
           </div></li>
 
@@ -368,6 +407,7 @@
             <div class="name">Don Quijote 宮古島店<span class="tag spot">採買</span></div>
             <div class="meta">伴手禮、藥妝與日用品一次買齊，別留到最後一天才買（Day 5 早上完全沒有購物時間）。營業到深夜，晚餐後來剛好。</div>
             <div class="warn">出發前請再確認營業時間；若當晚太累，這站可以移到 Day 4 下午的休息時段。</div>
+            <div class="acts"><a class="nav" href="https://www.google.com/maps/dir/?api=1&amp;destination=24.79254,125.30156" target="_blank" rel="noopener">Google Maps 導航</a></div>
             <div class="next">↓ 開車約 5–10 分 → 飯店</div>
           </div></li>
 
@@ -404,6 +444,7 @@
             </a>
             <div class="name">東平安名崎<span class="tag spot">景觀</span></div>
             <div class="meta">日本百景之一，2 公里長的細長岬角，兩側是不同顏色的海。可登平安名埼燈塔（需門票）。<b>步道全程無遮蔽、曝曬嚴重</b>，所以排在上午，請帶足水與防曬。</div>
+            <div class="acts"><a class="nav" href="https://www.google.com/maps/dir/?api=1&amp;destination=24.71881,125.46914" target="_blank" rel="noopener">Google Maps 導航</a></div>
             <div class="next">↓ 開車約 5–10 分</div>
           </div></li>
 
@@ -414,6 +455,7 @@
             </a>
             <div class="name">Ocean's Vista<span class="tag food">午餐</span></div>
             <div class="meta">保良台地上的餐廳，位置正好可以回望剛剛走過的東平安名崎。岬角本身只有停車場、燈塔與廁所，沒有餐廳，這是最近的用餐點。<b>8/15 是週六，營業到 17:00（最後點餐 16:00）</b>，11:00 開門。</div>
+            <div class="acts"><a class="nav" href="https://www.google.com/maps/dir/?api=1&amp;destination=24.74419,125.4401" target="_blank" rel="noopener">Google Maps 導航</a></div>
             <div class="next">↓ 開車約 40–45 分，經來間大橋 → 來間島</div>
           </div></li>
 
@@ -425,6 +467,7 @@
             <div class="name">AOSORA PARLOR<span class="tag food">冰沙</span></div>
             <div class="meta">來間島上的水果冰沙名店，招牌是芒果冰沙配甘蔗吸管。</div>
             <div class="warn"><b>這家中午 12:00–13:00 休息</b>（官網日文版明載），所以刻意排在 13:15 抵達。另外它是<b>不定休</b>，且不同來源的營業時間互相矛盾（有 17:00 關也有 18:00 關的版本）——出發前請看它的 Instagram 公告或直接打 0980-76-3900。</div>
+            <div class="acts"><a class="nav" href="https://www.google.com/maps/dir/?api=1&amp;destination=24.72296,125.25417" target="_blank" rel="noopener">Google Maps 導航</a></div>
             <div class="next">↓ 開車約 25–30 分 → 飯店</div>
           </div></li>
 
@@ -432,6 +475,7 @@
           <div class="card">
             <div class="name">回飯店 休息・整理行李<span class="tag move">休息</span></div>
             <div class="meta">明天 07:30 就要退房出發，行李今晚先打包好。若 Day 3 沒去成 Don Quijote，可以利用這段時間補買。</div>
+            <div class="acts"><a class="nav" href="https://www.google.com/maps/dir/?api=1&amp;destination=24.80504,125.28084" target="_blank" rel="noopener">Google Maps 導航</a></div>
             <div class="next">↓ 17:45 出發，開車約 8–10 分（不建議步行）</div>
           </div></li>
 
@@ -443,6 +487,7 @@
             <div class="name">宮古牛燒肉 火神（かがみ）<span class="tag food">晚餐</span></div>
             <div class="meta">只用 5 等級宮古牛、七輪炭火燒，白飯沙拉泡菜湯可免費續。17:00–23:00 營業，<b>週日公休</b>——所以只能排在今天（8/15 週六），Day 5 想吃也吃不到。</div>
             <div class="warn"><b>務必先訂位。</b>電話 0980-79-5129，或線上訂位（ebica）。旺季週六不訂位很可能撲空。</div>
+            <div class="acts"><a class="nav" href="https://www.google.com/maps/dir/?api=1&amp;destination=24.78963,125.27974" target="_blank" rel="noopener">Google Maps 導航</a></div>
             <div class="next">↓ 開車約 8–10 分 → 飯店，早睡</div>
           </div></li>
 
@@ -476,6 +521,7 @@
           <div class="card">
             <div class="name">出發 → 下地島機場<span class="tag move">移動</span></div>
             <div class="meta">飯店到機場開車約 30–35 分。<b>中途要加油</b>（租車還車幾乎都要求滿油），請預留 10 分鐘，別在機場才想到。</div>
+            <div class="acts"><a class="nav" href="https://www.google.com/maps/dir/?api=1&amp;destination=24.82453,125.14684" target="_blank" rel="noopener">Google Maps 導航</a></div>
             <div class="next">↓ 經伊良部大橋</div>
           </div></li>
 
@@ -484,6 +530,7 @@
             <div class="name">還車<span class="tag move">租車</span></div>
             <div class="meta">機場內櫃檯，含加油證明與車損檢查約 10–20 分。</div>
             <div class="warn"><b>這是整趟行程最緊的一個環節。</b>下地島機場的租車業者中，<b>只有 OTS 08:00 開門</b>（8/16 週日 08:00–18:30）；Orix、Toyota、Pine 都要 09:00 才開。而星宇櫃檯在<b>起飛前 1 小時（09:40）關閉</b>、行李同時截止。若你租的不是 OTS，這天會變成「09:00 還車 → 09:20 報到 → 09:40 關櫃」，毫無容錯空間。<b>訂車時請選 OTS，或事先致電確認能否提早還車。</b></div>
+            <div class="acts"><a class="nav" href="https://www.google.com/maps/dir/?api=1&amp;destination=24.82453,125.14684" target="_blank" rel="noopener">Google Maps 導航</a></div>
             <div class="next">↓ 步行至航廈</div>
           </div></li>
 
@@ -492,6 +539,7 @@
             <div class="name">星宇航空 報到・託運行李<span class="tag move">機場</span></div>
             <div class="meta">星宇櫃檯於起飛前 3.5–2 小時開始受理（約 08:10 開），<b>起飛前 1 小時（09:40）關閉</b>。08:45 到航廈可以從容報到。</div>
             <div class="warn">下地島機場官網 FAQ 另寫星宇「150 分前」，與星宇官方的「60 分前關櫃」字面矛盾。出發前一天建議打電話向星宇或機場（0980-78-6606）確認一次。</div>
+            <div class="acts"><a class="nav" href="https://www.google.com/maps/dir/?api=1&amp;destination=24.82453,125.14684" target="_blank" rel="noopener">Google Maps 導航</a></div>
             <div class="next">↓ 安檢、出境審查</div>
           </div></li>
 
@@ -515,15 +563,142 @@
       </aside>
     </section>
 
+    <!-- ================= 地圖 ================= -->
+    <section class="day" id="dmap">
+      <div class="dayhead">
+        <div class="date">全程地圖</div>
+        <h2>五天動線與所有景點</h2>
+        <div class="drive">點下方色塊可切換顯示哪幾天｜點地圖上的標記可看時間與導航連結</div>
+      </div>
+      <p class="start">虛線是當天的實際開車動線（含來回飯店那幾趟），方形標記是住宿的宮古島微笑飯店。</p>
+      <div class="maplegend" id="legend"></div>
+      <div id="map"></div>
+      <aside class="notes">
+        <h3>◇ 看地圖會發現的三件事</h3>
+        <ul>
+          <li><b>飯店在平良（島的西北），但景點散在四個角落。</b>這就是為什麼每天都得回頭——動線本來就沒辦法完全不折返。</li>
+          <li><b>Day 2 整天都在左邊的伊良部／下地島</b>，過了伊良部大橋就不再跨回本島，這是刻意的安排。</li>
+          <li><b>Day 4 的東平安名崎在最右端</b>，離飯店最遠（開車 35–40 分），所以排在早上、也在附近就把午餐解決掉。</li>
+        </ul>
+      </aside>
+    </section>
+
     <footer>
       初步規劃｜所有營業時間、車程與導覽資訊均須以出發前最新官方公告、天候與海況為準。此頁不含房號、航班座位或訂位個資。<br>
-      景點照片來自 Wikimedia Commons（CC BY / CC BY-SA / CC0，作者含 663highland、Paipateroma、sota、Cassiopeia sweet、Kaz Ish、JiroS.、Raita Futo 等）與各店家官方網站；點圖可開啟該景點的介紹文章。
+      景點照片來自 Wikimedia Commons（CC BY / CC BY-SA / CC0，作者含 663highland、Paipateroma、sota、Cassiopeia sweet、Kaz Ish、JiroS.、Raita Futo 等）與各店家官方網站；點圖可開啟該景點的介紹文章。<br>
+      星空照片出處：<a href="https://massi.tw/starry-sky-okinawa/" target="_blank" rel="noopener">一直玩的馬摩</a>。地圖圖磚 © OpenStreetMap 貢獻者。
     </footer>
   </main>
 
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+          integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="anonymous"></script>
   <script>
+    const HOTEL = [24.80504, 125.28084];
+
+    const TRIP = [
+      { id: 'd1', label: 'Day 1', color: '#e0483c',
+        pts: [
+          { t: '09:40', n: '下地島機場 抵達', c: [24.82453, 125.14684] },
+          { t: '11:35', n: '宮古島微笑飯店 放行李', c: HOTEL, home: true },
+          { t: '12:00', n: "Doug's Burger 午餐", c: [24.79574, 125.28682] },
+          { t: '13:30', n: '與那霸前濱海灘', c: [24.73604, 125.26119] },
+          { t: '18:55', n: '竜宮城展望台 夕陽', c: [24.72604, 125.25167] },
+          { t: '20:00', n: '郷家 晚餐', c: [24.80198, 125.28341] },
+        ],
+        route: [[24.82453, 125.14684], HOTEL, [24.79574, 125.28682], [24.73604, 125.26119], HOTEL, [24.72604, 125.25167], [24.80198, 125.28341], HOTEL] },
+
+      { id: 'd2', label: 'Day 2', color: '#e7862f',
+        pts: [
+          { t: '09:05', n: '伊良部大橋', c: [24.79676, 125.23928] },
+          { t: '09:40', n: '佐和田之濱', c: [24.84051, 125.15999] },
+          { t: '10:20', n: '通り池', c: [24.82420, 125.13628] },
+          { t: '11:20', n: 'Blue Turtle 午餐', c: [24.81232, 125.18264] },
+          { t: '12:55', n: '17END', c: [24.84121, 125.13990] },
+          { t: '14:20', n: '渡口之濱', c: [24.81153, 125.17794] },
+          { t: '17:15', n: '大和食堂 晚餐', c: [24.79971, 125.29259] },
+        ],
+        route: [HOTEL, [24.79676, 125.23928], [24.84051, 125.15999], [24.82420, 125.13628], [24.81232, 125.18264], [24.84121, 125.13990], [24.81153, 125.17794], HOTEL, [24.79971, 125.29259], HOTEL] },
+
+      { id: 'd3', label: 'Day 3', color: '#129a91',
+        pts: [
+          { t: '10:30', n: 'Shigira Beach 浮潛', c: [24.72009, 125.34076] },
+          { t: '12:45', n: 'Shigira 食物街 午餐', c: [24.72087, 125.34142] },
+          { t: '14:45', n: '雪鹽 Museum', c: [24.90221, 125.26821] },
+          { t: '16:20', n: '砂山海灘', c: [24.83939, 125.28056] },
+          { t: '19:00', n: 'ぽうちゃたつや 晚餐', c: [24.80279, 125.28190] },
+          { t: '21:00', n: 'Don Quijote 採買', c: [24.79254, 125.30156] },
+        ],
+        route: [HOTEL, [24.72009, 125.34076], [24.90221, 125.26821], [24.83939, 125.28056], HOTEL, [24.80279, 125.28190], [24.79254, 125.30156], HOTEL] },
+
+      { id: 'd4', label: 'Day 4', color: '#147db8',
+        pts: [
+          { t: '09:10', n: '東平安名崎', c: [24.71881, 125.46914] },
+          { t: '11:00', n: "Ocean's Vista 午餐", c: [24.74419, 125.44010] },
+          { t: '13:15', n: 'AOSORA PARLOR 冰沙', c: [24.72296, 125.25417] },
+          { t: '18:00', n: '宮古牛燒肉 火神 晚餐', c: [24.78963, 125.27974] },
+        ],
+        route: [HOTEL, [24.71881, 125.46914], [24.74419, 125.44010], [24.72296, 125.25417], HOTEL, [24.78963, 125.27974], HOTEL] },
+
+      { id: 'd5', label: 'Day 5', color: '#7352a7',
+        pts: [
+          { t: '07:30', n: '飯店退房', c: HOTEL, home: true },
+          { t: '08:15', n: '下地島機場 還車・報到', c: [24.82453, 125.14684] },
+        ],
+        route: [HOTEL, [24.82453, 125.14684]] },
+    ];
+
     const tabs = document.querySelectorAll('.tab');
     const days = document.querySelectorAll('.day');
+    let map = null;
+
+    function buildMap() {
+      map = L.map('map', { scrollWheelZoom: false });
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 18,
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+      }).addTo(map);
+
+      const legend = document.getElementById('legend');
+      const bounds = [];
+
+      TRIP.forEach((day) => {
+        const layer = L.layerGroup().addTo(map);
+
+        L.polyline(day.route, {
+          color: day.color, weight: 2.5, opacity: .65, dashArray: '6 7',
+        }).addTo(layer);
+
+        day.pts.forEach((p, i) => {
+          bounds.push(p.c);
+          const icon = L.divIcon({
+            className: 'pin' + (p.home ? ' home' : ''),
+            html: `<span style="background:${day.color}">${p.home ? '⌂' : i + 1}</span>`,
+            iconSize: [25, 25], iconAnchor: [12, 12], popupAnchor: [0, -13],
+          });
+          L.marker(p.c, { icon })
+            .bindPopup(
+              `<div class="pop-t">${day.label}　${p.t}</div>` +
+              `<div class="pop-n">${p.n}</div>` +
+              `<a href="https://www.google.com/maps/dir/?api=1&destination=${p.c[0]},${p.c[1]}" target="_blank" rel="noopener">Google Maps 導航 ↗</a>`
+            )
+            .addTo(layer);
+        });
+
+        const chip = document.createElement('button');
+        chip.className = 'chip';
+        chip.style.borderColor = day.color;
+        chip.style.color = day.color;
+        chip.innerHTML = `<span class="swatch" style="background:${day.color}"></span>${day.label}`;
+        chip.addEventListener('click', () => {
+          const on = map.hasLayer(layer);
+          on ? map.removeLayer(layer) : map.addLayer(layer);
+          chip.classList.toggle('off', on);
+        });
+        legend.appendChild(chip);
+      });
+
+      map.fitBounds(bounds, { padding: [34, 34] });
+    }
 
     tabs.forEach((tab) => tab.addEventListener('click', () => {
       tabs.forEach((item) => item.classList.remove('active'));
@@ -531,6 +706,11 @@
       tab.classList.add('active');
       document.getElementById(tab.dataset.day).classList.add('active');
       window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      if (tab.dataset.day === 'dmap') {
+        if (!map) buildMap();
+        else setTimeout(() => map.invalidateSize(), 0);
+      }
     }));
   </script>
 </body>
