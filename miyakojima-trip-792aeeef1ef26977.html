@@ -63,15 +63,16 @@
     .notes li { margin-bottom:5px; }
     footer { padding:28px 6px 0; color:var(--muted); font-size:.79rem; text-align:center; line-height:1.7; }
 
-    .maplegend { display:flex; gap:7px; flex-wrap:wrap; margin:0 0 12px; }
-    .chip { display:inline-flex; align-items:center; gap:6px; padding:6px 13px; border-radius:999px; border:1.5px solid; background:var(--card); font:inherit; font-size:.86rem; font-weight:650; cursor:pointer; transition:opacity .15s; }
-    .chip .swatch { width:11px; height:11px; border-radius:50%; }
-    .chip.off { opacity:.35; }
     .maplayout { display:grid; grid-template-columns:266px 1fr; gap:14px; align-items:start; }
     #map { height:66vh; min-height:420px; border-radius:16px; box-shadow:0 3px 16px #17314a0c; }
     .maplist { background:var(--card); border-radius:16px; box-shadow:0 3px 16px #17314a0c; padding:8px; height:66vh; min-height:420px; overflow-y:auto; }
-    .mlday { position:sticky; top:0; z-index:1; background:var(--card); padding:9px 9px 6px; font-size:.83rem; font-weight:750; letter-spacing:.02em; }
-    .mlgroup.off { display:none; }
+    .mlhint { margin:3px 9px 7px; color:var(--muted); font-size:.79rem; }
+    .mlday { position:sticky; top:0; z-index:1; display:flex; align-items:center; gap:7px; width:100%; padding:9px; border:0; border-radius:9px; background:var(--card); font:inherit; font-size:.87rem; font-weight:750; letter-spacing:.02em; text-align:left; cursor:pointer; }
+    .mlday:hover { background:#eff7fc; }
+    .mlday .swatch { width:11px; height:11px; border-radius:50%; flex:0 0 auto; }
+    .mlcount { margin-left:auto; color:var(--muted); font-size:.77rem; font-weight:600; }
+    .mlgroup.off .mlday { opacity:.4; }
+    .mlgroup.off .mlitem { display:none; }
     .mlitem { display:flex; align-items:center; gap:7px; width:100%; padding:6px 9px; border:0; border-radius:9px; background:none; font:inherit; font-size:.88rem; color:var(--ink); text-align:left; cursor:pointer; }
     .mlitem:hover { background:#eff7fc; }
     .mlitem svg { flex:0 0 auto; }
@@ -585,13 +586,14 @@
       <div class="dayhead">
         <div class="date">全程地圖</div>
         <h2>五天動線與所有景點</h2>
-        <div class="drive">點色塊可切換顯示哪幾天｜點左側列表或地圖標記，可看時間與導航連結</div>
+        <div class="drive">點列表的 Day 標題可顯示／隱藏該天｜點景點可看時間與導航連結</div>
       </div>
       <p class="start">標記上的數字是當天的造訪順序，圓角方形的 ⌂ 是住宿的宮古島微笑飯店，每天都標了出來。<br>
-      五天的飯店標記位置相同，全部開啟時會疊在一起——想看某天幾點從飯店出發，把其他天關掉即可。</p>
-      <div class="maplegend" id="legend"></div>
+      五天的飯店標記位置相同，全部開啟時會疊在一起——想看某天幾點從飯店出發，點列表把其他天的 Day 標題關掉即可。</p>
       <div class="maplayout">
-        <aside class="maplist" id="maplist"></aside>
+        <aside class="maplist" id="maplist">
+          <p class="mlhint">點 Day 標題可顯示／隱藏該天</p>
+        </aside>
         <div id="map"></div>
       </div>
       <aside class="notes">
@@ -677,7 +679,6 @@
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
       }).addTo(map);
 
-      const legend = document.getElementById('legend');
       const list = document.getElementById('maplist');
       const bounds = [];
 
@@ -690,10 +691,19 @@
 
         const group = document.createElement('div');
         group.className = 'mlgroup';
-        const head = document.createElement('div');
+
+        const head = document.createElement('button');
         head.className = 'mlday';
         head.style.color = day.color;
-        head.textContent = day.label;
+        head.innerHTML =
+          `<span class="swatch" style="background:${day.color}"></span>` +
+          `<span>${day.label}</span>` +
+          `<span class="mlcount">${day.pts.filter((x) => !x.home).length} 站</span>`;
+        head.addEventListener('click', () => {
+          const on = map.hasLayer(layer);
+          on ? map.removeLayer(layer) : map.addLayer(layer);
+          group.classList.toggle('off', on);
+        });
         group.appendChild(head);
 
         let stopNo = 0;
@@ -730,19 +740,6 @@
         });
 
         list.appendChild(group);
-
-        const chip = document.createElement('button');
-        chip.className = 'chip';
-        chip.style.borderColor = day.color;
-        chip.style.color = day.color;
-        chip.innerHTML = `<span class="swatch" style="background:${day.color}"></span>${day.label}`;
-        chip.addEventListener('click', () => {
-          const on = map.hasLayer(layer);
-          on ? map.removeLayer(layer) : map.addLayer(layer);
-          chip.classList.toggle('off', on);
-          group.classList.toggle('off', on);
-        });
-        legend.appendChild(chip);
       });
 
       map.fitBounds(bounds, { padding: [34, 34] });
