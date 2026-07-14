@@ -570,7 +570,8 @@
         <h2>五天動線與所有景點</h2>
         <div class="drive">點下方色塊可切換顯示哪幾天｜點地圖上的標記可看時間與導航連結</div>
       </div>
-      <p class="start">虛線是當天的實際開車動線（含來回飯店那幾趟），方形標記是住宿的宮古島微笑飯店。</p>
+      <p class="start">虛線是當天的實際開車動線（含來回飯店那幾趟），圓角方形的 ⌂ 是住宿的宮古島微笑飯店，每天都標了出來。<br>
+      五天的飯店標記位置相同，全部開啟時會疊在一起——想看某天幾點從飯店出發，把其他天關掉即可。</p>
       <div class="maplegend" id="legend"></div>
       <div id="map"></div>
       <aside class="notes">
@@ -609,6 +610,7 @@
 
       { id: 'd2', label: 'Day 2', color: '#e7862f',
         pts: [
+          { t: '08:45', n: '宮古島微笑飯店 出發', c: HOTEL, home: true },
           { t: '09:05', n: '伊良部大橋', c: [24.79676, 125.23928] },
           { t: '09:40', n: '佐和田之濱', c: [24.84051, 125.15999] },
           { t: '10:20', n: '通り池', c: [24.82420, 125.13628] },
@@ -621,6 +623,7 @@
 
       { id: 'd3', label: 'Day 3', color: '#129a91',
         pts: [
+          { t: '09:30', n: '宮古島微笑飯店 出發', c: HOTEL, home: true },
           { t: '10:30', n: 'Shigira Beach 浮潛', c: [24.72009, 125.34076] },
           { t: '12:45', n: 'Shigira 食物街 午餐', c: [24.72087, 125.34142] },
           { t: '14:45', n: '雪鹽 Museum', c: [24.90221, 125.26821] },
@@ -632,6 +635,7 @@
 
       { id: 'd4', label: 'Day 4', color: '#147db8',
         pts: [
+          { t: '08:30', n: '宮古島微笑飯店 出發', c: HOTEL, home: true },
           { t: '09:10', n: '東平安名崎', c: [24.71881, 125.46914] },
           { t: '11:00', n: "Ocean's Vista 午餐", c: [24.74419, 125.44010] },
           { t: '13:15', n: 'AOSORA PARLOR 冰沙', c: [24.72296, 125.25417] },
@@ -668,11 +672,12 @@
           color: day.color, weight: 2.5, opacity: .65, dashArray: '6 7',
         }).addTo(layer);
 
-        day.pts.forEach((p, i) => {
+        let stopNo = 0;
+        day.pts.forEach((p) => {
           bounds.push(p.c);
           const icon = L.divIcon({
             className: 'pin' + (p.home ? ' home' : ''),
-            html: `<span style="background:${day.color}">${p.home ? '⌂' : i + 1}</span>`,
+            html: `<span style="background:${day.color}">${p.home ? '⌂' : ++stopNo}</span>`,
             iconSize: [25, 25], iconAnchor: [12, 12], popupAnchor: [0, -13],
           });
           L.marker(p.c, { icon })
