@@ -15,8 +15,13 @@
     /* z-index 要壓過 Leaflet：它的 control container 內部用到 1000 */
     .trip-header { position:sticky; top:0; z-index:1200; margin:0 -16px; padding:18px 20px 15px; background:linear-gradient(160deg,#e5f5fb 0,#f6fbfd 70%,#f5f7fc 100%); box-shadow:0 8px 14px -16px #17314a99; }
     header { padding:4px 4px 0; }
-    h1 { margin:0; font-size:clamp(1.7rem,5vw,2.55rem); letter-spacing:.02em; }
-    .sub { margin:7px 0 0; color:var(--muted); font-size:.95rem; }
+    h1 { margin:0; font-size:clamp(1.55rem,4.6vw,2.35rem); letter-spacing:.02em; }
+    .sub-dates { margin-left:11px; color:var(--muted); font-size:.92rem; font-weight:600; letter-spacing:0; white-space:nowrap; }
+
+    .tripinfo { margin-top:18px; }
+    .tripinfo dl { display:grid; grid-template-columns:auto 1fr; gap:7px 14px; margin:0; font-size:.9rem; }
+    .tripinfo dt { color:var(--blue); font-weight:700; white-space:nowrap; }
+    .tripinfo dd { margin:0; color:var(--muted); }
     .tabs { display:flex; gap:8px; overflow-x:auto; padding:10px 0 1px; }
     .tab { flex:0 0 92px; min-height:54px; display:grid; place-content:center; gap:1px; border:1px solid var(--line); border-radius:999px; background:var(--card); color:var(--ink); padding:6px 8px; font:inherit; line-height:1.1; cursor:pointer; }
     .tab.active { background:var(--blue); border-color:var(--blue); color:#fff; }
@@ -114,6 +119,9 @@
       .clock { left:-70px; width:48px; font-size:.85rem; }
       .dot { left:-21px; }
       .shot { width:88px; height:62px; margin-left:10px; }
+      .sub-dates { display:block; margin:2px 0 0; font-size:.85rem; }
+      .tripinfo dl { grid-template-columns:1fr; gap:1px 0; }
+      .tripinfo dd { margin-bottom:8px; }
     }
   </style>
 </head>
@@ -121,8 +129,7 @@
   <main class="wrap">
     <div class="trip-header">
       <header>
-        <h1>宮古島 5天4夜</h1>
-        <p class="sub">2026/8/12–8/16｜住宿：宮古島微笑飯店（4 晚，含早餐）｜租車自駕<br>去程 JX308 台中 07:20 → 下地島 09:40｜回程 JX309 下地島 10:40 → 台中 11:00</p>
+        <h1>宮古島 5天4夜<span class="sub-dates">2026/8/12–8/16</span></h1>
       </header>
       <nav class="tabs" aria-label="每日行程">
         <button class="tab active" data-day="d1"><span class="tab-day">Day 1</span><span class="tab-date">8/12 三</span></button>
@@ -594,6 +601,17 @@
       </aside>
     </section>
 
+
+    <aside class="notes tripinfo">
+      <h3>◇ 行程基本資料</h3>
+      <dl>
+        <dt>日期</dt><dd>2026/8/12（三）–8/16（日），5 天 4 夜</dd>
+        <dt>住宿</dt><dd>宮古島微笑飯店（Smile Hotel Miyakojima）4 晚，含每日早餐，早餐 06:30–09:30</dd>
+        <dt>交通</dt><dd>租車自駕（建議選 OTS，見 Day 5 說明）</dd>
+        <dt>去程</dt><dd>星宇 JX308　台中清泉崗 07:20 → 下地島 09:40</dd>
+        <dt>回程</dt><dd>星宇 JX309　下地島 10:40 → 台中清泉崗 11:00（台日時差 1 小時）</dd>
+      </dl>
+    </aside>
 
     <footer>
       初步規劃｜所有營業時間、車程與導覽資訊均須以出發前最新官方公告、天候與海況為準。此頁不含房號、航班座位或訂位個資。<br>
