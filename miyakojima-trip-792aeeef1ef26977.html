@@ -4,16 +4,16 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex, nofollow">
-  <title>宮古島 5天4夜｜初步行程</title>
+  <title>宮古島 5天4夜｜行程與時間表</title>
   <style>
-    :root { --ink:#18314a; --muted:#61738a; --bg:#f3f8fb; --card:#fff; --blue:#147db8; --teal:#129a91; --orange:#e7862f; --violet:#7352a7; --line:#d6e3eb; }
+    :root { --ink:#18314a; --muted:#61738a; --bg:#f3f8fb; --card:#fff; --blue:#147db8; --teal:#129a91; --orange:#e7862f; --violet:#7352a7; --red:#c0453b; --line:#d6e3eb; }
     * { box-sizing:border-box; }
     body { margin:0; background:linear-gradient(160deg,#e5f5fb 0,#f6fbfd 36%,#f5f7fc 100%); color:var(--ink); font-family:-apple-system,BlinkMacSystemFont,"Noto Sans TC",sans-serif; line-height:1.55; }
     .wrap { max-width:900px; margin:auto; padding:26px 16px 52px; }
     .trip-header { position:sticky; top:0; z-index:10; margin:0 -16px; padding:18px 20px 15px; background:linear-gradient(160deg,#e5f5fb 0,#f6fbfd 70%,#f5f7fc 100%); box-shadow:0 8px 14px -16px #17314a99; }
     header { padding:4px 4px 0; }
     h1 { margin:0; font-size:clamp(1.7rem,5vw,2.55rem); letter-spacing:.02em; }
-    .sub { margin:7px 0 0; color:var(--muted); }
+    .sub { margin:7px 0 0; color:var(--muted); font-size:.95rem; }
     .tabs { display:flex; gap:8px; overflow-x:auto; padding:10px 0 1px; }
     .tab { flex:0 0 92px; min-height:54px; display:grid; place-content:center; gap:1px; border:1px solid var(--line); border-radius:999px; background:var(--card); color:var(--ink); padding:6px 8px; font:inherit; line-height:1.1; cursor:pointer; }
     .tab.active { background:var(--blue); border-color:var(--blue); color:#fff; }
@@ -21,36 +21,58 @@
     .tab-date { font-size:.82rem; }
     .day { display:none; }
     .day.active { display:block; }
-    .dayhead,.backup,.coverage { background:var(--card); border-radius:16px; box-shadow:0 3px 16px #17314a0c; }
+    .dayhead,.backup,.notes { background:var(--card); border-radius:16px; box-shadow:0 3px 16px #17314a0c; }
     .dayhead { padding:17px; }
     .date { color:var(--blue); font-weight:750; }
     h2 { margin:3px 0 0; font-size:1.3rem; }
+    .drive { margin-top:8px; color:var(--muted); font-size:.88rem; }
     .start { margin:12px 4px 15px; color:var(--muted); font-size:.94rem; }
-    .tl { list-style:none; border-left:2px solid var(--line); margin:0 0 0 18px; padding:0 0 0 28px; }
+
+    .tl { list-style:none; border-left:2px solid var(--line); margin:0 0 0 60px; padding:0 0 0 22px; }
     .stop { position:relative; margin:0 0 14px; }
-    .num { position:absolute; left:-44px; top:14px; display:grid; place-items:center; width:29px; height:29px; border-radius:50%; background:var(--blue); color:#fff; font-weight:750; }
+    .clock { position:absolute; left:-84px; top:14px; width:56px; text-align:right; color:var(--blue); font-weight:750; font-size:.93rem; font-variant-numeric:tabular-nums; line-height:1.25; }
+    .clock small { display:block; color:var(--muted); font-weight:500; font-size:.78rem; }
+    .dot { position:absolute; left:-25px; top:19px; width:9px; height:9px; border-radius:50%; background:var(--blue); box-shadow:0 0 0 3px #fff; }
     .card { background:var(--card); padding:15px; border-radius:14px; box-shadow:0 3px 16px #17314a0c; }
     .name { font-size:1.05rem; font-weight:750; }
     .tag { display:inline-block; margin-left:7px; border-radius:999px; padding:2px 8px; color:#fff; font-size:.74rem; font-weight:650; vertical-align:1px; }
-    .food { background:var(--orange); } .sea { background:var(--teal); } .spot { background:var(--blue); } .night { background:var(--violet); }
+    .food { background:var(--orange); } .sea { background:var(--teal); } .spot { background:var(--blue); } .night { background:var(--violet); } .move { background:#8296ab; }
     .meta,.next { color:var(--muted); font-size:.92rem; margin-top:5px; }
     .next { padding-top:5px; color:#39708f; }
+    .warn { margin-top:8px; padding:8px 11px; border-left:3px solid var(--red); border-radius:0 8px 8px 0; background:#fdf1ef; color:#8a3129; font-size:.88rem; }
     a { color:#12669b; }
-    .backup,.coverage { margin-top:18px; padding:16px; }
+
+    .shot { position:relative; display:block; margin-top:11px; border-radius:11px; overflow:hidden; aspect-ratio:16/9; background:linear-gradient(135deg,#bfdcec,#dfeaf3 60%,#e9eef6); text-decoration:none; }
+    .shot img { width:100%; height:100%; object-fit:cover; display:block; }
+    .shot-label { position:absolute; right:0; bottom:0; padding:5px 10px; border-radius:10px 0 0 0; background:#0d2f47d9; color:#fff; font-size:.79rem; font-weight:650; }
+    .shot-alt { position:absolute; inset:0; display:grid; place-content:center; color:#2c5f80; font-weight:700; font-size:.95rem; }
+
+    .notes { margin-top:18px; padding:16px; }
+    .backup { margin-top:18px; padding:16px; }
     h3 { margin:0 0 8px; font-size:1rem; }
-    .bitem { border-top:1px solid var(--line); padding:10px 0; }
+    .bitem { border-top:1px solid var(--line); padding:10px 0; font-size:.93rem; }
     .bitem:last-child { padding-bottom:0; }
-    .coverage ul { margin:8px 0 0; padding-left:20px; }
-    footer { padding:28px 6px 0; color:var(--muted); font-size:.81rem; text-align:center; }
-    @media (max-width:480px) { .wrap { padding:18px 12px 38px; } .trip-header { margin:0 -12px; padding:14px 16px 12px; } .tab { flex-basis:72px; min-height:50px; } .tab-day { font-size:.86rem; } .tab-date { font-size:.75rem; } .tl { margin-left:14px; padding-left:26px; } .num { left:-42px; } }
+    .notes ul { margin:8px 0 0; padding-left:20px; font-size:.92rem; }
+    .notes li { margin-bottom:5px; }
+    footer { padding:28px 6px 0; color:var(--muted); font-size:.79rem; text-align:center; line-height:1.7; }
+
+    @media (max-width:560px) {
+      .wrap { padding:18px 12px 38px; }
+      .trip-header { margin:0 -12px; padding:14px 16px 12px; }
+      .tab { flex-basis:72px; min-height:50px; }
+      .tab-day { font-size:.86rem; } .tab-date { font-size:.75rem; }
+      .tl { margin-left:52px; padding-left:16px; }
+      .clock { left:-70px; width:48px; font-size:.85rem; }
+      .dot { left:-21px; }
+    }
   </style>
 </head>
 <body>
   <main class="wrap">
     <div class="trip-header">
       <header>
-        <h1>宮古島 5天4夜｜初步行程</h1>
-        <p class="sub">2026/8/12–8/16｜住宿：宮古島微笑飯店｜以租車為前提</p>
+        <h1>宮古島 5天4夜</h1>
+        <p class="sub">2026/8/12–8/16｜住宿：宮古島微笑飯店（4 晚，含早餐）｜租車自駕<br>去程 JX308 台中 07:20 → 下地島 09:40｜回程 JX309 下地島 10:40 → 台中 11:00</p>
       </header>
       <nav class="tabs" aria-label="每日行程">
         <button class="tab active" data-day="d1"><span class="tab-day">Day 1</span><span class="tab-date">8/12 三</span></button>
@@ -61,70 +83,487 @@
       </nav>
     </div>
 
+    <!-- ================= DAY 1 ================= -->
     <section class="day active" id="d1">
-      <div class="dayhead"><div class="date">Day 1｜8/12（三）</div><h2>抵達・南岸海灘・來間島夕陽・星空</h2></div>
-      <p class="start">抵達後先取車與放行李，再走南西側；當天只安排陸上景點，保留體力給晚上星空導覽。</p>
+      <div class="dayhead">
+        <div class="date">Day 1｜8/12（三）</div>
+        <h2>抵達・南岸海灘・來間島夕陽</h2>
+        <div class="drive">當日純行車約 1 小時 40 分｜日落 19:16</div>
+      </div>
+      <p class="start">早班機落地後先取車、放行李，下午玩南岸海灘，傍晚回飯店休息沖澡，再出發看來間島夕陽。今晚不排星空導覽（移到 Day 2），把第一天的體力留住。</p>
       <ol class="tl">
-        <li class="stop"><div class="num">1</div><div class="card"><div class="name">下地島抵達 → 租車公司</div><div class="meta">辦理取車、補水與防曬用品；行李先隨車移動。</div><div class="next">↓ 租車：約 10–20 分；再開車約 30–35 分，經伊良部大橋到平良</div></div></li>
-        <li class="stop"><div class="num">2</div><div class="card"><div class="name">宮古島微笑飯店放行李／入住</div><div class="meta">若未到入住時間先放行李；以飯店為起點再走南岸。</div><div class="next">↓ 開車約 10 分 → Doug's Burger</div></div></li>
-        <li class="stop"><div class="num">3</div><div class="card"><div class="name">Doug's Burger<span class="tag food">午餐</span></div><div class="meta">宮古島本店午餐；官方目前標示夏季每日營業，出發前仍請確認。</div><a href="https://dougsburger.com/dougsburger/" target="_blank" rel="noopener">官方資訊</a><div class="next">↓ 開車約 15–20 分 → 與那霸前濱海灘</div></div></li>
-        <li class="stop"><div class="num">4</div><div class="card"><div class="name">與那霸前濱海灘<span class="tag spot">海灘</span></div><div class="meta">散步、玩沙與拍照；第一天不排水上活動。</div><div class="next">↓ 開車約 10 分，經來間大橋 → 竜宮城展望台</div></div></li>
-        <li class="stop"><div class="num">5</div><div class="card"><div class="name">竜宮城展望台 + 來間島夕陽<span class="tag spot">景觀</span></div><div class="meta">看前濱、來間大橋與夕陽；日落後勿在偏僻海岸久留。</div><div class="next">↓ 開車約 25 分 → 平良市區晚餐</div></div></li>
-        <li class="stop"><div class="num">6</div><div class="card"><div class="name">平良市區簡單晚餐<span class="tag food">晚餐</span></div><div class="meta">以方便、較輕鬆的餐點為主，預留星空導覽前的休息與集合時間。</div><div class="next">↓ 導覽接送或自行開車約 20–40 分 → 觀星點</div></div></li>
-        <li class="stop"><div class="num">6</div><div class="card"><div class="name">銀河／星空導覽<span class="tag night">夜間</span></div><div class="meta">安排有在地導覽的觀星行程；新月條件佳，但雲量、風雨與導覽判斷優先。避免自行夜駕至偏遠海岸。</div><a href="https://www.hoshinavi-subaru.com/" target="_blank" rel="noopener">星空導覽參考</a></div></li>
+
+        <li class="stop"><div class="clock">09:40<small>50 分</small></div><div class="dot"></div>
+          <div class="card">
+            <div class="name">下地島機場 入境<span class="tag move">抵達</span></div>
+            <div class="meta">JX308 落地。小型航廈、單一航班，入境審查＋提領行李約 40–60 分。可先用 Visit Japan Web 備妥 QR 加速。</div>
+            <div class="next">↓ 出關後步行至航廈內租車櫃檯</div>
+          </div></li>
+
+        <li class="stop"><div class="clock">10:30<small>30 分</small></div><div class="dot"></div>
+          <div class="card">
+            <div class="name">租車取車<span class="tag move">租車</span></div>
+            <div class="meta">機場內櫃檯（OTS／Orix／Toyota／Pine 皆在航廈，不需接駁）。手續約 15–25 分，旺季排隊可能更久。</div>
+            <div class="warn"><b>訂車請優先選 OTS。</b>回程日 8/16 早上只有 OTS 08:00 開門，其餘三家都要 09:00，會壓縮報到時間（詳見 Day 5）。</div>
+            <div class="next">↓ 開車約 30–35 分，經伊良部大橋 → 平良</div>
+          </div></li>
+
+        <li class="stop"><div class="clock">11:35<small>15 分</small></div><div class="dot"></div>
+          <div class="card">
+            <div class="name">宮古島微笑飯店 放行李</div>
+            <div class="meta">未到入住時間可先寄放行李，晚上回來再正式入住。</div>
+            <div class="next">↓ 開車約 10 分</div>
+          </div></li>
+
+        <li class="stop"><div class="clock">12:00<small>75 分</small></div><div class="dot"></div>
+          <div class="card">
+            <div class="name">Doug's Burger 宮古島本店<span class="tag food">午餐</span></div>
+            <div class="meta">島上人氣漢堡店，份量大。夏季每日營業，尖峰需候位，抓 75 分較從容。</div>
+            <a class="shot" href="http://foodyday.blogspot.com/2015/02/dougs-burger.html" target="_blank" rel="noopener">
+              <span class="shot-alt">Doug's Burger</span>
+              <img src="https://dougsburger.com/assets/images/main/topSlider_dougsgroup01.jpg" alt="Doug's Burger 招牌漢堡" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+              <span class="shot-label">看介紹 ↗</span>
+            </a>
+            <div class="next">↓ 開車約 15–20 分</div>
+          </div></li>
+
+        <li class="stop"><div class="clock">13:30<small>2.5 小時</small></div><div class="dot"></div>
+          <div class="card">
+            <div class="name">與那霸前濱海灘<span class="tag sea">海灘</span></div>
+            <div class="meta">號稱東洋第一的白沙灘。這是一天中紫外線最強的時段，請備遮陽、勤補防曬，適時到樹蔭下休息。第一天不排水上活動。</div>
+            <a class="shot" href="https://taiwantour.net/miyako-island-beach/" target="_blank" rel="noopener">
+              <span class="shot-alt">與那霸前濱海灘</span>
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Yonahamaehama_Miyakojima_Okinawa_Japan01bs3s4592.jpg/960px-Yonahamaehama_Miyakojima_Okinawa_Japan01bs3s4592.jpg" alt="與那霸前濱海灘" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+              <span class="shot-label">看介紹 ↗</span>
+            </a>
+            <div class="next">↓ 開車約 25 分 → 飯店</div>
+          </div></li>
+
+        <li class="stop"><div class="clock">16:30<small>1 小時 45 分</small></div><div class="dot"></div>
+          <div class="card">
+            <div class="name">回飯店 入住・沖澡・休息<span class="tag move">休息</span></div>
+            <div class="meta">今天 04:30 就起床搭機，這段休息是刻意排的：沖掉海水鹽分、補個眠，晚上才有精神。</div>
+            <div class="next">↓ 18:30 出發，開車約 25 分，經來間大橋</div>
+          </div></li>
+
+        <li class="stop"><div class="clock">18:55<small>40 分</small></div><div class="dot"></div>
+          <div class="card">
+            <div class="name">竜宮城展望台・來間島夕陽<span class="tag spot">夕陽</span></div>
+            <div class="meta">三層樓展望台，可一次看盡前濱海灘、來間大橋與夕陽。<b>今日日落 19:16</b>，19:35 左右離開。日落後不要在偏僻海岸久留。</div>
+            <a class="shot" href="https://japantravel.co/%E6%B2%96%E7%B9%A9/%E5%AE%AE%E5%8F%A4%E5%B3%B6/%E4%BE%86%E9%96%93%E5%B3%B6/" target="_blank" rel="noopener">
+              <span class="shot-alt">竜宮城展望台</span>
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Miyako_kurima_observatory_1.jpg/960px-Miyako_kurima_observatory_1.jpg" alt="來間島竜宮城展望台" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+              <span class="shot-label">看介紹 ↗</span>
+            </a>
+            <div class="next">↓ 開車約 25 分 → 平良市區</div>
+          </div></li>
+
+        <li class="stop"><div class="clock">20:00<small>90 分</small></div><div class="dot"></div>
+          <div class="card">
+            <div class="name">郷家（ごーや）<span class="tag food">晚餐</span></div>
+            <div class="meta">沖繩鄉土料理＋泡盛，17:30–24:00 營業。距飯店步行約 6–8 分，吃完可散步回去。人均約 ¥2,800。</div>
+            <div class="warn"><b>兩件事：</b>①「不定休」，8/12 是否營業請先電話確認（0980-74-2358）；旺季建議訂位。② 每晚 <b>19:30 有約 50 分鐘的三線島唄現場演唱</b>，20:00 到只聽得到後半場——想聽完整場得 19:15 到店，但那就會錯過 19:16 的日落，兩者只能擇一。</div>
+            <a class="shot" href="https://www.likejapan.com/travel/%E6%B2%96%E7%B9%A9%E5%AE%AE%E5%8F%A4%E7%BE%A4%E5%B3%B6%E7%BE%8E%E9%A3%9F" target="_blank" rel="noopener">
+              <span class="shot-alt">郷家 ごーや</span>
+              <img src="https://zumi-goya.com/common/img/top/mainvisual01.jpg" alt="郷家 沖繩鄉土料理" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+              <span class="shot-label">看介紹 ↗</span>
+            </a>
+            <div class="next">↓ 步行約 6–8 分 → 飯店</div>
+          </div></li>
+
       </ol>
-      <aside class="backup"><h3>◇ 備用（順路）</h3><div class="bitem"><b>AOSORA PARLOR</b>：來間島上的水果冰沙；從展望台開車約 5 分。官方為不定休，先確認營業。</div><div class="bitem"><b>市區晚餐</b>：第一晚以不延誤星空導覽集合為優先。</div></aside>
+      <aside class="backup">
+        <h3>◇ 備用（順路）</h3>
+        <div class="bitem"><b>若班機延誤</b>：優先砍掉前濱海灘的時數，保住傍晚的竜宮城夕陽（時間固定、錯過就沒了）。</div>
+        <div class="bitem"><b>若下雨</b>：夕陽取消，改直接進市區吃晚餐，來間島併到 Day 4（Day 4 本來就會去來間島）。</div>
+      </aside>
     </section>
 
+    <!-- ================= DAY 2 ================= -->
     <section class="day" id="d2">
-      <div class="dayhead"><div class="date">Day 2｜8/13（四）</div><h2>伊良部島・下地島一日遊</h2></div>
-      <p class="start">整天集中伊良部島與下地島，避開跨回主島的折返；全程租車，純行車約 1 小時 30 分。</p>
+      <div class="dayhead">
+        <div class="date">Day 2｜8/13（四）</div>
+        <h2>伊良部島・下地島一日遊・夜間觀星</h2>
+        <div class="drive">當日純行車約 1 小時 30 分｜日落 19:16</div>
+      </div>
+      <p class="start">整天集中伊良部島與下地島，不折返主島。下午 15:40 就回飯店補眠——因為今晚有星空導覽，會到 22:30 才結束。8/13 接近新月，是這五天觀星條件最好的一晚。</p>
       <ol class="tl">
-        <li class="stop"><div class="num">1</div><div class="card"><div class="name">飯店出發 → 伊良部大橋<span class="tag spot">景觀</span></div><div class="meta">跨島大橋本身就是景點，請由駕駛專心開車，乘客再拍照。</div><div class="next">↓ 開車約 25 分 → 佐和田之濱</div></div></li>
-        <li class="stop"><div class="num">2</div><div class="card"><div class="name">佐和田之濱（Sawada Beach）<span class="tag spot">海景</span></div><div class="meta">礁岩與淺海景觀，短停拍照、看海即可。</div><div class="next">↓ 開車約 8 分 → 通り池</div></div></li>
-        <li class="stop"><div class="num">3</div><div class="card"><div class="name">通り池（Toriike）<span class="tag spot">地形</span></div><div class="meta">天然地形景觀，依現場步道與日照安排停留。</div><div class="next">↓ 開車約 10 分 → Blue Turtle（午餐）</div></div></li>
-        <li class="stop"><div class="num">4</div><div class="card"><div class="name">Blue Turtle<span class="tag food">午餐</span></div><div class="meta">午餐與休息點；若客滿，改用伊良部島內其他餐廳。</div><div class="next">↓ 開車約 15 分 → 17END</div></div></li>
-        <li class="stop"><div class="num">5</div><div class="card"><div class="name">17END<span class="tag spot">海景</span></div><div class="meta">下地島海岸與飛機景觀點；以現場安全規範為準，不進入限制區。</div><div class="next">↓ 開車約 30–35 分，經伊良部大橋 → 飯店</div></div></li>
+
+        <li class="stop"><div class="clock">07:00<small>60 分</small></div><div class="dot"></div>
+          <div class="card">
+            <div class="name">飯店早餐<span class="tag food">早餐</span></div>
+            <div class="meta">1F 早餐會場，06:30–09:30（最後入場 09:15）。和洋琉自助式，已含在房價。</div>
+            <div class="next">↓ 08:45 出發</div>
+          </div></li>
+
+        <li class="stop"><div class="clock">09:05<small>15 分</small></div><div class="dot"></div>
+          <div class="card">
+            <div class="name">伊良部大橋<span class="tag spot">景觀</span></div>
+            <div class="meta">全長 3,540 公尺，日本免費通行的跨海大橋中最長。橋本身就是景點——但請由駕駛專心開車，拍照交給乘客，或在橋頭的見學停車場停靠。</div>
+            <a class="shot" href="https://stancylife.com/irabu-bridge/" target="_blank" rel="noopener">
+              <span class="shot-alt">伊良部大橋</span>
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Miyako_irabu_ohashi_2014_1.jpg/960px-Miyako_irabu_ohashi_2014_1.jpg" alt="伊良部大橋" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+              <span class="shot-label">看介紹 ↗</span>
+            </a>
+            <div class="next">↓ 開車約 20 分</div>
+          </div></li>
+
+        <li class="stop"><div class="clock">09:40<small>30 分</small></div><div class="dot"></div>
+          <div class="card">
+            <div class="name">佐和田之濱<span class="tag sea">海景</span></div>
+            <div class="meta">海面上散布大量礁岩，是 1771 年明和大海嘯留下的巨石。短停拍照、看海即可，不必久留。</div>
+            <a class="shot" href="https://jimmraz.pixnet.net/blog/post/49449395" target="_blank" rel="noopener">
+              <span class="shot-alt">佐和田之濱</span>
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/%E4%BD%90%E5%92%8C%E7%94%B0%E3%81%AE%E6%B5%9C.jpg/960px-%E4%BD%90%E5%92%8C%E7%94%B0%E3%81%AE%E6%B5%9C.jpg" alt="佐和田之濱" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+              <span class="shot-label">看介紹 ↗</span>
+            </a>
+            <div class="next">↓ 開車約 8 分</div>
+          </div></li>
+
+        <li class="stop"><div class="clock">10:20<small>45 分</small></div><div class="dot"></div>
+          <div class="card">
+            <div class="name">通り池<span class="tag spot">地形</span></div>
+            <div class="meta">兩個相連的天然大洞穴池，地下與海相通，國家指定名勝。有木棧步道，來回約 30–40 分。</div>
+            <a class="shot" href="https://carollin.tw/miyako-island/" target="_blank" rel="noopener">
+              <span class="shot-alt">通り池</span>
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Toriike.jpg/960px-Toriike.jpg" alt="下地島通り池" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+              <span class="shot-label">看介紹 ↗</span>
+            </a>
+            <div class="next">↓ 開車約 10 分</div>
+          </div></li>
+
+        <li class="stop"><div class="clock">11:20<small>80 分</small></div><div class="dot"></div>
+          <div class="card">
+            <div class="name">Blue Turtle<span class="tag food">午餐</span></div>
+            <div class="meta">正對渡口之濱的海景餐廳，11:00 開始供餐、無固定公休。</div>
+            <div class="warn"><b>午餐時段不接受訂位，只能現場候位。</b>建議 11:20 前抵達避開尖峰；若客滿就改吃伊良部島其他店。</div>
+            <a class="shot" href="https://debbiechien.com/miyakojima-travel-guide/" target="_blank" rel="noopener">
+              <span class="shot-alt">Blue Turtle</span>
+              <img src="https://blueturtle.jp/wp/images/2021/11/location-day1_20211129.png" alt="Blue Turtle 與渡口之濱" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+              <span class="shot-label">看介紹 ↗</span>
+            </a>
+            <div class="next">↓ 開車約 15 分</div>
+          </div></li>
+
+        <li class="stop"><div class="clock">12:55<small>75 分</small></div><div class="dot"></div>
+          <div class="card">
+            <div class="name">17END<span class="tag sea">海景</span></div>
+            <div class="meta">下地島機場 17 號跑道末端的海岸，退潮時會現出白沙洲，也是知名的飛機起降拍攝點。請遵守現場規範，不進入限制區。</div>
+            <a class="shot" href="https://huakuanbin.pixnet.net/blog/post/366259318" target="_blank" rel="noopener">
+              <span class="shot-alt">17END</span>
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Shimojishima_Runway17.jpg/960px-Shimojishima_Runway17.jpg" alt="下地島 17END" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+              <span class="shot-label">看介紹 ↗</span>
+            </a>
+            <div class="next">↓ 開車約 12 分</div>
+          </div></li>
+
+        <li class="stop"><div class="clock">14:20<small>30 分</small></div><div class="dot"></div>
+          <div class="card">
+            <div class="name">渡口之濱<span class="tag sea">海灘</span></div>
+            <div class="meta">伊良部島最漂亮的沙灘，細白沙質。順路收尾，時間不夠可直接略過回飯店。</div>
+            <a class="shot" href="https://manabear.tw/2018/05/08/miyakojima-3/" target="_blank" rel="noopener">
+              <span class="shot-alt">渡口之濱</span>
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Miyako_irabu_toguchi_no_hana_2014.jpg/960px-Miyako_irabu_toguchi_no_hana_2014.jpg" alt="渡口之濱" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+              <span class="shot-label">看介紹 ↗</span>
+            </a>
+            <div class="next">↓ 開車約 30–35 分，經伊良部大橋 → 飯店</div>
+          </div></li>
+
+        <li class="stop"><div class="clock">15:40<small>90 分</small></div><div class="dot"></div>
+          <div class="card">
+            <div class="name">回飯店 休息・補眠<span class="tag move">休息</span></div>
+            <div class="meta">今晚要撐到 22:30，這段補眠不是可有可無的。</div>
+            <div class="next">↓ 17:00 出發（步行 12–15 分或開車 4 分）</div>
+          </div></li>
+
+        <li class="stop"><div class="clock">17:15<small>60 分</small></div><div class="dot"></div>
+          <div class="card">
+            <div class="name">大和食堂<span class="tag food">晚餐</span></div>
+            <div class="meta">老字號在地食堂，宮古そば大碗 ¥550、人均不到 ¥1,000。上菜快，正好配今晚的行程。</div>
+            <div class="warn"><b>晚間只開 17:15–19:00（最後點餐 18:30），且不接受訂位。</b>只有 28 席，建議 17:15 一開門就到，把星空導覽的緩衝拉大。週二公休，8/13 有營業。</div>
+            <a class="shot" href="https://www.tabirai.net/sightseeing/column/0006127.aspx" target="_blank" rel="noopener">
+              <span class="shot-alt">大和食堂・宮古そば</span>
+              <img src="https://www.tabirai.net/sightseeing/column/img/0006127/kiji1Img.jpg" alt="大和食堂 宮古そば" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+              <span class="shot-label">看介紹 ↗</span>
+            </a>
+            <div class="next">↓ 回飯店整裝，準備長袖與防蚊液</div>
+          </div></li>
+
+        <li class="stop"><div class="clock">19:45<small>約 2.5 小時</small></div><div class="dot"></div>
+          <div class="card">
+            <div class="name">星空導覽<span class="tag night">夜間</span></div>
+            <div class="meta">19:45 集合、20:00–22:00 觀星、約 22:30 回到飯店。<b>8/13 接近新月</b>，月光干擾最小，是這五天條件最好的一晚。請務必參加有在地導覽的行程，不要自行夜駕到偏遠海岸。雲量、風雨與導覽方的判斷優先。</div>
+            <a class="shot" href="https://massi.tw/starry-sky-okinawa/" target="_blank" rel="noopener">
+              <span class="shot-alt">宮古島星空導覽</span>
+              <img src="https://miyako-tour.com/wp-content/uploads/2018/12/nighttour_hs-11-825x510.jpg" alt="宮古島星空導覽" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+              <span class="shot-label">看介紹 ↗</span>
+            </a>
+          </div></li>
+
       </ol>
-      <aside class="backup"><h3>◇ 備用（順路）</h3><div class="bitem"><b>渡口之濱</b>：若不想跑完整圈，可用它取代佐和田之濱或 17END，放慢節奏。</div><div class="bitem"><b>星空導覽候補</b>：若 Day 1 因雲雨取消，改排今夜；月光仍低，條件相對有利。</div></aside>
+      <aside class="backup">
+        <h3>◇ 備用</h3>
+        <div class="bitem"><b>星空若因雲雨取消</b>：改排 Day 3 晚上（8/14 月相仍細，條件尚可）。Day 4 要為隔天早班機早睡，較不建議。</div>
+        <div class="bitem"><b>想放慢節奏</b>：砍掉渡口之濱或佐和田之濱其中一個，多留時間在 17END。</div>
+      </aside>
     </section>
 
+    <!-- ================= DAY 3 ================= -->
     <section class="day" id="d3">
-      <div class="dayhead"><div class="date">Day 3｜8/14（五）</div><h2>南端浮潛・北部雪鹽・砂山・採買</h2></div>
-      <p class="start">先在 Shigira Beach 參加上午浮潛，之後由南往北、再回平良市區採買；純行車約 1 小時 45 分。</p>
+      <div class="dayhead">
+        <div class="date">Day 3｜8/14（五）</div>
+        <h2>南岸浮潛・北部雪鹽・砂山・採買</h2>
+        <div class="drive">當日純行車約 1 小時 50 分｜日落 19:15</div>
+      </div>
+      <p class="start">上午在 Shigira Beach 浮潛，午餐就在同一棟 Beach House 樓下解決（不必開車），下午由南往北跑雪鹽與砂山，晚上市區吃海鮮居酒屋、順道採買。</p>
       <ol class="tl">
-        <li class="stop"><div class="num">1</div><div class="card"><div class="name">飯店出發 → Shigira Beach<span class="tag sea">浮潛</span></div><div class="meta">開車約 25–30 分；預約上午導覽團，裝備、海況與是否下水以業者現場判斷為準。</div><a href="https://act.shigira.com/top/introdiriving" target="_blank" rel="noopener">Shigira 浮潛方案參考</a><div class="next">↓ 開車約 40 分 → 雪鹽 Museum</div></div></li>
-        <li class="stop"><div class="num">2</div><div class="card"><div class="name">雪鹽 Museum<span class="tag food">室內／伴手禮</span></div><div class="meta">可參觀製程、吃雪鹽冰淇淋與採買。8 月官方營業至 18:00。</div><a href="https://museum.yukishio.com/museum-introduction/" target="_blank" rel="noopener">官方資訊</a><div class="next">↓ 開車約 20 分 → 砂山海灘</div></div></li>
-        <li class="stop"><div class="num">3</div><div class="card"><div class="name">砂山海灘（Sunayama Beach）<span class="tag spot">海灘</span></div><div class="meta">由停車場步行下坡至海灘，依體力與天候安排拍照停留。</div><div class="next">↓ 開車約 15 分 → Don Quijote</div></div></li>
-        <li class="stop"><div class="num">4</div><div class="card"><div class="name">Don Quijote<span class="tag food">採買</span></div><div class="meta">採買伴手禮與日用品，避免最後一天才集中購物。</div><div class="next">↓ 開車約 5–10 分 → San-A 超市</div></div></li>
-        <li class="stop"><div class="num">5</div><div class="card"><div class="name">San-A 超市<span class="tag food">採買</span></div><div class="meta">補齊飲料、水果與隔天路上所需物品。</div><div class="next">↓ 開車約 5–10 分 → 飯店</div></div></li>
+
+        <li class="stop"><div class="clock">07:30<small>60 分</small></div><div class="dot"></div>
+          <div class="card">
+            <div class="name">飯店早餐<span class="tag food">早餐</span></div>
+            <div class="meta">今天出發較晚，可以睡飽一點。09:30 出發即可。</div>
+            <div class="next">↓ 開車約 25–30 分</div>
+          </div></li>
+
+        <li class="stop"><div class="clock">10:15<small>報到</small></div><div class="dot"></div>
+          <div class="card">
+            <div class="name">Shigira Beach 浮潛 報到<span class="tag sea">浮潛</span></div>
+            <div class="meta">集合地點：シギラビーチハウス。<b>須於開始前 15 分鐘完成報到並換好泳衣</b>，所以 10:00 就要抵達。夏季（7–8 月）費用 ¥8,800／人，2 人以上成行。</div>
+            <div class="warn"><b>請預約 10:30–12:00 這個場次。</b>夏季場次為 9:00 / 10:30 / 13:30 / 15:00 開始，各 1.5 小時。選 10:30 場，結束後正好接午餐。海況與是否下水以業者現場判斷為準。</div>
+            <a class="shot" href="https://miyako-tour.com/column/shigira-beach" target="_blank" rel="noopener">
+              <span class="shot-alt">Shigira Beach</span>
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Shigira_Beach_-_panoramio.jpg/960px-Shigira_Beach_-_panoramio.jpg" alt="Shigira Beach" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+              <span class="shot-label">看介紹 ↗</span>
+            </a>
+          </div></li>
+
+        <li class="stop"><div class="clock">10:30<small>90 分</small></div><div class="dot"></div>
+          <div class="card">
+            <div class="name">浮潛行程<span class="tag sea">下水</span></div>
+            <div class="meta">1.5 小時，運氣好可以遇到海龜。結束後預留 45 分沖洗換裝。</div>
+            <div class="next">↓ 步行即到（同一棟 Beach House 1F）</div>
+          </div></li>
+
+        <li class="stop"><div class="clock">12:45<small>60 分</small></div><div class="dot"></div>
+          <div class="card">
+            <div class="name">Shigira Beach 食物街<span class="tag food">午餐</span></div>
+            <div class="meta">就在 Center Beach House 1F，上岸沖洗完走過去就是，<b>完全不用開車</b>。11:00–17:00 供餐（最後點餐 16:00），琉球咖哩、Taco Rice 等輕食，人均約 ¥1,000–2,000。</div>
+            <a class="shot" href="https://miyako-island.net/gourmet/gourmet_spot_025/" target="_blank" rel="noopener">
+              <span class="shot-alt">Shigira Beach 食物街</span>
+              <img src="https://miyako-island.net/wp/wp-content/uploads/2023/01/gourmet_025_01.jpg" alt="Shigira Beach 食物街" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+              <span class="shot-label">看介紹 ↗</span>
+            </a>
+            <div class="next">↓ 開車約 40–45 分（南岸 → 北端）</div>
+          </div></li>
+
+        <li class="stop"><div class="clock">14:45<small>75 分</small></div><div class="dot"></div>
+          <div class="card">
+            <div class="name">雪鹽 Museum<span class="tag spot">室內／伴手禮</span></div>
+            <div class="meta">8 月營業至 18:00。招牌雪鹽霜淇淋必吃，也是採買伴手禮的好地方。<b>15:00 有免費定時導覽</b>（約 10–15 分、免預約，另有 16:00 場），14:45 到剛好趕得上。</div>
+            <a class="shot" href="https://taiwantour.net/miyakojima-island-2/" target="_blank" rel="noopener">
+              <span class="shot-alt">雪鹽 Museum</span>
+              <img src="https://museum.yukishio.com/assets/img/top/img_museum-1.jpg" alt="雪鹽霜淇淋" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+              <span class="shot-label">看介紹 ↗</span>
+            </a>
+            <div class="next">↓ 開車約 20 分</div>
+          </div></li>
+
+        <li class="stop"><div class="clock">16:20<small>70 分</small></div><div class="dot"></div>
+          <div class="card">
+            <div class="name">砂山海灘<span class="tag sea">海灘</span></div>
+            <div class="meta">招牌是天然的拱門岩。從停車場要先走一段沙丘上坡再下到海灘，穿好走的鞋。這時段陽光已轉柔，適合拍照。</div>
+            <a class="shot" href="https://stancylife.com/sunayama/" target="_blank" rel="noopener">
+              <span class="shot-alt">砂山海灘</span>
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Sunayama_Beach_in_Miyako_Island_%2C_Okinawa_Pref._-_panoramio.jpg/960px-Sunayama_Beach_in_Miyako_Island_%2C_Okinawa_Pref._-_panoramio.jpg" alt="砂山海灘拱門岩" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+              <span class="shot-label">看介紹 ↗</span>
+            </a>
+            <div class="next">↓ 開車約 15 分 → 飯店沖澡休息</div>
+          </div></li>
+
+        <li class="stop"><div class="clock">19:00<small>105 分</small></div><div class="dot"></div>
+          <div class="card">
+            <div class="name">ぽうちゃたつや<span class="tag food">晚餐</span></div>
+            <div class="meta">島料理海鮮居酒屋，距飯店步行約 2–3 分。人均 ¥5,000–6,000，僅 23 席。18:00–22:00（餐點最後點餐 21:00）。</div>
+            <div class="warn"><b>必須訂位，而且只收電話（0980-73-3931），可從用餐日往前兩週的下午 4 點開始訂。</b>旺季週五幾乎一定客滿。另注意：<b>高中生以下兒童不可入店</b>，若有小孩同行請改去郷家。</div>
+            <a class="shot" href="https://mainichibeer.jp/pouchatatsuya-miyakojima/" target="_blank" rel="noopener">
+              <span class="shot-alt">ぽうちゃたつや</span>
+              <img src="https://mainichibeer.jp/wp-content/uploads/2016/04/PouchaTatsuya-miyakojima1.jpg" alt="ぽうちゃたつや" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+              <span class="shot-label">看介紹 ↗</span>
+            </a>
+            <div class="next">↓ 開車約 5–10 分</div>
+          </div></li>
+
+        <li class="stop"><div class="clock">21:00<small>60 分</small></div><div class="dot"></div>
+          <div class="card">
+            <div class="name">Don Quijote 宮古島店<span class="tag spot">採買</span></div>
+            <div class="meta">伴手禮、藥妝與日用品一次買齊，別留到最後一天才買（Day 5 早上完全沒有購物時間）。營業到深夜，晚餐後來剛好。</div>
+            <div class="warn">出發前請再確認營業時間；若當晚太累，這站可以移到 Day 4 下午的休息時段。</div>
+            <a class="shot" href="https://17end.jp/archives/945" target="_blank" rel="noopener">
+              <span class="shot-alt">Don Quijote 宮古島店</span>
+              <img src="https://www.tanoshima.jp/files/facilities/000/000/003/147/image3_0db11c75d4-w1024.jpg" alt="Don Quijote 宮古島店" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+              <span class="shot-label">看介紹 ↗</span>
+            </a>
+            <div class="next">↓ 開車約 5–10 分 → 飯店</div>
+          </div></li>
+
       </ol>
-      <aside class="backup"><h3>◇ 備用（海況不佳）</h3><div class="bitem"><b>玻璃底船</b>：若不適合浮潛，改由業者建議的玻璃底船或室內景點，勿勉強下水。</div><div class="bitem"><b>再次觀星</b>：若前兩晚未成功，選有導覽、集合方便的替補場次。</div></aside>
+      <aside class="backup">
+        <h3>◇ 備用</h3>
+        <div class="bitem"><b>海況不佳無法浮潛</b>：改由業者建議的玻璃底船，或直接把整個上午挪去雪鹽 Museum 與市區，不要勉強下水。</div>
+        <div class="bitem"><b>San-A 宮古島城市店</b>：想補飲料、水果與隔天路上的東西，可在 Don Quijote 之後順道過去（開車 5–10 分）。</div>
+        <div class="bitem"><b>今天是星空導覽的第一備位日</b>：若 Day 2 因雲雨取消，改排今晚，行程往前壓縮即可。</div>
+      </aside>
     </section>
 
+    <!-- ================= DAY 4 ================= -->
     <section class="day" id="d4">
-      <div class="dayhead"><div class="date">Day 4｜8/15（六）</div><h2>東平安名崎・來間島冰沙・宮古牛燒肉</h2></div>
-      <p class="start">東端岬角與來間島放在同一日，由東往南西回到平良市區吃燒肉；純行車約 1 小時 40 分。</p>
+      <div class="dayhead">
+        <div class="date">Day 4｜8/15（六）</div>
+        <h2>東平安名崎・來間島冰沙・宮古牛燒肉</h2>
+        <div class="drive">當日純行車約 2 小時｜日落 19:14</div>
+      </div>
+      <p class="start">上午趁涼走東端岬角，午餐在看得到岬角的高台餐廳，下午到來間島喝冰沙，傍晚回飯店整理行李，晚上吃宮古牛燒肉。今晚要早睡——明天一早的班機。</p>
       <ol class="tl">
-        <li class="stop"><div class="num">1</div><div class="card"><div class="name">飯店出發 → 東平安名崎<span class="tag spot">景觀</span></div><div class="meta">開車約 35–40 分；岬角步道曝曬，安排早上出發並帶水、防曬。</div><div class="next">↓ 開車約 35 分 → AOSORA PARLOR</div></div></li>
-        <li class="stop"><div class="num">2</div><div class="card"><div class="name">AOSORA PARLOR<span class="tag food">冰沙</span></div><div class="meta">來間島水果冰沙；官方目前為 10:00 開始、中午暫停營業且不定休，當日先確認。</div><a href="https://www.aosoragr.com/aosora-parlor" target="_blank" rel="noopener">官方資訊</a><div class="next">↓ 開車約 25 分 → 平良市區／飯店休息</div></div></li>
-        <li class="stop"><div class="num">3</div><div class="card"><div class="name">宮古牛燒肉：火神<span class="tag food">指定燒肉</span></div><div class="meta">晚餐排在返程前一晚、回到平良市區後最順；建議先訂位，避免臨時撲空。從宮古島微笑飯店前往：<b>開車約 8–10 分</b>；<b>步行約 35–40 分</b>，晚間建議開車。</div><a href="https://kagami.okinawa/about-us/" target="_blank" rel="noopener">官方資訊</a><div class="next">↓ 開車約 8–10 分 → 飯店整理行李</div></div></li>
+
+        <li class="stop"><div class="clock">07:00<small>60 分</small></div><div class="dot"></div>
+          <div class="card">
+            <div class="name">飯店早餐<span class="tag food">早餐</span></div>
+            <div class="meta">08:30 出發，開車約 35–40 分到島的東端。</div>
+            <div class="next">↓ 開車約 35–40 分</div>
+          </div></li>
+
+        <li class="stop"><div class="clock">09:10<small>95 分</small></div><div class="dot"></div>
+          <div class="card">
+            <div class="name">東平安名崎<span class="tag spot">景觀</span></div>
+            <div class="meta">日本百景之一，2 公里長的細長岬角，兩側是不同顏色的海。可登平安名埼燈塔（需門票）。<b>步道全程無遮蔽、曝曬嚴重</b>，所以排在上午，請帶足水與防曬。</div>
+            <a class="shot" href="https://japantravel.co/%E5%9C%B0%E5%8D%80/%E6%B2%96%E7%B9%A9/%E5%AE%AE%E5%8F%A4%E5%B3%B6/%E5%AE%AE%E5%8F%A4%E5%B3%B6%E6%99%AF%E9%BB%9E/%E6%9D%B1%E5%B9%B3%E5%AE%89%E5%90%8D%E5%B4%8E/" target="_blank" rel="noopener">
+              <span class="shot-alt">東平安名崎</span>
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Cape_Higashi-Hennazaki_%2851923939821%29.jpg/960px-Cape_Higashi-Hennazaki_%2851923939821%29.jpg" alt="東平安名崎" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+              <span class="shot-label">看介紹 ↗</span>
+            </a>
+            <div class="next">↓ 開車約 5–10 分</div>
+          </div></li>
+
+        <li class="stop"><div class="clock">11:00<small>80 分</small></div><div class="dot"></div>
+          <div class="card">
+            <div class="name">Ocean's Vista<span class="tag food">午餐</span></div>
+            <div class="meta">保良台地上的餐廳，位置正好可以回望剛剛走過的東平安名崎。岬角本身只有停車場、燈塔與廁所，沒有餐廳，這是最近的用餐點。<b>8/15 是週六，營業到 17:00（最後點餐 16:00）</b>，11:00 開門。</div>
+            <a class="shot" href="https://miyako-island.net/gourmet/gourmet_spot_045/" target="_blank" rel="noopener">
+              <span class="shot-alt">Ocean's Vista</span>
+              <img src="https://miyako-island.net/wp/wp-content/uploads/2023/01/gourmet_045_01.jpg" alt="Ocean's Vista" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+              <span class="shot-label">看介紹 ↗</span>
+            </a>
+            <div class="next">↓ 開車約 40–45 分，經來間大橋 → 來間島</div>
+          </div></li>
+
+        <li class="stop"><div class="clock">13:15<small>60 分</small></div><div class="dot"></div>
+          <div class="card">
+            <div class="name">AOSORA PARLOR<span class="tag food">冰沙</span></div>
+            <div class="meta">來間島上的水果冰沙名店，招牌是芒果冰沙配甘蔗吸管。</div>
+            <div class="warn"><b>這家中午 12:00–13:00 休息</b>（官網日文版明載），所以刻意排在 13:15 抵達。另外它是<b>不定休</b>，且不同來源的營業時間互相矛盾（有 17:00 關也有 18:00 關的版本）——出發前請看它的 Instagram 公告或直接打 0980-76-3900。</div>
+            <a class="shot" href="https://www.walkerland.com.tw/subject/view/402900" target="_blank" rel="noopener">
+              <span class="shot-alt">AOSORA PARLOR</span>
+              <img src="https://static.wixstatic.com/media/6a9a2a_ddb829ad873942a997efac251f8a4b3c~mv2.jpg" alt="AOSORA PARLOR" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+              <span class="shot-label">看介紹 ↗</span>
+            </a>
+            <div class="next">↓ 開車約 25–30 分 → 飯店</div>
+          </div></li>
+
+        <li class="stop"><div class="clock">15:00<small>2 小時 45 分</small></div><div class="dot"></div>
+          <div class="card">
+            <div class="name">回飯店 休息・整理行李<span class="tag move">休息</span></div>
+            <div class="meta">明天 07:30 就要退房出發，行李今晚先打包好。若 Day 3 沒去成 Don Quijote，可以利用這段時間補買。</div>
+            <div class="next">↓ 17:45 出發，開車約 8–10 分（不建議步行）</div>
+          </div></li>
+
+        <li class="stop"><div class="clock">18:00<small>105 分</small></div><div class="dot"></div>
+          <div class="card">
+            <div class="name">宮古牛燒肉 火神（かがみ）<span class="tag food">晚餐</span></div>
+            <div class="meta">只用 5 等級宮古牛、七輪炭火燒，白飯沙拉泡菜湯可免費續。17:00–23:00 營業，<b>週日公休</b>——所以只能排在今天（8/15 週六），Day 5 想吃也吃不到。</div>
+            <div class="warn"><b>務必先訂位。</b>電話 0980-79-5129，或線上訂位（ebica）。旺季週六不訂位很可能撲空。</div>
+            <a class="shot" href="https://go2miyako.com/%E7%BE%8E%E9%A3%9F/%E5%AE%AE%E5%8F%A4%E5%B3%B6top-5%E7%87%92%E8%82%89%E5%BA%97%E6%8E%A8%E8%96%A6" target="_blank" rel="noopener">
+              <span class="shot-alt">宮古牛燒肉 火神</span>
+              <img src="https://kagami.okinawa/wp-content/themes/kagami/images/main001.jpg" alt="宮古牛燒肉 火神" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+              <span class="shot-label">看介紹 ↗</span>
+            </a>
+            <div class="next">↓ 開車約 8–10 分 → 飯店，早睡</div>
+          </div></li>
+
       </ol>
-      <aside class="backup"><h3>◇ 備用（順路）</h3><div class="bitem"><b>與那霸前濱海灘</b>：若 Day 1 天候不佳，可和來間島冰沙同日補排；AOSORA PARLOR 開車約 10 分。</div><div class="bitem"><b>燒肉替代</b>：<a href="https://sui-okinawa.net/" target="_blank" rel="noopener">割烹燒肉 SUI</a>（較精緻）或 <a href="https://miyako-kihachi.com/" target="_blank" rel="noopener">燒肉喜八</a>（宮古牛），依訂位結果擇一。</div></aside>
+      <aside class="backup">
+        <h3>◇ 備用（燒肉訂不到位時）</h3>
+        <div class="bitem"><b><a href="https://sui-okinawa.net/" target="_blank" rel="noopener">割烹燒肉 SUI</a></b>：較精緻的路線，A5 宮古牛。</div>
+        <div class="bitem"><b><a href="https://miyako-kihachi.com/" target="_blank" rel="noopener">宮古牛燒肉 喜八</a></b>：人氣店，同樣主打宮古牛。</div>
+        <div class="bitem"><b>若 Day 1 因雨沒看到夕陽</b>：今天從來間島回程時可順道補看，日落 19:14——但那會和 18:00 的燒肉衝突，得二選一。</div>
+      </aside>
     </section>
 
+    <!-- ================= DAY 5 ================= -->
     <section class="day" id="d5">
-      <div class="dayhead"><div class="date">Day 5｜8/16（日）</div><h2>返程</h2></div>
-      <p class="start">由宮古島微笑飯店前往下地島機場；此日以還車、報到與安檢為優先，不排觀光景點。</p>
+      <div class="dayhead">
+        <div class="date">Day 5｜8/16（日）</div>
+        <h2>返程</h2>
+        <div class="drive">當日純行車約 35 分｜JX309 10:40 起飛</div>
+      </div>
+      <p class="start">今天只有一個任務：順利上飛機。不排任何觀光景點。行李昨晚已打包，早餐吃完就走。</p>
       <ol class="tl">
-        <li class="stop"><div class="num">1</div><div class="card"><div class="name">退房 + 行李與油量最終確認<span class="tag food">整理</span></div><div class="meta">早餐後預留收拾、加油與還車緩衝。</div><div class="next">↓ 開車約 35–40 分 → 租車公司／下地島機場</div></div></li>
-        <li class="stop"><div class="num">2</div><div class="card"><div class="name">還車、報到與安檢<span class="tag spot">返程</span></div><div class="meta">務必以租車公司與航空公司要求的集合／還車時間為準。</div></div></li>
+
+        <li class="stop"><div class="clock">06:40<small>40 分</small></div><div class="dot"></div>
+          <div class="card">
+            <div class="name">飯店早餐<span class="tag food">早餐</span></div>
+            <div class="meta">早餐 06:30 就開始，所以不必犧牲。吃不完可以裝進飯店提供的餐盒帶走。</div>
+            <div class="next">↓ 07:30 退房、行李上車</div>
+          </div></li>
+
+        <li class="stop"><div class="clock">07:40<small>35 分</small></div><div class="dot"></div>
+          <div class="card">
+            <div class="name">出發 → 下地島機場<span class="tag move">移動</span></div>
+            <div class="meta">飯店到機場開車約 30–35 分。<b>中途要加油</b>（租車還車幾乎都要求滿油），請預留 10 分鐘，別在機場才想到。</div>
+            <div class="next">↓ 經伊良部大橋</div>
+          </div></li>
+
+        <li class="stop"><div class="clock">08:15<small>20 分</small></div><div class="dot"></div>
+          <div class="card">
+            <div class="name">還車<span class="tag move">租車</span></div>
+            <div class="meta">機場內櫃檯，含加油證明與車損檢查約 10–20 分。</div>
+            <div class="warn"><b>這是整趟行程最緊的一個環節。</b>下地島機場的租車業者中，<b>只有 OTS 08:00 開門</b>（8/16 週日 08:00–18:30）；Orix、Toyota、Pine 都要 09:00 才開。而星宇櫃檯在<b>起飛前 1 小時（09:40）關閉</b>、行李同時截止。若你租的不是 OTS，這天會變成「09:00 還車 → 09:20 報到 → 09:40 關櫃」，毫無容錯空間。<b>訂車時請選 OTS，或事先致電確認能否提早還車。</b></div>
+            <div class="next">↓ 步行至航廈</div>
+          </div></li>
+
+        <li class="stop"><div class="clock">08:45<small>報到</small></div><div class="dot"></div>
+          <div class="card">
+            <div class="name">星宇航空 報到・託運行李<span class="tag move">機場</span></div>
+            <div class="meta">星宇櫃檯於起飛前 3.5–2 小時開始受理（約 08:10 開），<b>起飛前 1 小時（09:40）關閉</b>。08:45 到航廈可以從容報到。</div>
+            <div class="warn">下地島機場官網 FAQ 另寫星宇「150 分前」，與星宇官方的「60 分前關櫃」字面矛盾。出發前一天建議打電話向星宇或機場（0980-78-6606）確認一次。</div>
+            <div class="next">↓ 安檢、出境審查</div>
+          </div></li>
+
+        <li class="stop"><div class="clock">10:40<small>JX309</small></div><div class="dot"></div>
+          <div class="card">
+            <div class="name">下地島 10:40 → 台中 11:00<span class="tag move">返程</span></div>
+            <div class="meta">星宇 JX309。抵達清泉崗機場為台灣時間 11:00（台日時差 1 小時，實際飛行約 1 小時 20 分）。</div>
+          </div></li>
+
       </ol>
-      <aside class="backup"><h3>◇ 備用</h3><div class="bitem">返程日不排景點；若提早完成還車，以機場周邊短暫休息為原則。</div></aside>
+      <aside class="notes">
+        <h3>◇ 出發前必辦清單</h3>
+        <ul>
+          <li><b>租車選 OTS</b>——這關係到 8/16 能否從容還車報到。</li>
+          <li><b>訂位</b>：火神燒肉（8/15）、ぽうちゃたつや（8/14，只收電話、可提前兩週訂）、星空導覽（8/13）、Shigira 浮潛 10:30 場次（8/14）。</li>
+          <li><b>致電確認</b>：郷家 8/12 是否營業（不定休）、AOSORA PARLOR 8/15 營業時間（不定休且資料矛盾）。</li>
+          <li><b>Blue Turtle 與大和食堂都不能訂位</b>，請照表定時間提早到。</li>
+          <li>Visit Japan Web 事先登錄，加快入境。</li>
+          <li>8 月是颱風季，出發前一週密切注意天氣；海上活動一律以業者判斷為準。</li>
+        </ul>
+      </aside>
     </section>
 
-    <footer>初步規劃｜景點、餐廳、導覽與交通時間均須以出發前最新官方資訊、天候與海況確認。此頁不含房號、航班號、座位或訂位資訊。</footer>
+    <footer>
+      初步規劃｜所有營業時間、車程與導覽資訊均須以出發前最新官方公告、天候與海況為準。此頁不含房號、航班座位或訂位個資。<br>
+      景點照片來自 Wikimedia Commons（CC BY / CC BY-SA / CC0，作者含 663highland、Paipateroma、sota、Cassiopeia sweet、Kaz Ish、JiroS.、Raita Futo 等）與各店家官方網站；點圖可開啟該景點的介紹文章。
+    </footer>
   </main>
+
   <script>
     const tabs = document.querySelectorAll('.tab');
     const days = document.querySelectorAll('.day');
