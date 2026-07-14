@@ -63,16 +63,30 @@
     .notes li { margin-bottom:5px; }
     footer { padding:28px 6px 0; color:var(--muted); font-size:.79rem; text-align:center; line-height:1.7; }
 
-    .maplayout { display:grid; grid-template-columns:266px 1fr; gap:14px; align-items:start; }
-    #map { height:66vh; min-height:420px; border-radius:16px; box-shadow:0 3px 16px #17314a0c; }
-    .maplist { background:var(--card); border-radius:16px; box-shadow:0 3px 16px #17314a0c; padding:8px; height:66vh; min-height:420px; overflow-y:auto; }
-    .mlhint { margin:3px 9px 7px; color:var(--muted); font-size:.79rem; }
+    .mapfab { position:fixed; right:16px; bottom:16px; z-index:1400; display:inline-flex; align-items:center; gap:6px; padding:13px 19px; border:0; border-radius:999px; background:var(--blue); color:#fff; font:inherit; font-weight:750; box-shadow:0 7px 22px #17314a4d; cursor:pointer; }
+    .mapfab:hover { background:#0f6699; }
+
+    .mapmodal { position:fixed; inset:0; z-index:1500; display:none; flex-direction:column; background:var(--bg); }
+    .mapmodal.open { display:flex; }
+    .mapbar { display:flex; align-items:center; gap:12px; padding:11px 15px; background:var(--card); box-shadow:0 2px 12px #17314a1a; }
+    .mapbar-t { flex:1; min-width:0; line-height:1.35; }
+    .mapbar-t b { display:block; font-size:1.02rem; }
+    .mapbar-t span { color:var(--muted); font-size:.79rem; }
+    .mapclose { flex:0 0 auto; width:38px; height:38px; border:0; border-radius:50%; background:#eef4f8; color:var(--ink); font-size:1rem; cursor:pointer; }
+    .mapclose:hover { background:#dfeaf2; }
+    .mapbody { flex:1; min-height:0; display:grid; grid-template-columns:1fr 288px; }
+    #map { height:100%; }
+    .maplist { height:100%; overflow-y:auto; padding:8px; background:var(--card); border-left:1px solid var(--line); }
     .mlday { position:sticky; top:0; z-index:1; display:flex; align-items:center; gap:7px; width:100%; padding:9px; border:0; border-radius:9px; background:var(--card); font:inherit; font-size:.87rem; font-weight:750; letter-spacing:.02em; text-align:left; cursor:pointer; }
     .mlday:hover { background:#eff7fc; }
     .mlday .swatch { width:11px; height:11px; border-radius:50%; flex:0 0 auto; }
     .mlcount { margin-left:auto; color:var(--muted); font-size:.77rem; font-weight:600; }
     .mlgroup.off .mlday { opacity:.4; }
     .mlgroup.off .mlitem { display:none; }
+    .mltip { margin:12px 4px 6px; padding:12px 13px; border-radius:11px; background:#f1f8fb; color:var(--muted); font-size:.8rem; line-height:1.6; }
+    .mltip b { display:block; color:var(--ink); margin-bottom:5px; font-size:.84rem; }
+    .mltip p { margin:0 0 6px; }
+    .mltip p:last-child { margin-bottom:0; }
     .mlitem { display:flex; align-items:center; gap:7px; width:100%; padding:6px 9px; border:0; border-radius:9px; background:none; font:inherit; font-size:.88rem; color:var(--ink); text-align:left; cursor:pointer; }
     .mlitem:hover { background:#eff7fc; }
     .mlitem svg { flex:0 0 auto; }
@@ -80,10 +94,10 @@
     .mlname { flex:1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
     .mlt { flex:0 0 auto; color:var(--muted); font-size:.78rem; font-variant-numeric:tabular-nums; }
 
+    /* 窄螢幕：地圖在上、列表在下，兩者都填滿可用高度 */
     @media (max-width:760px) {
-      .maplayout { grid-template-columns:1fr; }
-      #map { order:1; height:52vh; }
-      .maplist { order:2; height:auto; max-height:330px; min-height:0; }
+      .mapbody { grid-template-columns:1fr; grid-template-rows:1fr 42vh; }
+      .maplist { border-left:0; border-top:1px solid var(--line); }
     }
     .pin span { display:grid; place-items:center; width:25px; height:25px; border-radius:50%; color:#fff; font-weight:750; font-size:12px; box-shadow:0 0 0 2px #fff, 0 2px 6px #17314a55; }
     .pin.home span { border-radius:7px; }
@@ -116,7 +130,6 @@
         <button class="tab" data-day="d3"><span class="tab-day">Day 3</span><span class="tab-date">8/14 五</span></button>
         <button class="tab" data-day="d4"><span class="tab-day">Day 4</span><span class="tab-date">8/15 六</span></button>
         <button class="tab" data-day="d5"><span class="tab-day">Day 5</span><span class="tab-date">8/16 日</span></button>
-        <button class="tab" data-day="dmap"><span class="tab-day">地圖</span><span class="tab-date">全部景點</span></button>
       </nav>
     </div>
 
@@ -581,30 +594,6 @@
       </aside>
     </section>
 
-    <!-- ================= 地圖 ================= -->
-    <section class="day" id="dmap">
-      <div class="dayhead">
-        <div class="date">全程地圖</div>
-        <h2>五天動線與所有景點</h2>
-        <div class="drive">點列表的 Day 標題可顯示／隱藏該天｜點景點可看時間與導航連結</div>
-      </div>
-      <p class="start">標記上的數字是當天的造訪順序，圓角方形的 ⌂ 是住宿的宮古島微笑飯店，每天都標了出來。<br>
-      五天的飯店標記位置相同，全部開啟時會疊在一起——想看某天幾點從飯店出發，點列表把其他天的 Day 標題關掉即可。</p>
-      <div class="maplayout">
-        <aside class="maplist" id="maplist">
-          <p class="mlhint">點 Day 標題可顯示／隱藏該天</p>
-        </aside>
-        <div id="map"></div>
-      </div>
-      <aside class="notes">
-        <h3>◇ 看地圖會發現的三件事</h3>
-        <ul>
-          <li><b>飯店在平良（島的西北），但景點散在四個角落。</b>這就是為什麼每天都得回頭——動線本來就沒辦法完全不折返。</li>
-          <li><b>Day 2 整天都在左邊的伊良部／下地島</b>，過了伊良部大橋就不再跨回本島，這是刻意的安排。</li>
-          <li><b>Day 4 的東平安名崎在最右端</b>，離飯店最遠（開車 35–40 分），所以排在早上、也在附近就把午餐解決掉。</li>
-        </ul>
-      </aside>
-    </section>
 
     <footer>
       初步規劃｜所有營業時間、車程與導覽資訊均須以出發前最新官方公告、天候與海況為準。此頁不含房號、航班座位或訂位個資。<br>
@@ -612,6 +601,25 @@
       星空照片出處：<a href="https://massi.tw/starry-sky-okinawa/" target="_blank" rel="noopener">一直玩的馬摩</a>。地圖圖磚 © OpenStreetMap 貢獻者。
     </footer>
   </main>
+
+  <button class="mapfab" id="mapfab" aria-label="開啟全程地圖">
+    <svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><path fill="currentColor" d="M12 2a7 7 0 00-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 00-7-7zm0 9.5A2.5 2.5 0 1112 6.5a2.5 2.5 0 010 5z"/></svg>
+    地圖
+  </button>
+
+  <div class="mapmodal" id="mapmodal" role="dialog" aria-modal="true" aria-label="全程地圖">
+    <div class="mapbar">
+      <div class="mapbar-t">
+        <b>全程地圖</b>
+        <span>點 Day 標題可顯示／隱藏該天，點景點看時間與導航</span>
+      </div>
+      <button class="mapclose" id="mapclose" aria-label="關閉地圖">✕</button>
+    </div>
+    <div class="mapbody">
+      <div id="map"></div>
+      <aside class="maplist" id="maplist"></aside>
+    </div>
+  </div>
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
           integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="anonymous"></script>
@@ -671,6 +679,8 @@
     const tabs = document.querySelectorAll('.tab');
     const days = document.querySelectorAll('.day');
     let map = null;
+    let mapBounds = null;
+    let mapFitted = false;
 
     function buildMap() {
       map = L.map('map', { scrollWheelZoom: false });
@@ -742,7 +752,16 @@
         list.appendChild(group);
       });
 
-      map.fitBounds(bounds, { padding: [34, 34] });
+      const tip = document.createElement('div');
+      tip.className = 'mltip';
+      tip.innerHTML =
+        '<b>看地圖會發現的三件事</b>' +
+        '<p>飯店在平良（島的西北），景點卻散在四個角落——這就是為什麼每天都得回頭。</p>' +
+        '<p>Day 2 整天都在左邊的伊良部／下地島，過橋後不再跨回本島。</p>' +
+        '<p>Day 4 的東平安名崎在最右端，離飯店最遠，所以排早上、午餐也在附近解決。</p>';
+      list.appendChild(tip);
+
+      mapBounds = bounds;
     }
 
     tabs.forEach((tab) => tab.addEventListener('click', () => {
@@ -751,12 +770,34 @@
       tab.classList.add('active');
       document.getElementById(tab.dataset.day).classList.add('active');
       window.scrollTo({ top: 0, behavior: 'smooth' });
-
-      if (tab.dataset.day === 'dmap') {
-        if (!map) buildMap();
-        else setTimeout(() => map.invalidateSize(), 0);
-      }
     }));
+
+    const modal = document.getElementById('mapmodal');
+
+    function openMap() {
+      modal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      if (!map) buildMap();
+      // 地圖在隱藏容器裡量不到尺寸，要等它顯示後才能算縮放範圍
+      setTimeout(() => {
+        map.invalidateSize();
+        if (!mapFitted) {
+          map.fitBounds(mapBounds, { padding: [34, 34] });
+          mapFitted = true;
+        }
+      }, 0);
+    }
+
+    function closeMap() {
+      modal.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    document.getElementById('mapfab').addEventListener('click', openMap);
+    document.getElementById('mapclose').addEventListener('click', closeMap);
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('open')) closeMap();
+    });
   </script>
 </body>
 </html>
