@@ -104,6 +104,21 @@
       .mapbody { grid-template-columns:1fr; grid-template-rows:1fr 42vh; }
       .maplist { border-left:0; border-top:1px solid var(--line); }
     }
+
+    /* 餐飲・訂位總覽（第二顆浮動鈕，疊在地圖鈕上方） */
+    .menufab { bottom:72px; background:#d67619; }
+    .menufab:hover { background:#bd6412; }
+    .ovbody { flex:1; min-height:0; overflow-y:auto; padding:16px; }
+    .ovsec { max-width:840px; margin:0 auto 24px; }
+    .ovsec h4 { margin:0 0 10px; font-size:1rem; }
+    .ovwrap { overflow-x:auto; }
+    .ovtable { width:100%; border-collapse:collapse; font-size:.86rem; }
+    .ovtable th, .ovtable td { border:1px solid var(--line); padding:8px 9px; text-align:left; vertical-align:top; }
+    .ovtable th { background:#eff7fc; font-weight:750; white-space:nowrap; }
+    .ovtable .dcol { white-space:nowrap; color:var(--muted); font-size:.8rem; }
+    .ovtable .din { font-weight:700; }
+    .ovtable small { color:var(--muted); font-weight:400; }
+    .ovnote { margin:8px 2px 0; color:var(--muted); font-size:.8rem; line-height:1.6; }
     .pin span { display:grid; place-items:center; width:25px; height:25px; border-radius:50%; color:#fff; font-weight:750; font-size:12px; box-shadow:0 0 0 2px #fff, 0 2px 6px #17314a55; }
     .pin.home span { border-radius:7px; }
     .leaflet-popup-content { margin:11px 13px; font-family:inherit; line-height:1.5; }
@@ -147,7 +162,7 @@
         <h2>抵達・南岸海灘・來間島夕陽</h2>
         <div class="drive">當日純行車約 1 小時 40 分｜日落 19:16</div>
       </div>
-      <p class="start">早班機落地後先取車、放行李，下午玩南岸海灘，傍晚回飯店休息沖澡，再出發看來間島夕陽。今晚不排星空導覽（移到 Day 2），把第一天的體力留住。</p>
+      <p class="start">早班機落地後先取車、放行李，下午玩南岸海灘，傍晚回飯店休息沖澡，再出發看來間島夕陽。今晚不排觀星（移到 Day 2），把第一天的體力留住。</p>
       <ol class="tl">
 
         <li class="stop"><div class="clock">09:40<small>50 分</small></div><div class="dot"></div>
@@ -213,16 +228,19 @@
             <div class="name">竜宮城展望台・來間島夕陽<span class="tag spot">夕陽</span></div>
             <div class="meta">三層樓展望台，可一次看盡前濱海灘、來間大橋與夕陽。<b>今日日落 19:16</b>，19:35 左右離開。日落後不要在偏僻海岸久留。</div>
             <div class="acts"><a class="nav" href="https://www.google.com/maps/dir/?api=1&amp;destination=24.72604,125.25167" target="_blank" rel="noopener">Google Maps 導航</a></div>
-            <div class="next">↓ 開車約 25 分 → 平良市區</div>
+            <div class="next">↓ 開車約 20–25 分，往東 → 琉宮苑（Shigira）</div>
           </div></li>
 
-        <li class="stop"><div class="clock">20:00<small>90 分</small></div><div class="dot"></div>
+        <li class="stop"><div class="clock">19:55<small>90 分</small></div><div class="dot"></div>
           <div class="card">
-            <div class="name">嘉福（沖繩阿古豬涮涮鍋）<span class="tag food">晚餐</span></div>
-            <div class="meta">やんばるアグー阿古豬涮涮鍋，蛤蜊清湯鍋底，tabelog 這一區最高分。第一晚落地累了，暖鍋最舒服，而且<b>距飯店只有 0.2km（步行 2–3 分）</b>，有個室。17:00–24:00 營業。涮涮鍋本身不辣。人均約 ¥8,000–9,999，走精緻路線。</div>
-            <div class="warn"><b>務必先訂位</b>（0980-79-6575）。8/12–8/16 正逢日本盂蘭盆連假旺季，個室尤其要提早訂。「不定休」，出發前一併確認 8/12 當天營業。</div>
-            <div class="acts"><a class="nav" href="https://www.google.com/maps/dir/?api=1&amp;destination=24.80520,125.27893" target="_blank" rel="noopener">Google Maps 導航</a></div>
-            <div class="next">↓ 步行約 2–3 分 → 飯店</div>
+            <a class="shot" href="https://www.miiyaku.jp/delicacy-detail/46/" target="_blank" rel="noopener">
+              <img src="https://www.miiyaku.jp/upload/catalog_b/IMG_1243__24E22qgusP.png" alt="炭火燒肉 琉宮苑" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+            </a>
+            <div class="name">炭火燒肉 琉宮苑<span class="tag food">晚餐</span></div>
+            <div class="meta">Shigira 度假區內的宮古牛炭火燒肉，稀少的「夢幻和牛」，有包廂適合家庭悠閒吃。17:00–22:00（L.O. 21:30），人均約 ¥6,000–7,999。看完來間島夕陽往東 20–25 分就到，比回市區順。</div>
+            <div class="warn"><b>務必先訂位</b>（0980-74-7229 或線上）。人氣店常客滿，8/12 盂蘭盆旺季更要提早訂。與 Day 2 嘉福（阿古豬涮涮鍋）一牛一豬、各吃一家。吃完回市區約 25 分。</div>
+            <div class="acts"><a class="nav" href="https://www.google.com/maps/dir/?api=1&amp;destination=24.72076,125.33427" target="_blank" rel="noopener">Google Maps 導航</a></div>
+            <div class="next">↓ 開車約 25 分 → 飯店</div>
           </div></li>
 
       </ol>
@@ -241,7 +259,7 @@
         <h2>伊良部島・下地島一日遊・夜間觀星</h2>
         <div class="drive">當日純行車約 1 小時 30 分｜日落 19:16</div>
       </div>
-      <p class="start">整天集中伊良部島與下地島，不折返主島。下午 15:40 就回飯店補眠——因為今晚有星空導覽，會到 22:30 才結束。8/13 接近新月，是這五天觀星條件最好的一晚。</p>
+      <p class="start">整天集中伊良部島與下地島，不折返主島。傍晚過大橋回市區吃 Blue Seal、飯店旁吃阿古豬涮涮鍋，再自己開車到光害少的地方看星星。<b>8/13 是新月、整晚無月光</b>，是這五天最好的觀星夜；今晚自行觀星、不趕導覽集合，節奏自由。</p>
       <ol class="tl">
 
         <li class="stop"><div class="clock">07:00<small>60 分</small></div><div class="dot"></div>
@@ -315,36 +333,45 @@
             <div class="name">渡口之濱<span class="tag sea">海灘</span></div>
             <div class="meta">伊良部島最漂亮的沙灘，細白沙質。順路收尾，時間不夠可直接略過回飯店。</div>
             <div class="acts"><a class="nav" href="https://www.google.com/maps/dir/?api=1&amp;destination=24.81153,125.17794" target="_blank" rel="noopener">Google Maps 導航</a></div>
-            <div class="next">↓ 開車約 30–35 分，經伊良部大橋 → 飯店</div>
+            <div class="next">↓ 開車約 30–35 分，經伊良部大橋 → Blue Seal</div>
           </div></li>
 
-        <li class="stop"><div class="clock">15:40<small>90 分</small></div><div class="dot"></div>
+        <li class="stop"><div class="clock">15:25<small>20 分</small></div><div class="dot"></div>
           <div class="card">
-            <div class="name">回飯店 休息・補眠<span class="tag move">休息</span></div>
-            <div class="meta">今晚要撐到 22:30，這段補眠不是可有可無的。</div>
+            <div class="name">Blue Seal パイナガマ店<span class="tag food">吃冰</span></div>
+            <div class="meta">沖繩經典冰淇淋，過伊良部大橋回市區的西岸路上、順路 20 分短停。10:00–20:00、全年無休，近パイナガマ海灘。（宮古島另一家在 San-A 旁，這家往前濱／伊良部方向較順。）</div>
+            <div class="acts"><a class="nav" href="https://www.google.com/maps/dir/?api=1&amp;destination=24.79914,125.26920" target="_blank" rel="noopener">Google Maps 導航</a></div>
+            <div class="next">↓ 開車約 5–10 分 → 飯店</div>
+          </div></li>
+
+        <li class="stop"><div class="clock">15:50<small>約 2 小時</small></div><div class="dot"></div>
+          <div class="card">
+            <div class="name">回飯店 休息・換裝<span class="tag move">休息</span></div>
+            <div class="meta">沖個澡、換件輕鬆衣服，晚點吃涮涮鍋、看星星。今晚自行觀星、不趕導覽集合，節奏自由；記得帶長袖與防蚊液，夜間海邊涼、蚊子多。</div>
             <div class="acts"><a class="nav" href="https://www.google.com/maps/dir/?api=1&amp;destination=24.80504,125.28084" target="_blank" rel="noopener">Google Maps 導航</a></div>
-            <div class="next">↓ 17:00 出發（步行 12–15 分或開車 4 分）</div>
+            <div class="next">↓ 18:00 出發，步行 2–3 分 → 嘉福</div>
           </div></li>
 
-        <li class="stop"><div class="clock">17:15<small>60 分</small></div><div class="dot"></div>
+        <li class="stop"><div class="clock">18:00<small>約 90 分</small></div><div class="dot"></div>
           <div class="card">
-            <a class="shot" href="https://www.tabirai.net/sightseeing/column/0006127.aspx" target="_blank" rel="noopener">
-              <img src="https://www.tabirai.net/sightseeing/column/img/0006127/kiji1Img.jpg" alt="大和食堂 宮古そば" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+            <a class="shot" href="https://tabelog.com/okinawa/A4705/A470503/47031838/" target="_blank" rel="noopener">
+              <img src="https://tblg.k-img.com/resize/640x640c/restaurant/images/Rvw/256748/3b9e8b8a3d8685a0ba24666914466455.jpg?token=1dfbd1b&amp;api=v2" alt="嘉福 アグー豚しゃぶしゃぶ" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
             </a>
-            <div class="name">大和食堂<span class="tag food">晚餐</span></div>
-            <div class="meta">老字號在地食堂，宮古そば大碗 ¥550、人均不到 ¥1,000。上菜快，正好配今晚的行程。</div>
-            <div class="warn"><b>晚間只開 17:15–19:00（最後點餐 18:30），且不接受訂位。</b>只有 28 席，建議 17:15 一開門就到，把星空導覽的緩衝拉大。週二公休，8/13 有營業。</div>
-            <div class="acts"><a class="nav" href="https://www.google.com/maps/dir/?api=1&amp;destination=24.79971,125.29259" target="_blank" rel="noopener">Google Maps 導航</a></div>
-            <div class="next">↓ 回飯店整裝，準備長袖與防蚊液</div>
+            <div class="name">沖縄やんばるアグーしゃぶしゃぶ 嘉福<span class="tag food">晚餐</span></div>
+            <div class="meta">やんばるアグー豬涮涮鍋，蛤蜊＋宮古島雪鹽高湯。平良西里、距飯店步行約 2–3 分。全席榻榻米、個室 4–20 人、親子友善（嬰兒～小學生可、個室備嬰兒椅）。17:00–24:00，年中無休，晚餐人均約 ¥6,000–7,999。</div>
+            <div class="warn"><b>建議先訂位</b>（0980-79-6575）。8/13 盂蘭盆旺季，個室要早訂。與 Day 1 琉宮苑（宮古牛燒肉）一牛一豬、各吃一家。<b>訂位遲到 20 分未聯絡會自動取消。</b></div>
+            <div class="acts"><a class="nav" href="https://www.google.com/maps/dir/?api=1&amp;destination=24.80520,125.27893" target="_blank" rel="noopener">Google Maps 導航</a></div>
+            <div class="next">↓ 開車約 25–30 分 → 比嘉ロードパーク（東岸暗空點）</div>
           </div></li>
 
-        <li class="stop"><div class="clock">19:45<small>約 2.5 小時</small></div><div class="dot"></div>
+        <li class="stop"><div class="clock">20:00<small>約 90 分</small></div><div class="dot"></div>
           <div class="card">
             <a class="shot" href="https://massi.tw/starry-sky-okinawa/" target="_blank" rel="noopener">
               <img src="miyakojima-stars.jpg" alt="宮古島星空" loading="lazy" onerror="this.remove()">
             </a>
-            <div class="name">星空導覽<span class="tag night">夜間</span></div>
-            <div class="meta">19:45 集合、20:00–22:00 觀星、約 22:30 回到飯店。<b>8/13 接近新月</b>，月光干擾最小，是這五天條件最好的一晚。請務必參加有在地導覽的行程，不要自行夜駕到偏遠海岸。雲量、風雨與導覽方的判斷優先。</div>
+            <div class="name">自行觀星（比嘉ロードパーク）<span class="tag night">夜間</span></div>
+            <div class="meta">不參加在地導覽，開到光害少的東岸自行就地觀賞。<b>8/13 接近新月</b>，月光干擾最小，是這五天觀星條件最好的一晚。比嘉ロードパーク位於城辺東海岸、高台、有停車場，四周暗、視野開闊。帶長袖與防蚊液，海邊夜間涼、蚊多；依雲量與天候彈性調整，約 21:30 前後回飯店。</div>
+            <div class="acts"><a class="nav" href="https://www.google.com/maps/dir/?api=1&amp;destination=%E6%AF%94%E5%98%89%E3%83%AD%E3%83%BC%E3%83%89%E3%83%91%E3%83%BC%E3%82%AF" target="_blank" rel="noopener">Google Maps 導航</a></div>
           </div></li>
 
       </ol>
@@ -449,13 +476,13 @@
 
         <li class="stop"><div class="clock">19:00<small>105 分</small></div><div class="dot"></div>
           <div class="card">
-            <a class="shot" href="https://mainichibeer.jp/pouchatatsuya-miyakojima/" target="_blank" rel="noopener">
-              <img src="https://mainichibeer.jp/wp-content/uploads/2016/04/PouchaTatsuya-miyakojima1.jpg" alt="ぽうちゃたつや" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+            <a class="shot" href="https://sangoya.jp/" target="_blank" rel="noopener">
+              <img src="https://sangoya.jp/wp-content/uploads/2017/05/top01.jpg" alt="琉球王国さんご家" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
             </a>
-            <div class="name">ぽうちゃたつや<span class="tag food">晚餐</span></div>
-            <div class="meta">島料理海鮮居酒屋，距飯店步行約 2–3 分。人均 ¥5,000–6,000，僅 23 席。18:00–22:00（餐點最後點餐 21:00）。</div>
-            <div class="warn"><b>必須訂位，而且只收電話（0980-73-3931），可從用餐日往前兩週的下午 4 點開始訂。</b>旺季週五幾乎一定客滿。另注意：<b>高中生以下兒童不可入店</b>，若有小孩同行請改去豚匠（阿古豬涮涮鍋，有座敷）或其他餐廳。</div>
-            <div class="acts"><a class="nav" href="https://www.google.com/maps/dir/?api=1&amp;destination=24.80279,125.2819" target="_blank" rel="noopener">Google Maps 導航</a></div>
+            <div class="name">琉球王国さんご家<span class="tag food">晚餐</span></div>
+            <div class="meta">沖繩鄉土料理居酒屋，平良西里通、距飯店步行約 2–3 分。110 席、有座敷與個室、親子友善（子供可）。招牌 358 円均一島料理＋在地魚刺身（也有 A5 宮古牛單品）。17:00–23:00，週日公休，人均約 ¥3,000–3,999。</div>
+            <div class="warn"><b>人氣店，8/14 盂蘭盆週五強烈建議先訂位</b>（0980-75-3235 或 tabelog 線上訂位）。評論提到沒訂位可能候不到位。週五有營業（僅週日公休）。</div>
+            <div class="acts"><a class="nav" href="https://www.google.com/maps/dir/?api=1&amp;destination=24.80481,125.2808" target="_blank" rel="noopener">Google Maps 導航</a></div>
             <div class="next">↓ 開車約 5–10 分</div>
           </div></li>
 
@@ -474,12 +501,13 @@
       </ol>
       <aside class="backup">
         <h3>◇ 備用</h3>
+        <div class="bitem"><b>晚餐備案</b>（さんご家訂不到時）：<a href="https://tabelog.com/okinawa/A4705/A470503/47016348/" target="_blank" rel="noopener">一魚一会 宮古島店</a>——海鮮居酒屋，主打宮古近海刺身，52 席、有個室，17:00–23:00（<b>22:00 後不接待兒童</b>），人均 ¥5,000–5,999，同樣建議先訂位（0980-79-0188）。</div>
         <div class="bitem"><b>愛心岩看不到時的池間島替代</b>（兩個都免費、順路、不下水，一前一後幾乎零繞路，合計約 40–50 分）：<br>
           ① <b>西平安名岬展望台</b>——就在 HARRY'S 出發後、過池間大橋前，一個展望台把池間大橋、3 座風車、大神島、池間島全收（步道單程 5–10 分、停留約 20 分）。<a href="https://www.google.com/maps/dir/?api=1&amp;destination=24.91023,125.25521&amp;travelmode=driving" target="_blank" rel="noopener">導航</a><br>
           ② <b>海美来（かいみーる）屋頂展望台</b>——過橋落地右手第一棟粉紅建築，不消費也能免費上屋頂居高看整座大橋，順手吃紅芋もち、有廁所停車（9:00 起、全年無休）。<a href="https://www.google.com/maps/dir/?api=1&amp;destination=24.92489,125.25497&amp;travelmode=driving" target="_blank" rel="noopener">導航</a></div>
         <div class="bitem"><b>海況不佳無法浮潛</b>：改由業者建議的玻璃底船，或直接把整個上午挪去雪鹽 Museum 與市區，不要勉強下水。</div>
         <div class="bitem"><b>San-A 宮古島城市店</b>：想補飲料、水果與隔天路上的東西，可在 Don Quijote 之後順道過去（開車 5–10 分）。</div>
-        <div class="bitem"><b>今天是星空導覽的第一備位日</b>：若 Day 2 因雲雨取消，改排今晚，行程往前壓縮即可。</div>
+        <div class="bitem"><b>今天是觀星的第一備位日</b>：若 Day 2 因雲雨取消，改排今晚，行程往前壓縮即可。</div>
       </aside>
     </section>
 
@@ -618,9 +646,9 @@
         <h3>◇ 出發前必辦清單</h3>
         <ul>
           <li><b>租車選 OTS</b>——這關係到 8/16 能否從容還車報到。</li>
-          <li><b>訂位</b>：嘉福 阿古豬涮涮鍋（8/12，盂蘭盆旺季個室要早訂）、火神燒肉（8/15）、ぽうちゃたつや（8/14，只收電話、可提前兩週訂）、星空導覽（8/13）、Shigira 浮潛 10:30 場次（8/14）。</li>
-          <li><b>致電確認</b>：嘉福 8/12 是否營業（不定休）、AOSORA PARLOR 8/15 營業時間（不定休且資料矛盾）、HARRY'S 8/14 天候是否營業。</li>
-          <li><b>Blue Turtle 與大和食堂都不能訂位</b>，請照表定時間提早到。</li>
+          <li><b>訂位</b>：琉宮苑 宮古牛燒肉（8/12，盂蘭盆旺季人氣店要早訂）、嘉福 阿古豬涮涮鍋（8/13，個室要早訂）、琉球王国さんご家（8/14，人氣店建議 tabelog 線上訂位）、火神燒肉（8/15）、Shigira 浮潛 10:30 場次（8/14）。</li>
+          <li><b>致電確認</b>：AOSORA PARLOR 8/15 營業時間（不定休且資料矛盾）、HARRY'S 8/14 天候是否營業。</li>
+          <li><b>Blue Turtle 不能訂位</b>，請照表定時間提早到。</li>
           <li>Visit Japan Web 事先登錄，加快入境。</li>
           <li>8 月是颱風季，出發前一週密切注意天氣；海上活動一律以業者判斷為準。</li>
         </ul>
@@ -665,6 +693,55 @@
     </div>
   </div>
 
+  <button class="mapfab menufab" id="menufab" aria-label="開啟餐飲與訂位總覽">
+    <svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><path fill="currentColor" d="M8.1 2v6.5c0 .8-.5 1.4-1.1 1.6V22H5.5V10.1C4.9 9.9 4.4 9.3 4.4 8.5V2h1.2v5.6h.6V2h1.2v5.6h.6V2h1.5zM15 2c-1.4 0-2.5 1.9-2.5 4.3 0 2 .8 3.6 1.9 4V22H16V2h-1z"/></svg>
+    餐飲
+  </button>
+
+  <div class="mapmodal" id="menumodal" role="dialog" aria-modal="true" aria-label="餐飲與訂位總覽">
+    <div class="mapbar">
+      <div class="mapbar-t">
+        <b>餐飲・訂位總覽</b>
+        <span>每天三餐與備案，以及行前要先訂位的清單</span>
+      </div>
+      <button class="mapclose" id="menuclose" aria-label="關閉總覽">✕</button>
+    </div>
+    <div class="ovbody">
+      <section class="ovsec">
+        <h4>🍽 每日餐飲</h4>
+        <div class="ovwrap">
+          <table class="ovtable">
+            <thead><tr><th>日</th><th>早餐</th><th>午餐</th><th>晚餐</th><th>晚餐備案</th></tr></thead>
+            <tbody>
+              <tr><td class="dcol">Day 1<br>8/12 三</td><td>—<br><small>早班機</small></td><td>Doug's Burger</td><td class="din">炭火燒肉 琉宮苑<br><small>宮古牛燒肉</small></td><td>郷家／豚匠</td></tr>
+              <tr><td class="dcol">Day 2<br>8/13 四</td><td>飯店早餐</td><td>Blue Turtle</td><td class="din">嘉福<br><small>阿古豬涮涮鍋</small></td><td>郷家／豚匠</td></tr>
+              <tr><td class="dcol">Day 3<br>8/14 五</td><td>飯店早餐</td><td>Shigira 食物街</td><td class="din">琉球王国さんご家<br><small>沖繩鄉土料理</small></td><td>一魚一会</td></tr>
+              <tr><td class="dcol">Day 4<br>8/15 六</td><td>飯店早餐</td><td>Ocean's Vista</td><td class="din">宮古牛燒肉 火神<br><small>宮古牛燒肉</small></td><td>—</td></tr>
+              <tr><td class="dcol">Day 5<br>8/16 日</td><td>飯店早餐</td><td>機場／機上</td><td>—</td><td>—</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="ovnote">點心／吃冰：Day 2 Blue Seal パイナガマ店、Day 3 HARRY'S 蝦飯、Day 4 AOSORA PARLOR 冰沙。Day 2 晚間另有自行觀星（比嘉ロードパーク）。</p>
+      </section>
+      <section class="ovsec">
+        <h4>📞 訂位一覽（建議行前一起訂）</h4>
+        <div class="ovwrap">
+          <table class="ovtable">
+            <thead><tr><th>項目</th><th>日期</th><th>訂位方式</th><th>備註</th></tr></thead>
+            <tbody>
+              <tr><td class="din">琉宮苑 宮古牛燒肉</td><td class="dcol">8/12 三</td><td>☎ 0980-74-7229<br>或線上</td><td>Shigira 度假區人氣店，旺季早訂</td></tr>
+              <tr><td class="din">嘉福 阿古豬涮涮鍋</td><td class="dcol">8/13 四</td><td>☎ 0980-79-6575</td><td>個室要早訂；<b>遲到 20 分未聯絡自動取消</b></td></tr>
+              <tr><td class="din">琉球王国さんご家</td><td class="dcol">8/14 五</td><td>☎ 0980-75-3235<br>或 tabelog 線上</td><td>沒訂位可能候不到位</td></tr>
+              <tr><td class="din">火神 宮古牛燒肉</td><td class="dcol">8/15 六</td><td>☎ 0980-79-5129<br>或線上 ebica</td><td>旺季週六不訂易撲空；週日公休</td></tr>
+              <tr><td class="din">Shigira 浮潛（10:30 場）</td><td class="dcol">8/14 五</td><td>業者預約</td><td>¥8,800／人，10:00 到報到換裝</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="ovnote">備案店家（郷家 0980-74-2358／豚匠 0980-79-9525／一魚一会 0980-79-0188）僅在主店訂不到時才需聯絡。</p>
+      </section>
+    </div>
+  </div>
+
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
           integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="anonymous"></script>
   <script>
@@ -678,7 +755,7 @@
           { t: '12:00', n: "Doug's Burger 午餐", c: [24.79574, 125.28682] },
           { t: '13:30', n: '與那霸前濱海灘', c: [24.73604, 125.26119] },
           { t: '18:55', n: '竜宮城展望台 夕陽', c: [24.72604, 125.25167] },
-          { t: '20:00', n: '嘉福 阿古豬涮涮鍋 晚餐', c: [24.80520, 125.27893] },
+          { t: '19:55', n: '炭火燒肉 琉宮苑 晚餐', c: [24.72076, 125.33427] },
         ] },
 
       { id: 'd2', label: 'Day 2', color: '#e7862f',
@@ -690,7 +767,7 @@
           { t: '11:20', n: 'Blue Turtle 午餐', c: [24.81232, 125.18264] },
           { t: '12:55', n: '17END', c: [24.84121, 125.13990] },
           { t: '14:20', n: '渡口之濱', c: [24.81153, 125.17794] },
-          { t: '17:15', n: '大和食堂 晚餐', c: [24.79971, 125.29259] },
+          { t: '18:00', n: '嘉福 阿古豬涮涮鍋 晚餐', c: [24.80520, 125.27893] },
         ] },
 
       { id: 'd3', label: 'Day 3', color: '#129a91',
@@ -702,7 +779,7 @@
           { t: '15:05', n: "HARRY'S 蝦飯 外帶", c: [24.90809, 125.25826] },
           { t: '15:30', n: '池間島（大橋・Ninufa）', c: [24.92991, 125.23348] },
           { t: '17:20', n: '砂山海灘', c: [24.83939, 125.28056] },
-          { t: '19:00', n: 'ぽうちゃたつや 晚餐', c: [24.80279, 125.28190] },
+          { t: '19:00', n: '琉球王国さんご家 晚餐', c: [24.80481, 125.28080] },
           { t: '21:00', n: 'Don Quijote 採買', c: [24.79254, 125.30156] },
         ] },
 
@@ -844,6 +921,15 @@
     document.getElementById('mapclose').addEventListener('click', closeMap);
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && modal.classList.contains('open')) closeMap();
+    });
+
+    const menuModal = document.getElementById('menumodal');
+    function openMenu() { menuModal.classList.add('open'); document.body.style.overflow = 'hidden'; }
+    function closeMenu() { menuModal.classList.remove('open'); document.body.style.overflow = ''; }
+    document.getElementById('menufab').addEventListener('click', openMenu);
+    document.getElementById('menuclose').addEventListener('click', closeMenu);
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && menuModal.classList.contains('open')) closeMenu();
     });
   </script>
 </body>
