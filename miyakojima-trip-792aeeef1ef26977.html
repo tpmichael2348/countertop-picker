@@ -48,6 +48,8 @@
     .name { font-size:1.05rem; font-weight:750; }
     .tag { display:inline-block; margin-left:7px; border-radius:999px; padding:2px 8px; color:#fff; font-size:.74rem; font-weight:650; vertical-align:1px; }
     .food { background:var(--orange); } .sea { background:var(--teal); } .spot { background:var(--blue); } .night { background:var(--violet); } .move { background:#8296ab; }
+    .tag.must { background:#f0b400; color:#4a3200; }
+    .card:has(.tag.must) { background:#fff8e6; box-shadow:inset 4px 0 0 #f0b400, 0 3px 16px #17314a0c; }
     .meta,.next { color:var(--muted); font-size:.92rem; margin-top:5px; }
     .next { padding-top:5px; color:#39708f; }
     .depart { display:inline-block; background:#fdecea; color:#c0392b; font-weight:700; padding:1px 9px; border-radius:999px; border:1px solid #f1a9a0; white-space:nowrap; }
@@ -209,7 +211,7 @@
             <a class="shot" href="https://taiwantour.net/miyako-island-beach/" target="_blank" rel="noopener">
               <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Yonahamaehama_Miyakojima_Okinawa_Japan01bs3s4592.jpg/960px-Yonahamaehama_Miyakojima_Okinawa_Japan01bs3s4592.jpg" alt="與那霸前濱海灘" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
             </a>
-            <div class="name">與那霸前濱海灘<span class="tag sea">海灘</span></div>
+            <div class="name">與那霸前濱海灘<span class="tag must">★必去</span><span class="tag sea">海灘</span></div>
             <div class="meta">號稱東洋第一的白沙灘。這是一天中紫外線最強的時段，請備遮陽、勤補防曬，適時到樹蔭下休息。第一天不排水上活動。</div>
             <div class="acts"><a class="nav" href="https://www.google.com/maps/dir/?api=1&amp;destination=24.73604,125.26119" target="_blank" rel="noopener">Google Maps 導航</a></div>
             <div class="next">↓ 開車約 8 分，經來間大橋 → AOSORA（來間島）</div>
@@ -220,7 +222,7 @@
             <a class="shot" href="https://www.walkerland.com.tw/subject/view/402900" target="_blank" rel="noopener">
               <img src="https://static.wixstatic.com/media/6a9a2a_ddb829ad873942a997efac251f8a4b3c~mv2.jpg" alt="AOSORA PARLOR" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
             </a>
-            <div class="name">AOSORA PARLOR<span class="tag food">冰沙</span></div>
+            <div class="name">AOSORA PARLOR<span class="tag must">★必去</span><span class="tag food">冰沙</span></div>
             <div class="meta">來間島上的水果冰沙名店，招牌是芒果冰沙配甘蔗吸管。就在竜宮城展望台旁邊，喝完順路上去看景再往北。</div>
             <div class="warn"><b>中午 12:00–13:00 休息，且不定休、關門時間資料矛盾（17:00 或 18:00 兩種版本）。</b>排 16:25 已抓保守，但仍偏晚，出發前請看它 Instagram 或打 0980-76-3900 確認當天有開、幾點關；若已關就直接看竜宮城。</div>
             <div class="acts"><a class="nav" href="https://www.google.com/maps/dir/?api=1&amp;destination=24.72296,125.25417" target="_blank" rel="noopener">Google Maps 導航</a></div>
@@ -232,7 +234,7 @@
             <a class="shot" href="https://japantravel.co/%E6%B2%96%E7%B9%A9/%E5%AE%AE%E5%8F%A4%E5%B3%B6/%E4%BE%86%E9%96%93%E5%B3%B6/" target="_blank" rel="noopener">
               <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Miyako_kurima_observatory_1.jpg/960px-Miyako_kurima_observatory_1.jpg" alt="來間島竜宮城展望台" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
             </a>
-            <div class="name">竜宮城展望台<span class="tag spot">展望</span></div>
+            <div class="name">竜宮城展望台<span class="tag must">★必去</span><span class="tag spot">展望</span></div>
             <div class="meta">三層樓展望台，可一次看盡前濱海灘、來間大橋與海景。<b>火神晚餐訂 18:00、今日日落 19:16 在用餐時段</b>，所以今天改成下午順路上來看景，不特地等夕陽（看夕陽可考慮改到 Day 3 砂山ビーチ）。</div>
             <div class="acts"><a class="nav" href="https://www.google.com/maps/dir/?api=1&amp;destination=24.72604,125.25167" target="_blank" rel="noopener">Google Maps 導航</a></div>
             <div class="next">↓ 開車約 20–25 分，往北 → 火神（平良南）</div>
@@ -243,7 +245,7 @@
             <a class="shot" href="https://go2miyako.com/%E7%BE%8E%E9%A3%9F/%E5%AE%AE%E5%8F%A4%E5%B3%B6top-5%E7%87%92%E8%82%89%E5%BA%97%E6%8E%A8%E8%96%A6" target="_blank" rel="noopener">
               <img src="https://kagami.okinawa/wp-content/themes/kagami/images/main001.jpg" alt="宮古牛燒肉 火神" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
             </a>
-            <div class="name">宮古牛燒肉 火神（かがみ）<span class="tag food">晚餐</span></div>
+            <div class="name">宮古牛燒肉 火神（かがみ）<span class="tag must">★必去</span><span class="tag food">晚餐</span></div>
             <div class="meta">只用 5 等級宮古牛、七輪炭火燒，白飯沙拉泡菜湯可免費續。<b>有 10–20 人包廂，12 人可同席</b>。從來間島看完景往北約 20–25 分、在平良南就到，順路回飯店。17:00–23:00 營業，人均約 ¥4,000–4,999。</div>
             <div class="warn"><b>✅ 已訂 18:00</b>（0980-79-5129 或線上 ebica）。與 Day 4 琉宮苑同為宮古牛燒肉、分兩天各吃一家。<b>訂位遲到 20 分未聯絡會自動取消</b>，從來間島回程請抓 20–25 分車程。</div>
             <div class="acts"><a class="nav" href="https://www.google.com/maps/dir/?api=1&amp;destination=24.78963,125.27974" target="_blank" rel="noopener">Google Maps 導航</a></div>
@@ -280,7 +282,7 @@
             <a class="shot" href="https://stancylife.com/irabu-bridge/" target="_blank" rel="noopener">
               <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Miyako_irabu_ohashi_2014_1.jpg/960px-Miyako_irabu_ohashi_2014_1.jpg" alt="伊良部大橋" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
             </a>
-            <div class="name">伊良部大橋<span class="tag spot">景觀</span></div>
+            <div class="name">伊良部大橋<span class="tag must">★必去</span><span class="tag spot">景觀</span></div>
             <div class="meta">全長 3,540 公尺，日本免費通行的跨海大橋中最長。橋本身就是景點——但請由駕駛專心開車，拍照交給乘客，或在橋頭的見學停車場停靠。</div>
             <div class="acts"><a class="nav" href="https://www.google.com/maps/dir/?api=1&amp;destination=24.79676,125.23928" target="_blank" rel="noopener">Google Maps 導航</a></div>
             <div class="next">↓ 開車約 15 分 → 渡口之濱</div>
@@ -291,7 +293,7 @@
             <a class="shot" href="https://manabear.tw/2018/05/08/miyakojima-3/" target="_blank" rel="noopener">
               <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Miyako_irabu_toguchi_no_hana_2014.jpg/960px-Miyako_irabu_toguchi_no_hana_2014.jpg" alt="渡口之濱" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
             </a>
-            <div class="name">渡口之濱<span class="tag sea">晨泳</span></div>
+            <div class="name">渡口之濱<span class="tag must">★必去</span><span class="tag sea">晨泳</span></div>
             <div class="meta">伊良部島最漂亮的沙灘，細白沙質。早上人少、海況平穩，安排整段晨泳最舒服；泳後換裝，走隔壁就是午餐的 Blue Turtle。</div>
             <div class="acts"><a class="nav" href="https://www.google.com/maps/dir/?api=1&amp;destination=24.81153,125.17794" target="_blank" rel="noopener">Google Maps 導航</a></div>
             <div class="next">↓ 開車約 3 分（就在隔壁）→ Blue Turtle</div>
@@ -314,7 +316,7 @@
             <a class="shot" href="https://carollin.tw/miyako-island/" target="_blank" rel="noopener">
               <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Toriike.jpg/960px-Toriike.jpg" alt="下地島通り池" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
             </a>
-            <div class="name">通り池<span class="tag spot">地形</span></div>
+            <div class="name">通り池<span class="tag must">★必去</span><span class="tag spot">地形</span></div>
             <div class="meta">兩個相連的天然大洞穴池，地下與海相通，國家指定名勝。有木棧步道，來回約 30–40 分。中午日照強，記得防曬、補水。</div>
             <div class="acts"><a class="nav" href="https://www.google.com/maps/dir/?api=1&amp;destination=24.8242,125.13628" target="_blank" rel="noopener">Google Maps 導航</a></div>
             <div class="next">↓ 開車約 8 分 → 17END</div>
@@ -325,7 +327,7 @@
             <a class="shot" href="https://huakuanbin.pixnet.net/blog/post/366259318" target="_blank" rel="noopener">
               <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Shimojishima_Runway17.jpg/960px-Shimojishima_Runway17.jpg" alt="下地島 17END" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
             </a>
-            <div class="name">17END<span class="tag sea">海景</span></div>
+            <div class="name">17END<span class="tag must">★必去</span><span class="tag sea">海景</span></div>
             <div class="meta">下地島機場 17 號跑道末端的海岸，也是知名的飛機起降拍攝點。<b>白沙洲要退潮才會現出，出發前查一下 8/13 當日潮汐</b>；請遵守現場規範，不進入限制區。</div>
             <div class="acts"><a class="nav" href="https://www.google.com/maps/dir/?api=1&amp;destination=24.84121,125.1399" target="_blank" rel="noopener">Google Maps 導航</a></div>
             <div class="next">↓ 開車約 12 分，過橋往伊良部北岸 → Shinbiji（シンビジ）</div>
@@ -345,7 +347,7 @@
             <a class="shot" href="https://jimmraz.pixnet.net/blog/post/49449395" target="_blank" rel="noopener">
               <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/%E4%BD%90%E5%92%8C%E7%94%B0%E3%81%AE%E6%B5%9C.jpg/960px-%E4%BD%90%E5%92%8C%E7%94%B0%E3%81%AE%E6%B5%9C.jpg" alt="佐和田之濱" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
             </a>
-            <div class="name">佐和田之濱<span class="tag sea">海景</span></div>
+            <div class="name">佐和田之濱<span class="tag must">★必去</span><span class="tag sea">海景</span></div>
             <div class="meta">海面上散布大量礁岩，是 1771 年明和大海嘯留下的巨石。回程順路收尾，短停拍照、看海即可，不必久留。</div>
             <div class="acts"><a class="nav" href="https://www.google.com/maps/dir/?api=1&amp;destination=24.84051,125.15999" target="_blank" rel="noopener">Google Maps 導航</a></div>
             <div class="next">↓ 開車約 28–30 分，經伊良部大橋回市區 → Blue Seal</div>
@@ -372,7 +374,7 @@
             <a class="shot" href="https://tabelog.com/okinawa/A4705/A470503/47032022/" target="_blank" rel="noopener">
               <img src="https://tblg.k-img.com/resize/640x640c/restaurant/images/Rvw/317595/5dbaa0a34aa2bd2b064081665340e830.jpg?token=228e805&amp;api=v2" alt="宮古島しゃぶしゃぶ 粹 アグー豚専門店" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
             </a>
-            <div class="name">宮古島しゃぶしゃぶ 粹（阿古豬專門店）<span class="tag food">晚餐</span></div>
+            <div class="name">宮古島しゃぶしゃぶ 粹（阿古豬專門店）<span class="tag must">★必去</span><span class="tag food">晚餐</span></div>
             <div class="meta">アグー豚しゃぶしゃぶ 專門店，平良西里532-1、距飯店約 0.6km（步行約 8 分／開車 2–3 分）。有 4／6／8 人個室，宴會席最多可容 50 人。平日 17:00–22:30，晚餐人均約 ¥5,000–5,999。與 Day 1 火神（宮古牛燒肉）一牛一豬、各吃一家。</div>
             <div class="warn"><b>✅ 已訂 18:15</b>（☎ 050-5594-2311）。12 人非同一間個室、多為宴會席，抵達後跟店家確認座位安排。</div>
             <div class="acts"><a class="nav" href="https://www.google.com/maps/dir/?api=1&amp;destination=24.80114,125.28511" target="_blank" rel="noopener">Google Maps 導航</a></div>
@@ -384,7 +386,7 @@
             <a class="shot" href="https://massi.tw/starry-sky-okinawa/" target="_blank" rel="noopener">
               <img src="miyakojima-stars.jpg" alt="宮古島星空" loading="lazy" onerror="this.remove()">
             </a>
-            <div class="name">自行觀星（比嘉ロードパーク）<span class="tag night">夜間</span></div>
+            <div class="name">自行觀星（比嘉ロードパーク）<span class="tag must">★必去</span><span class="tag night">夜間</span></div>
             <div class="meta">不參加在地導覽，開到光害少的東岸自行就地觀賞。<b>8/13 接近新月</b>，月光干擾最小，是這五天觀星條件最好的一晚。比嘉ロードパーク位於城辺東海岸、高台、有停車場，四周暗、視野開闊。帶長袖與防蚊液，海邊夜間涼、蚊多；依雲量與天候彈性調整，約 21:30 前後回飯店。</div>
             <div class="acts"><a class="nav" href="https://www.google.com/maps/dir/?api=1&amp;destination=%E6%AF%94%E5%98%89%E3%83%AD%E3%83%BC%E3%83%89%E3%83%91%E3%83%BC%E3%82%AF" target="_blank" rel="noopener">Google Maps 導航</a></div>
           </div></li>
