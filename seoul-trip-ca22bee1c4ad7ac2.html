@@ -1,415 +1,913 @@
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="robots" content="noindex, nofollow">
-<title>首爾 5天4夜 · 每日行程</title>
-<style>
-  :root{
-    --hanji:#E9F6F4; --panel:#FBFEFE; --ink:#17302E; --ink-soft:#4A6462;
-    --jade:#0FA8A1; --jade-d:#0A7D77; --cheong:#0B6E86; --hong:#C0202B;
-    --gold:#A9852B; --line:#CDE8E4;
-    --food:#B5722A; --shop:#7A5A9E; --star:#C0446F; --sight:#2C6E8F; --move:#7A7266;
-    --sans:-apple-system,"PingFang TC","Noto Sans TC","Microsoft JhengHei",sans-serif;
-    --serif:"Songti TC",Georgia,serif;
-  }
-  *{box-sizing:border-box}
-  html{scroll-behavior:smooth}
-  body{margin:0;background:var(--hanji);color:var(--ink);font-family:var(--sans);line-height:1.65;
-    -webkit-font-smoothing:antialiased;
-    background-image:radial-gradient(circle at 20% 30%,rgba(15,168,161,.05) 0 1px,transparent 1px);
-    background-size:15px 15px;}
-  .wrap{max-width:640px;margin:0 auto;padding:0 14px 60px}
-  header{position:sticky;top:0;z-index:20;background:var(--jade);color:#FFFFFF;
-    padding:9px 14px 9px;box-shadow:0 2px 10px rgba(32,27,22,.22)}
-  header .h-in{max-width:640px;margin:0 auto}
-  header h1{margin:0;font-family:var(--serif);font-size:17px;letter-spacing:.02em}
-  header .sub{font-size:11.5px;opacity:.9;margin-top:1px}
-  .tabs{display:flex;gap:6px;overflow-x:auto;margin-top:9px;
-    -webkit-overflow-scrolling:touch;scrollbar-width:none}
-  .tabs::-webkit-scrollbar{display:none}
-  .tab{flex:0 0 auto;border:1px solid rgba(255,255,255,.35);background:rgba(255,255,255,.12);color:#FFFFFF;
-    border-radius:999px;padding:5px 12px;font-size:13px;font-weight:700;cursor:pointer;
-    display:flex;flex-direction:column;align-items:center;line-height:1.2;min-width:58px}
-  .tab small{font-size:10px;font-weight:500;opacity:.85;margin-top:1px}
-  .tab.active{background:var(--hanji);color:var(--jade-d);border-color:var(--hanji)}
-  .day{display:none;padding-top:16px}
-  .day.active{display:block;animation:fade .25s ease}
-  @keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
-  .dayhead{margin:0 0 12px}
-  .dayhead .date{font-size:13px;color:var(--jade-d);font-weight:700;letter-spacing:.05em}
-  .dayhead h2{margin:2px 0 0;font-family:var(--serif);font-size:22px}
-  .startleg{margin:0 0 14px;font-size:12.5px;color:var(--jade-d);background:rgba(15,168,161,.10);
-    border:1px solid rgba(15,168,161,.28);border-radius:10px;padding:8px 11px;font-weight:600}
-  ol.tl{list-style:none;margin:0;padding:0;position:relative}
-  ol.tl::before{content:"";position:absolute;left:15px;top:6px;bottom:14px;width:2px;background:var(--line)}
-  .stop{position:relative;padding:0 0 14px 44px}
-  .stop .num{position:absolute;left:4px;top:0;width:24px;height:24px;border-radius:50%;
-    background:var(--jade);color:#fff;font-size:12.5px;font-weight:700;display:grid;place-items:center;
-    box-shadow:0 0 0 3px var(--hanji)}
-  .stop.meal .num{background:var(--food)} .stop.star .num{background:var(--star)}
-  .stop.shop .num{background:var(--shop)} .stop.move .num{background:var(--move)}
-  .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:11px 13px;
-    box-shadow:0 1px 2px rgba(32,27,22,.05)}
-  .name{font-weight:700;font-size:15.5px}
-  .name .tag{font-size:10.5px;font-weight:700;padding:2px 7px;border-radius:20px;margin-left:6px;
-    vertical-align:middle;white-space:nowrap}
-  .tag.t-food{background:rgba(181,114,42,.14);color:var(--food)}
-  .tag.t-star{background:rgba(192,68,111,.14);color:var(--star)}
-  .tag.t-shop{background:rgba(122,90,158,.14);color:var(--shop)}
-  .tag.t-sight{background:rgba(44,110,143,.14);color:var(--sight)}
-  .tag.t-move{background:rgba(122,114,102,.16);color:var(--move)}
-  .addr{margin-top:6px;font-size:13px;color:var(--ink)}
-  .addr .ko{color:var(--ink-soft);display:block}
-  .meta{margin-top:3px;font-size:12px;color:var(--ink-soft)}
-  a.map{display:inline-block;margin-top:5px;font-size:12px;font-weight:700;color:var(--jade-d);
-    border:1px solid var(--jade);border-radius:7px;padding:2px 9px;text-decoration:none}
-  a.map:active{background:var(--jade);color:#fff}
-  a.site{display:inline-block;margin-top:5px;margin-left:6px;font-size:12px;font-weight:700;color:var(--cheong);
-    border:1px solid var(--cheong);border-radius:7px;padding:2px 9px;text-decoration:none}
-  a.site:active{background:var(--cheong);color:#fff}
-  .next{margin-top:9px;padding-top:7px;border-top:1px dashed var(--line);font-size:12px;color:var(--jade-d);font-weight:700}
-  .next .m{color:var(--ink-soft);font-weight:500}
-  .backup{margin-top:6px;border:1px dashed var(--gold);border-radius:12px;padding:12px 13px;
-    background:rgba(169,133,43,.06)}
-  .backup h4{margin:0 0 8px;font-size:13px;color:var(--gold);letter-spacing:.04em}
-  .bitem{font-size:13.5px;padding:7px 0;border-bottom:1px dashed var(--line)}
-  .bitem:last-child{border-bottom:none;padding-bottom:0}
-  .bitem b{font-size:14px}
-  .bitem .ko{color:var(--ink-soft);font-size:12.5px}
-  .bitem .meta{font-size:11.5px}
-  .none{color:var(--ink-soft);font-size:13px;font-style:italic}
-  footer{text-align:center;font-size:11.5px;color:var(--ink-soft);padding:22px 0 0}
-</style>
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>首爾 5天4夜｜行程與時間表</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="anonymous">
+  <style>
+    :root { --ink:#1c2b3a; --muted:#65788c; --bg:#f4f7fa; --card:#fff; --blue:#2f6fb0; --teal:#1a9182; --orange:#e0803a; --violet:#7a55a8; --red:#c0453b; --line:#dbe4ec; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:linear-gradient(165deg,#eaf2f8 0,#f6f9fb 38%,#f5f6fa 100%); color:var(--ink); font-family:-apple-system,BlinkMacSystemFont,"Noto Sans TC","Apple SD Gothic Neo",sans-serif; line-height:1.55; }
+    .wrap { max-width:900px; margin:auto; padding:26px 16px 52px; }
+    .trip-header { position:sticky; top:0; z-index:1200; margin:0 -16px; padding:18px 20px 15px; background:linear-gradient(165deg,#eaf2f8 0,#f6f9fb 70%,#f5f6fa 100%); box-shadow:0 8px 14px -16px #1c2b3a99; }
+    header { padding:4px 4px 0; }
+    h1 { margin:0; font-size:clamp(1.55rem,4.6vw,2.35rem); letter-spacing:.02em; }
+    .sub-dates { margin-left:11px; color:var(--muted); font-size:.92rem; font-weight:600; letter-spacing:0; white-space:nowrap; }
+    .tabs { display:flex; gap:8px; overflow-x:auto; padding:10px 0 1px; }
+    .tab { flex:0 0 92px; min-height:54px; display:grid; place-content:center; gap:1px; border:1px solid var(--line); border-radius:999px; background:var(--card); color:var(--ink); padding:6px 8px; font:inherit; line-height:1.1; cursor:pointer; }
+    .tab.active { background:var(--blue); border-color:var(--blue); color:#fff; }
+    .tab-day { font-size:.94rem; font-weight:700; }
+    .tab-date { font-size:.82rem; }
+    .day { display:none; }
+    .day.active { display:block; }
+    .dayhead,.backup,.notes { background:var(--card); border-radius:16px; box-shadow:0 3px 16px #1c2b3a0c; }
+    .dayhead { padding:17px; }
+    .date { color:var(--blue); font-weight:750; }
+    h2 { margin:3px 0 0; font-size:1.3rem; }
+    .drive { margin-top:10px; display:flex; flex-wrap:wrap; gap:6px; }
+    .drive span { display:inline-flex; align-items:center; gap:5px; font-size:.9rem; font-weight:700; padding:4px 11px; border-radius:999px; white-space:nowrap; }
+    .drive .dv-go { background:#e7f0ff; color:#1a4f8a; border:1px solid #bcd4fb; }
+    .drive .dv-go b { font-weight:800; }
+    .drive .dv-sun { background:#fff4e0; color:#b26a00; border:1px solid #f4d79a; }
+    .start { margin:12px 4px 15px; color:var(--muted); font-size:.94rem; }
 
-<header>
-  <div class="h-in">
-    <h1>首爾 5天4夜 · 親子行程</h1>
-    <div class="tabs" id="tabs">
-      <div class="tab active" data-day="d1">Day 1<small>7/20 一</small></div>
-      <div class="tab" data-day="d2">Day 2<small>7/21 二</small></div>
-      <div class="tab" data-day="d3">Day 3<small>7/22 三</small></div>
-      <div class="tab" data-day="d4">Day 4<small>7/23 四</small></div>
-      <div class="tab" data-day="d5">Day 5<small>7/24 五</small></div>
+    .tl { list-style:none; border-left:2px solid var(--line); margin:0 0 0 60px; padding:0 0 0 22px; }
+    .stop { position:relative; margin:0 0 14px; }
+    .clock { position:absolute; left:-84px; top:14px; width:56px; text-align:right; color:var(--blue); font-weight:750; font-size:.93rem; font-variant-numeric:tabular-nums; line-height:1.25; }
+    .clock .via { display:block; font-size:1rem; margin-top:2px; line-height:1.2; }
+    .clock small { display:block; color:var(--muted); font-weight:500; font-size:.78rem; }
+    .dot { position:absolute; left:-25px; top:19px; width:9px; height:9px; border-radius:50%; background:var(--blue); box-shadow:0 0 0 3px #fff; }
+    .card { background:var(--card); padding:15px; border-radius:14px; box-shadow:0 3px 16px #1c2b3a0c; }
+    .name { font-size:1.05rem; font-weight:750; }
+    .tag { display:inline-block; margin-left:7px; border-radius:999px; padding:2px 8px; color:#fff; font-size:.74rem; font-weight:650; vertical-align:1px; }
+    .food { background:var(--orange); } .shop { background:var(--teal); } .spot { background:var(--blue); } .night { background:var(--violet); } .move { background:#8296ab; }
+    .tag.must { background:#f0b400; color:#4a3200; }
+    .card:has(.tag.must) { background:#fff8e6; box-shadow:inset 4px 0 0 #f0b400, 0 3px 16px #1c2b3a0c; }
+    .meta,.next { color:var(--muted); font-size:.92rem; margin-top:5px; }
+    .next { padding-top:5px; color:#3d7196; }
+    .warn { margin-top:8px; padding:8px 11px; border-left:3px solid var(--red); border-radius:0 8px 8px 0; background:#fdf1ef; color:#8a3129; font-size:.88rem; }
+    a { color:#2465a0; }
+
+    .shot { float:right; position:relative; width:112px; height:76px; margin:1px 0 8px 13px; border-radius:9px; overflow:hidden; background:linear-gradient(135deg,#c3d8e8,#e2eaf2 60%,#eaeef5); text-decoration:none; }
+    .shot img { width:100%; height:100%; object-fit:cover; display:block; }
+    .shot::after { content:"↗"; position:absolute; right:4px; bottom:3px; width:17px; height:17px; display:grid; place-items:center; border-radius:6px; background:#16324acc; color:#fff; font-size:.72rem; line-height:1; }
+    .card::after { content:""; display:block; clear:both; }
+
+    .acts { display:flex; flex-wrap:wrap; gap:6px; margin-top:9px; }
+    .nav { display:inline-flex; align-items:center; gap:5px; padding:5px 11px; border-radius:999px; border:1px solid #c2d6e6; background:#f2f8fd; color:#2465a0; font-size:.83rem; font-weight:650; text-decoration:none; }
+    .nav:hover { background:var(--blue); border-color:var(--blue); color:#fff; }
+    .nav.naver { border-color:#b7e0c4; background:#f1fbf4; color:#1a7f43; }
+    .nav.naver:hover { background:#1ec800; border-color:#1ec800; color:#fff; }
+    .ko { display:block; margin-top:7px; padding:6px 9px; border-radius:8px; background:#f4f6f9; color:#4a5b6d; font-size:.83rem; cursor:pointer; word-break:keep-all; }
+    .ko:hover { background:#e9eff5; }
+    .ko b { color:var(--ink); font-weight:650; }
+
+    .notes,.backup { margin-top:18px; padding:16px; }
+    h3 { margin:0 0 8px; font-size:1rem; }
+    .bitem { border-top:1px solid var(--line); padding:10px 0; font-size:.93rem; }
+    .bitem:last-child { padding-bottom:0; }
+    .notes ul { margin:8px 0 0; padding-left:20px; font-size:.92rem; }
+    .notes li { margin-bottom:6px; }
+    .tripinfo dl { display:grid; grid-template-columns:auto 1fr; gap:7px 14px; margin:0; font-size:.9rem; }
+    .tripinfo dt { color:var(--blue); font-weight:700; white-space:nowrap; }
+    .tripinfo dd { margin:0; color:var(--muted); }
+    footer { padding:28px 6px 0; color:var(--muted); font-size:.79rem; text-align:center; line-height:1.7; }
+
+    .mapfab { position:fixed; right:16px; bottom:16px; z-index:1400; display:inline-flex; align-items:center; gap:6px; padding:13px 19px; border:0; border-radius:999px; background:var(--blue); color:#fff; font:inherit; font-weight:750; box-shadow:0 7px 22px #1c2b3a4d; cursor:pointer; }
+    .mapfab:hover { background:#255a91; }
+    .menufab { bottom:72px; background:#d67619; }
+    .menufab:hover { background:#bd6412; }
+    .ovbody { flex:1; min-height:0; overflow-y:auto; padding:16px; }
+    .ovsec { max-width:840px; margin:0 auto 24px; }
+    .ovsec h4 { margin:0 0 10px; font-size:1rem; }
+    .ovwrap { overflow-x:auto; }
+    .ovtable { width:100%; border-collapse:collapse; font-size:.86rem; }
+    .ovtable th, .ovtable td { border:1px solid var(--line); padding:8px 9px; text-align:left; vertical-align:top; }
+    .ovtable th { background:#eff7fc; font-weight:750; white-space:nowrap; }
+    .ovtable .dcol { white-space:nowrap; color:var(--muted); font-size:.8rem; }
+    .ovtable .din { font-weight:700; }
+    .ovtable small { color:var(--muted); font-weight:400; }
+    .ovnote { margin:8px 2px 0; color:var(--muted); font-size:.8rem; line-height:1.6; }
+    .mapmodal { position:fixed; inset:0; z-index:1500; display:none; flex-direction:column; background:var(--bg); }
+    .mapmodal.open { display:flex; }
+    .mapbar { display:flex; align-items:center; gap:12px; padding:11px 15px; background:var(--card); box-shadow:0 2px 12px #1c2b3a1a; }
+    .mapbar-t { flex:1; min-width:0; line-height:1.35; }
+    .mapbar-t b { display:block; font-size:1.02rem; }
+    .mapbar-t span { color:var(--muted); font-size:.79rem; }
+    .mapclose { flex:0 0 auto; width:38px; height:38px; border:0; border-radius:50%; background:#eef3f7; color:var(--ink); font-size:1rem; cursor:pointer; }
+    .mapbody { flex:1; min-height:0; display:grid; grid-template-columns:1fr 288px; }
+    #map { height:100%; }
+    .maplist { height:100%; overflow-y:auto; padding:8px; background:var(--card); border-left:1px solid var(--line); }
+    .mlday { position:sticky; top:0; z-index:1; display:flex; align-items:center; gap:7px; width:100%; padding:9px; border:0; border-radius:9px; background:var(--card); font:inherit; font-size:.87rem; font-weight:750; text-align:left; cursor:pointer; }
+    .mlday:hover { background:#eff6fb; }
+    .mlday .swatch { width:11px; height:11px; border-radius:50%; flex:0 0 auto; }
+    .mlcount { margin-left:auto; color:var(--muted); font-size:.77rem; font-weight:600; }
+    .mlgroup.off .mlday { opacity:.4; }
+    .mlgroup.off .mlitem { display:none; }
+    .mlitem { display:flex; align-items:center; gap:7px; width:100%; padding:6px 9px; border:0; border-radius:9px; background:none; font:inherit; font-size:.88rem; color:var(--ink); text-align:left; cursor:pointer; }
+    .mlitem:hover { background:#eff6fb; }
+    .mlno { flex:0 0 17px; color:var(--muted); font-size:.81rem; font-variant-numeric:tabular-nums; }
+    .mlname { flex:1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+    .mlt { flex:0 0 auto; color:var(--muted); font-size:.78rem; font-variant-numeric:tabular-nums; }
+    .mltip { margin:12px 4px 6px; padding:12px 13px; border-radius:11px; background:#f1f7fb; color:var(--muted); font-size:.8rem; line-height:1.6; }
+    .mltip b { display:block; color:var(--ink); margin-bottom:5px; font-size:.84rem; }
+    .mltip p { margin:0 0 6px; }
+    .pin span { display:grid; place-items:center; width:25px; height:25px; border-radius:50%; color:#fff; font-weight:750; font-size:12px; box-shadow:0 0 0 2px #fff, 0 2px 6px #1c2b3a55; }
+    .pin.home span { border-radius:7px; }
+    .leaflet-popup-content { margin:11px 13px; font-family:inherit; line-height:1.5; }
+    .pop-t { color:var(--blue); font-weight:750; font-variant-numeric:tabular-nums; }
+    .pop-n { font-weight:700; font-size:1rem; margin:1px 0 6px; }
+
+    @media (max-width:760px) {
+      .mapbody { grid-template-columns:1fr; grid-template-rows:1fr 42vh; }
+      .maplist { border-left:0; border-top:1px solid var(--line); }
+    }
+    @media (max-width:560px) {
+      .wrap { padding:18px 12px 38px; }
+      .trip-header { margin:0 -12px; padding:14px 16px 12px; }
+      .tab { flex-basis:72px; min-height:50px; }
+      .tab-day { font-size:.86rem; } .tab-date { font-size:.75rem; }
+      .tl { margin-left:52px; padding-left:16px; }
+      .clock { left:-70px; width:48px; font-size:.85rem; }
+      .dot { left:-21px; }
+      .shot { width:88px; height:62px; margin-left:10px; }
+      .sub-dates { display:block; margin:2px 0 0; font-size:.85rem; }
+      .tripinfo dl { grid-template-columns:1fr; gap:1px 0; }
+      .tripinfo dd { margin-bottom:8px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <div class="trip-header">
+      <header>
+        <h1>首爾 5天4夜<span class="sub-dates">2026/7/20–7/24</span></h1>
+      </header>
+      <nav class="tabs" aria-label="每日行程">
+        <button class="tab active" data-day="d1"><span class="tab-day">Day 1</span><span class="tab-date">7/20 一</span></button>
+        <button class="tab" data-day="d2"><span class="tab-day">Day 2</span><span class="tab-date">7/21 二</span></button>
+        <button class="tab" data-day="d3"><span class="tab-day">Day 3</span><span class="tab-date">7/22 三</span></button>
+        <button class="tab" data-day="d4"><span class="tab-day">Day 4</span><span class="tab-date">7/23 四</span></button>
+        <button class="tab" data-day="d5"><span class="tab-day">Day 5</span><span class="tab-date">7/24 五</span></button>
+      </nav>
+    </div>
+
+    <!-- ================= DAY 1 ================= -->
+    <section class="day active" id="d1">
+      <div class="dayhead">
+        <div class="date">Day 1｜7/20（一）</div>
+        <h2>晚班機抵達・進住上岩 DMC</h2>
+        <div class="drive"><span class="dv-go">🛬 19:05 落地</span><span class="dv-sun">☀ 日落 19:52</span></div>
+      </div>
+      <p class="start">19:05 落地，入境審查是最大的不確定因素（30 分到 2 小時都有可能）。今晚不排任何行程，炸雞叫外送在房裡吃，洗澡休息。</p>
+      <ol class="tl">
+
+        <li class="stop"><div class="clock">19:05<small>約 85 分</small><small class="via">🛬</small></div><div class="dot"></div>
+          <div class="card">
+            <a class="shot" href="https://helena.tw/incheon-t1-arrival/" target="_blank" rel="noopener">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Incheon_International_Airport_Terminal_1_Departure.jpg/960px-Incheon_International_Airport_Terminal_1_Departure.jpg" alt="仁川機場" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+            </a>
+            <div class="name">仁川機場 ICN 入境<span class="tag move">抵達</span></div>
+            <div class="meta">下機步行 10–15 分 → 入境審查 30–60 分 → 提領行李 15–20 分。四人同行抓到 <b>20:30 出關</b>比較安全。2026/4 韓媒報導仁川入境審查人力不足，尖峰曾排到近 2 小時。</div>
+            <div class="warn"><b>出發前必辦：e-Arrival Card。</b>2026/1/1 起紙本入境卡廢除、電子入境卡強制。台灣今年雖免 K-ETA（豁免至 2026/12/31），但<b>免 K-ETA ≠ 免入境卡</b>——四人須各自在抵達前 3 天內於 e-arrivalcard.go.kr 填好取得 QR code。或改申請 K-ETA（持有效 K-ETA 可免填）。二選一，不能都不做。</div>
+            <div class="next">↓ 🚄 出關後往 AREX 機場鐵路（B1）</div>
+          </div></li>
+
+        <li class="stop"><div class="clock">20:45<small>約 50 分</small><small class="via">🚄</small></div><div class="dot"></div>
+          <div class="card">
+            <div class="name">AREX 機場鐵路 → DMC 站<span class="tag move">交通</span></div>
+            <div class="meta">先買 T-money 卡（便利商店或站內售票機）。<b>DMC 站就在機場鐵路線上，不必轉乘</b>，同一班車直達。T1 出發 48 分、₩4,550；T2 出發 54 分、₩5,150。這時段班距 6–10 分，末班 23:56，完全沒有時間壓力。</div>
+            <div class="warn"><b>直通車（Express）不停 DMC</b>，只能搭一般車（All-stop）。買票時別買到直通車。<br><b>先確認你們在哪個航廈</b>：長榮 BR／星宇 JX／台灣虎航 IT 在 <b>T1</b>；中華航空 CI 自 2026/1/14 起改在 <b>T2</b>。</div>
+            <div class="next">↓ 🚶 DMC 站 9 號出口，平地步行 5 分</div>
+          </div></li>
+
+        <li class="stop"><div class="clock">21:50<small>入住</small><small class="via">🚶</small></div><div class="dot"></div>
+          <div class="card">
+            <div class="name">住宿 Neverland DMC 入住<span class="tag move">住宿</span></div>
+            <div class="meta">DMC 站 9 號出口出來平地步行 5 分鐘，幾乎無坡道，拖行李友善。有電梯。</div>
+            <span class="ko" data-copy="서울 마포구 상암동 11-9 아트빌"><b>韓文地址</b>　서울 마포구 상암동 11-9 아트빌　<span style="opacity:.6">（點一下複製，給計程車看最準）</span></span>
+            <div class="acts">
+              <a class="nav" href="https://www.google.com/maps/dir/?api=1&amp;destination=37.57707,126.89308&amp;travelmode=transit" target="_blank" rel="noopener">Google Maps</a>
+              <a class="nav naver" href="https://map.naver.com/p/search/%EC%84%9C%EC%9A%B8%20%EB%A7%88%ED%8F%AC%EA%B5%AC%20%EC%83%81%EC%95%94%EB%8F%99%2011-9" target="_blank" rel="noopener">Naver Map</a>
+            </div>
+            <div class="next">↓ 放行李、洗澡，叫炸雞</div>
+          </div></li>
+
+        <li class="stop"><div class="clock">22:15<small>宵夜</small><small class="via">🚶</small></div><div class="dot"></div>
+          <div class="card">
+            <a class="shot" href="https://tisshuang.com/blog/post/puradak" target="_blank" rel="noopener">
+              <img src="https://tisshuang.com/wp-content/uploads/2026/02/8E5A2CAF-CEEE-40D6-BFD8-BCAE061902B8.jpeg" alt="PURADAK 炸雞" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+            </a>
+            <div class="name">PURADAK 푸라닭 炸雞（外送到房）<span class="tag food">晚餐</span></div>
+            <div class="meta">飛了一整天，在房裡吃、洗澡、早點睡。</div>
+            <div class="warn"><b>上岩／DMC 沒有 PURADAK 分店。</b>明洞店（8.6 km）與弘大店（4.1 km）都<b>超出外送半徑、送不到</b>。唯一可能送達的是 <b>푸라닭 북가좌점</b>（距 DMC 站 0.7 km，11:00–01:00，02-373-9206），但它的實際外送範圍有沒有涵蓋上岩，只有當場開 App 輸入地址才知道。<br><b>外送 App 只能用 배달의민족 Baemin</b>——它 2026 年起支援 App 內中/英文、非會員結帳、外國信用卡（Visa/Master/JCB）。Coupang Eats 需韓國手機號、Yogiyo 不收外國卡，兩者都別試。<br><b>備案</b>：若送不到，改叫 BBQ／BHC／교촌（幾乎必定在範圍內），或走去 DMC 站周邊覓食。</div>
+            <div class="acts">
+              <a class="nav" href="https://www.google.com/maps/dir/?api=1&amp;destination=37.57524,126.90822&amp;travelmode=transit" target="_blank" rel="noopener">北加佐店 位置</a>
+            </div>
+          </div></li>
+
+      </ol>
+      <aside class="backup">
+        <h3>◇ 備用</h3>
+        <div class="bitem"><b>若入境嚴重塞車（超過 21:30 才出關）</b>：一樣搭得到車（末班 23:56），只是晚餐改成 DMC 站周邊或便利商店，別硬等外送。</div>
+        <div class="bitem"><b>建議在機場買韓國 SIM／eSIM</b>：拿到 010 開頭的號碼可完全避開「台灣門號收不到簡訊驗證」的風險，Baemin 註冊會順很多。</div>
+      </aside>
+    </section>
+
+    <!-- ================= DAY 2 ================= -->
+    <section class="day" id="d2">
+      <div class="dayhead">
+        <div class="date">Day 2｜7/21（二）</div>
+        <h2>東大門購物・樂天世界塔夜景</h2>
+        <div class="drive"><span class="dv-go">🚇 09:30 出發</span><span class="dv-sun">☀ 日落 19:51</span></div>
+      </div>
+      <p class="start">刻意把樂天世界塔放在最後：18:45 上塔，就能在同一趟看完白天視野、19:51 的日落、以及入夜後的首爾夜景。東大門因此改排上午到下午。這天全程幾乎都在室內，正好是梅雨季的天然備案。</p>
+      <ol class="tl">
+
+        <li class="stop"><div class="clock">09:30<small>約 55 分</small><small class="via">🚇</small></div><div class="dot"></div>
+          <div class="card">
+            <div class="name">DMC 出發 → 東大門<span class="tag move">交通</span></div>
+            <div class="meta">DMC 站 6 號線 → 往東大門歷史文化公園站。早餐在 DMC 樓下便利商店或咖啡店簡單解決。</div>
+            <div class="next">↓ 🚇 地鐵約 50–55 分</div>
+          </div></li>
+
+        <li class="stop"><div class="clock">10:30<small>90 分</small><small class="via">🚇</small></div><div class="dot"></div>
+          <div class="card">
+            <a class="shot" href="https://travelwithlinlin.com/ddp/" target="_blank" rel="noopener">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Dongdaemun_Design_Plaza_%2858619444%29.jpg/960px-Dongdaemun_Design_Plaza_%2858619444%29.jpg" alt="東大門設計廣場 DDP" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+            </a>
+            <div class="name">東大門設計廣場 DDP<span class="tag spot">建築</span></div>
+            <div class="meta">Zaha Hadid 的曲面銀色建築，室內 10:00–20:00（最後入場 19:00），戶外廣場隨時開放。<b>沒有全館週一公休</b>（網路上說的週一休是個別展覽自訂的），7/21 週二正常開放。</div>
+            <div class="warn"><b>「LED 玫瑰花園」已經沒有了。</b>那是 2015–16 年的期間限定裝置，很多中文攻略還在寫。現在的夜間亮點是免費的《Dream in Light》燈光秀（每天 18:00–22:00 整點開演、約 25 分）——但今晚我們會在樂天塔，看不到，想看的話要改天再來。</div>
+            <div class="acts">
+              <a class="nav" href="https://www.google.com/maps/dir/?api=1&amp;destination=37.56707,127.00990&amp;travelmode=transit" target="_blank" rel="noopener">Google Maps</a>
+              <a class="nav naver" href="https://map.naver.com/p/search/%EB%8F%99%EB%8C%80%EB%AC%B8%EB%94%94%EC%9E%90%EC%9D%B8%ED%94%8C%EB%9D%BC%EC%9E%90" target="_blank" rel="noopener">Naver Map</a>
+            </div>
+            <div class="next">↓ 🚶 步行約 8 分</div>
+          </div></li>
+
+        <li class="stop"><div class="clock">12:15<small>75 分</small><small class="via">🚶</small></div><div class="dot"></div>
+          <div class="card">
+            <div class="name">진옥화할매원조닭한마리（一隻雞元祖店）<span class="tag food">午餐</span></div>
+            <div class="meta">₩33,000 一隻（約 2 人份），四人點兩隻。清澈的雞肉大蒜湯，<b>湯頭完全不辣</b>——辣味全在桌上自己調的沾醬裡，弟弟只用醬油＋醋、不加辣椒醬就好。最後在同一鍋清湯裡煮刀削麵。</div>
+            <div class="warn"><b>刻意排中午而不是晚上。</b>這家每天晚餐都要排 20–30 分鐘，中午（10:30 開門）人少很多。<br><b>部隊鍋已從行程移除</b>：它的湯底本質就是辣的，店家沒辦法為一個人做不辣版而不毀掉整鍋。</div>
+            <span class="ko" data-copy="서울 종로구 종로40가길 18 2층"><b>韓文地址</b>　서울 종로구 종로40가길 18, 2층</span>
+            <div class="acts">
+              <a class="nav" href="https://www.google.com/maps/dir/?api=1&amp;destination=37.57038,127.00573&amp;travelmode=transit" target="_blank" rel="noopener">Google Maps</a>
+              <a class="nav naver" href="https://map.naver.com/p/search/%EC%A7%84%EC%98%A5%ED%99%94%ED%95%A0%EB%A7%A4%EC%9B%90%EC%A1%B0%EB%8B%AD%ED%95%9C%EB%A7%88%EB%A6%AC" target="_blank" rel="noopener">Naver Map</a>
+            </div>
+            <div class="next">↓ 🚶 步行約 8 分回東大門商圈</div>
+          </div></li>
+
+        <li class="stop"><div class="clock">13:45<small>2.5 小時</small><small class="via">🚶</small></div><div class="dot"></div>
+          <div class="card">
+            <div class="name">Doota Mall + Migliore 購物<span class="tag shop">購物</span></div>
+            <div class="meta"><b>Doota Mall</b> 10:30–24:00、只休春節中秋，是東大門最穩的零售商場。<b>Migliore</b> 10:30–隔日 02:00（週一休，今天週二有開）。</div>
+            <div class="warn"><b>好朋友城（Good Morning City）今天公休</b>——它固定週二休，別白跑。<br>apM 系列是<b>批發</b>樓層（20:00 後才開、常有最低採購量），不適合家庭零售，也跳過。</div>
+            <div class="acts">
+              <a class="nav" href="https://www.google.com/maps/dir/?api=1&amp;destination=37.56876,127.00873&amp;travelmode=transit" target="_blank" rel="noopener">Doota 位置</a>
+              <a class="nav naver" href="https://map.naver.com/p/search/%EB%91%90%ED%83%80%EB%AA%B0" target="_blank" rel="noopener">Naver Map</a>
+            </div>
+            <div class="next">↓ 🚇 地鐵 2 號線約 30 分 → 蠶室站</div>
+          </div></li>
+
+        <li class="stop"><div class="clock">16:50<small>105 分</small><small class="via">🚇</small></div><div class="dot"></div>
+          <div class="card">
+            <div class="name">樂天世界購物中心<span class="tag shop">逛街・晚餐</span></div>
+            <div class="meta">10:30–22:00、全年無休，和 Seoul Sky 同一棟建築群，逛完直接上塔。晚餐在這裡解決（美食街選擇多，小孩好找不辣的）。</div>
+            <div class="acts">
+              <a class="nav" href="https://www.google.com/maps/dir/?api=1&amp;destination=37.51283,127.10202&amp;travelmode=transit" target="_blank" rel="noopener">Google Maps</a>
+              <a class="nav naver" href="https://map.naver.com/p/search/%EB%A1%AF%EB%8D%B0%EC%9B%94%EB%93%9C%EB%AA%B0" target="_blank" rel="noopener">Naver Map</a>
+            </div>
+            <div class="next">↓ 🚶 同棟移動到展望台入口</div>
+          </div></li>
+
+        <li class="stop"><div class="clock">18:45<small>2 小時</small><small class="via">🚶</small></div><div class="dot"></div>
+          <div class="card">
+            <a class="shot" href="https://alinalife.tw/seoulsky/" target="_blank" rel="noopener">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Lotte_World_morning_view_8.jpg/960px-Lotte_World_morning_view_8.jpg" alt="樂天世界塔" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+            </a>
+            <div class="name">SEOUL SKY 展望台<span class="tag night">夜景</span></div>
+            <div class="meta">韓國第一高，117–123 樓。<b>今日日落 19:51</b>——18:45 上塔可以一次看到白天視野、夕陽、再到華燈初上的夜景，這是整天最值得的兩小時。週二 10:30–22:00，最後入場 21:00，全年無休。</div>
+            <div class="warn"><b>建議線上先買票</b>（官方與各平台都建議），可略過現場排隊。票價：成人（13 歲以上）₩31,000、兒童（3–12 歲）₩27,000 → <b>姊姊算成人、弟弟算兒童，四人約 ₩120,000</b>。<br><b>雨天或低雲會看不到景</b>。7 月是首爾雨季尾巴，出發當天先看天氣，必要時把上塔挪到別天。</div>
+            <div class="acts">
+              <a class="nav" href="https://www.google.com/maps/dir/?api=1&amp;destination=37.51255,127.10268&amp;travelmode=transit" target="_blank" rel="noopener">Google Maps</a>
+              <a class="nav naver" href="https://map.naver.com/p/search/%EC%84%9C%EC%9A%B8%EC%8A%A4%EC%B9%B4%EC%9D%B4" target="_blank" rel="noopener">Naver Map</a>
+            </div>
+            <div class="next">↓ 🚇 地鐵約 60 分 → DMC（約 22:00 到家）</div>
+          </div></li>
+
+      </ol>
+      <aside class="backup">
+        <h3>◇ 備用（順路）</h3>
+        <div class="bitem"><b>下雨天</b>：這天幾乎全室內（DDP 室內 + Doota + 樂天購物中心），是最好的雨天日。若當天下大雨，可以和其他天對調。</div>
+        <div class="bitem"><b>DDP 燈光秀《Dream in Light》</b>：免費、每天 18:00–22:00 整點開演。如果決定不上樂天塔，可以留在東大門看 20:00 或 21:00 場。</div>
+        <div class="bitem"><b>教村炸雞東大門 1 號店</b>：24 小時營業。不辣的有 간장（醬油）、허니（蜂蜜）系列，避開 레드／마라레드。</div>
+      </aside>
+    </section>
+
+    <!-- ================= DAY 3 ================= -->
+    <section class="day" id="d3">
+      <div class="dayhead">
+        <div class="date">Day 3｜7/22（三）</div>
+        <h2>弘大追星日</h2>
+        <div class="drive"><span class="dv-go">🚇 09:00 出發</span><span class="dv-sun">☀ 日落 19:50</span></div>
+      </div>
+      <p class="start">弘大離住處只有兩站，是最省交通的一天。追星的四個點（弘大商圈、Ducky World、POCA SPOT、YG）都在走路可達的範圍內，行程可以放慢。</p>
+      <ol class="tl">
+
+        <li class="stop"><div class="clock">09:20<small>40 分</small><small class="via">🚇</small></div><div class="dot"></div>
+          <div class="card">
+            <div class="name">Egg Drop 에그드랍 弘大店<span class="tag food">早餐</span></div>
+            <div class="meta">08:30–22:00，無公休。人氣蛋吐司。<b>店內座位極少</b>，四個人不一定坐得下——建議外帶，走到旁邊的京義線林蔭道草地上吃。</div>
+            <span class="ko" data-copy="서울 마포구 홍익로 15"><b>韓文地址</b>　서울 마포구 홍익로 15, 1층</span>
+            <div class="acts">
+              <a class="nav" href="https://www.google.com/maps/dir/?api=1&amp;destination=37.55378,126.92293&amp;travelmode=transit" target="_blank" rel="noopener">Google Maps</a>
+              <a class="nav naver" href="https://map.naver.com/p/search/%EC%97%90%EA%B7%B8%EB%93%9C%EB%9E%8D%20%ED%99%8D%EB%8C%80" target="_blank" rel="noopener">Naver Map</a>
+            </div>
+            <div class="next">↓ 🚶 步行進弘大商圈</div>
+          </div></li>
+
+        <li class="stop"><div class="clock">10:10<small>80 分</small><small class="via">🚶</small></div><div class="dot"></div>
+          <div class="card">
+            <a class="shot" href="https://bobbytravel.tw/hongdae/" target="_blank" rel="noopener">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Street_hongdae_Seoul.jpg/960px-Street_hongdae_Seoul.jpg" alt="弘大商圈" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+            </a>
+            <div class="name">弘大商圈・걷고싶은거리<span class="tag shop">逛街</span></div>
+            <div class="meta">潮流店、街頭藝人的主場地。白天先逛街，晚上再回來看街頭表演（傍晚 17:00 後陸續開始，平日規模比週末小，當作路過的 bonus，別當必看行程）。</div>
+            <div class="acts">
+              <a class="nav" href="https://www.google.com/maps/dir/?api=1&amp;destination=37.55671,126.92456&amp;travelmode=transit" target="_blank" rel="noopener">Google Maps</a>
+            </div>
+            <div class="next">↓ 🚶 步行約 5 分</div>
+          </div></li>
+
+        <li class="stop"><div class="clock">11:30<small>90 分</small><small class="via">🚶</small></div><div class="dot"></div>
+          <div class="card">
+            <a class="shot" href="https://jotdownvoyage.com/dookii-korean-topokki-hotpot-buffet/" target="_blank" rel="noopener">
+              <img src="https://jotdownvoyage.com/wp-content/uploads/2022/09/Dookki_Cover-Featured-Image_m.jpg" alt="두끼 年糕火鍋" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+            </a>
+            <div class="name">두끼 Dookki 年糕火鍋<span class="tag food">午餐</span></div>
+            <div class="meta">自助吃到飽、限時 90 分鐘。成人 ₩11,900／國高中生 ₩10,900／小學生 ₩9,900 → <b>四人約 ₩44,600</b>。</div>
+            <div class="warn"><b>弟弟完全不用怕辣。</b>湯底本身不辣，辣度是自己去醬料吧調的——那裡有<b>醬油底醬、奶油醬、咖哩粉</b>三種完全不辣的選項。建議直接開兩鍋，一鍋不辣一鍋微辣。<br><b>11:30 前到免排隊</b>，12:00–13:30 是尖峰。</div>
+            <span class="ko" data-copy="서울 마포구 홍익로6길 8 2층"><b>韓文地址</b>　서울 마포구 홍익로6길 8, 2층</span>
+            <div class="acts">
+              <a class="nav" href="https://www.google.com/maps/dir/?api=1&amp;destination=37.55491,126.92250&amp;travelmode=transit" target="_blank" rel="noopener">Google Maps</a>
+              <a class="nav naver" href="https://map.naver.com/p/search/%EB%91%90%EB%81%BC%EB%96%A1%EB%B3%B6%EC%9D%B4%20%ED%99%8D%EB%8C%80%EC%A0%90" target="_blank" rel="noopener">Naver Map</a>
+            </div>
+            <div class="next">↓ 🚶 步行約 8 分</div>
+          </div></li>
+
+        <li class="stop"><div class="clock">13:15<small>60 分</small><small class="via">🚶</small></div><div class="dot"></div>
+          <div class="card">
+            <a class="shot" href="https://lattekorea.com/card-holder-in-hongdae/" target="_blank" rel="noopener">
+              <img src="https://i0.wp.com/lattekorea.com/wp-content/uploads/2025/05/%E5%BC%98%E5%A4%A7-Kpop-%E5%8D%A1%E5%A5%97%E5%BA%97.jpg" alt="Ducky World" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+            </a>
+            <div class="name">Ducky World（卡套・收集冊）<span class="tag shop">追星</span></div>
+            <div class="meta">10:00–22:00，官網明載<b>全年無休</b>。動物造型卡套、小卡收納本專門店。</div>
+            <span class="ko" data-copy="서울 마포구 와우산로29길 60 1층"><b>韓文地址</b>　서울 마포구 와우산로29길 60, 1층</span>
+            <div class="acts">
+              <a class="nav" href="https://www.google.com/maps/dir/?api=1&amp;destination=37.55615,126.92702&amp;travelmode=transit" target="_blank" rel="noopener">Google Maps</a>
+              <a class="nav naver" href="https://map.naver.com/p/search/%EB%8D%94%ED%82%A4%EC%9B%94%EB%93%9C" target="_blank" rel="noopener">Naver Map</a>
+            </div>
+            <div class="next">↓ 🚶 步行 1 分鐘（只有 80 公尺）</div>
+          </div></li>
+
+        <li class="stop"><div class="clock">14:20<small>70 分</small><small class="via">🚶</small></div><div class="dot"></div>
+          <div class="card">
+            <a class="shot" href="https://lattekorea.com/poca-spot/" target="_blank" rel="noopener">
+              <img src="https://i0.wp.com/lattekorea.com/wp-content/uploads/2025/07/POCA-SPOT.jpg" alt="POCA SPOT" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+            </a>
+            <div class="name">POCA SPOT 弘大店（小卡）<span class="tag shop">追星</span></div>
+            <div class="meta">店內 kiosk 可檢索 100 萬張以上小卡，當日 16:00 前下單可當日取貨。就在 Ducky World 隔壁 80 公尺，兩家連著逛。</div>
+            <div class="warn"><b>地址和你筆記上的不一樣。</b>官方地址是 <b>와우산로29길 48-14, 3F</b>，不是西橋洞 328-28。<br>營業時間兩個來源打架（官網寫 12:00–20:00，另有寫 3F 11:00–21:00）——<b>13:00 之後再去最保險</b>，所以排在 Ducky World 後面。</div>
+            <div class="acts">
+              <a class="nav" href="https://www.google.com/maps/dir/?api=1&amp;destination=37.55600,126.92780&amp;travelmode=transit" target="_blank" rel="noopener">Google Maps</a>
+              <a class="nav naver" href="https://map.naver.com/p/search/%ED%8F%AC%EC%B9%B4%EC%8A%A4%ED%8C%9F%20%ED%99%8D%EB%8C%80" target="_blank" rel="noopener">Naver Map</a>
+            </div>
+            <div class="next">↓ 🚇 地鐵 2/6 號線 → 合井站 8 號出口，約 15 分</div>
+          </div></li>
+
+        <li class="stop"><div class="clock">15:50<small>30 分</small><small class="via">🚇</small></div><div class="dot"></div>
+          <div class="card">
+            <a class="shot" href="https://www.creatrip.com/blog/8649" target="_blank" rel="noopener">
+              <img src="https://cf.creatrip.com/original/blog/8649/ggup18xd8xo04t8uvwtfbgodx2qluzgk.png" alt="YG 娛樂總部" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+            </a>
+            <div class="name">YG 娛樂總部（外觀朝聖）<span class="tag spot">追星</span></div>
+            <div class="meta">合井站 8 號出口。拍外觀、打卡，30 分鐘綽綽有餘。</div>
+            <div class="warn"><b>YG 官方公告請粉絲「勿在社屋附近長時間停留等待」。</b>拍外觀沒有被禁止，但請<b>拍完就走</b>——不要在門口逗留、不要擋人行道和鄰近店家、不要在藝人上下班時段守候。這是對藝人和當地居民的基本尊重。</div>
+            <span class="ko" data-copy="서울 마포구 희우정로1길 7"><b>韓文地址</b>　서울 마포구 희우정로1길 7</span>
+            <div class="acts">
+              <a class="nav" href="https://www.google.com/maps/dir/?api=1&amp;destination=37.54892,126.90770&amp;travelmode=transit" target="_blank" rel="noopener">Google Maps</a>
+              <a class="nav naver" href="https://map.naver.com/p/search/YG%EC%97%94%ED%84%B0%ED%85%8C%EC%9D%B8%EB%A8%BC%ED%8A%B8" target="_blank" rel="noopener">Naver Map</a>
+            </div>
+            <div class="next">↓ 🚇 地鐵回弘大入口站，約 15 分</div>
+          </div></li>
+
+        <li class="stop"><div class="clock">16:50<small>25 分</small><small class="via">🚇</small></div><div class="dot"></div>
+          <div class="card">
+            <a class="shot" href="https://alinalife.tw/jayeondo-saltbread-seoul/" target="_blank" rel="noopener">
+              <img src="https://alinalife.tw/wp-content/uploads/2025/02/DSC04105.jpg" alt="自然島鹽麵包" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+            </a>
+            <div class="name">자연도 소금빵 自然島鹽麵包<span class="tag food">點心</span></div>
+            <div class="meta">現烤鹽可頌。<b>只賣鹽麵包一種、4 入 ₩12,000 一組、不能單買</b>，純外帶沒有座位。</div>
+            <div class="warn"><b>出爐時間固定：09:00 / 12:30 / 14:00 / 15:30 / 17:00 / 18:30</b>，每場前 10 分鐘開始排隊。我們卡 <b>17:00 那場</b>。<br><b>賣完就提早關門</b>，所以別太晚到。</div>
+            <div class="acts">
+              <a class="nav" href="https://www.google.com/maps/dir/?api=1&amp;destination=37.55955,126.92442&amp;travelmode=transit" target="_blank" rel="noopener">Google Maps</a>
+              <a class="nav naver" href="https://map.naver.com/p/search/%EC%9E%90%EC%97%B0%EB%8F%84%20%EC%86%8C%EA%B8%88%EB%B9%B5%20%EC%97%B0%EB%82%A8" target="_blank" rel="noopener">Naver Map</a>
+            </div>
+            <div class="next">↓ 🚶 步行 5 分 → 京義線林蔭道</div>
+          </div></li>
+
+        <li class="stop"><div class="clock">17:20<small>70 分</small><small class="via">🚶</small></div><div class="dot"></div>
+          <div class="card">
+            <div class="name">京義線林蔭道・延南洞散步<span class="tag spot">散步</span></div>
+            <div class="meta">廢棄鐵道改建的線形公園（俗稱「延南中央公園」），弘大入口站 3 號出口就是入口。延南洞段約 1.2 公里、慢走 35 分。<b>買了鹽麵包坐在草地上吃</b>，是這天最放鬆的一段。7 月中午太熱，排在傍晚剛好，光線也好拍照。</div>
+            <div class="acts">
+              <a class="nav" href="https://www.google.com/maps/dir/?api=1&amp;destination=37.55848,126.92539&amp;travelmode=transit" target="_blank" rel="noopener">Google Maps</a>
+            </div>
+            <div class="next">↓ 🚶 步行約 10 分</div>
+          </div></li>
+
+        <li class="stop"><div class="clock">18:40<small>90 分</small><small class="via">🚶</small></div><div class="dot"></div>
+          <div class="card">
+            <a class="shot" href="https://judyer.com/yndbbq/" target="_blank" rel="noopener">
+              <img src="https://judyer.com/wp-content/uploads/20241112144912_0_f0e845.jpg" alt="水芹菜烤肉" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+            </a>
+            <div class="name">목구멍 弘大入口站店（水芹菜烤肉）<span class="tag food">晚餐</span></div>
+            <div class="meta">招牌是水芹菜五花肉，<b>店員會到桌邊代烤</b>。五花肉 150g ₩15,000、水冷麵 ₩6,000、白飯 ₩1,000。12:00–24:00（最後點餐 23:20）。</div>
+            <div class="warn"><b>店名不是「미나리 삼겹살」——那是菜名。</b>正式店名是 <b>목구멍（Mokgumeong）</b>，訂位和問路都要講這個。<br><b>務必先訂位</b>：0507-1418-2930。晚餐 18:00–20:00 是尖峰，四人現場排隊風險高。<br><b>弟弟完全沒問題</b>：烤肉、白飯、水冷麵都不辣。跟店家要「소금장」（鹽巴沾醬）取代辣椒醬即可。</div>
+            <span class="ko" data-copy="서울 마포구 월드컵북로4길 8 1층"><b>韓文地址</b>　서울 마포구 월드컵북로4길 8, 1층</span>
+            <div class="acts">
+              <a class="nav" href="https://www.google.com/maps/dir/?api=1&amp;destination=37.55673,126.92051&amp;travelmode=transit" target="_blank" rel="noopener">Google Maps</a>
+              <a class="nav naver" href="https://map.naver.com/p/search/%EB%AA%A9%EA%B5%AC%EB%A9%8D%20%ED%99%8D%EB%8C%80%EC%9E%85%EA%B5%AC%EC%97%AD%EC%A0%90" target="_blank" rel="noopener">Naver Map</a>
+            </div>
+            <div class="next">↓ 🚇 步行回弘大商圈看街頭表演，或直接回 DMC（地鐵 10 分）</div>
+          </div></li>
+
+      </ol>
+      <aside class="backup">
+        <h3>◇ 備用（順路）</h3>
+        <div class="bitem"><b>신이도가 韓屋咖啡</b>：11:00–23:30，座位多、不太需要等，爸媽可以在這裡休息讓小孩繼續逛。就在弘大南側，和合井（YG）方向順路。</div>
+        <div class="bitem"><b>the SameE（YG 官方粉絲咖啡廳）</b>：在 YG 社屋正對面，2021 年開幕。<b>但無法確認 2026 年是否還在營業</b>——出發前用 Naver Map 搜「더세임」確認，別當必排行程。</div>
+        <div class="bitem"><b>弘大街頭表演</b>：傍晚 17:00 後陸續開始，20:00–22:00 最熱鬧。但平日場次和人潮都比週末少，隨緣就好。</div>
+      </aside>
+    </section>
+
+    <!-- ================= DAY 4 ================= -->
+    <section class="day" id="d4">
+      <div class="dayhead">
+        <div class="date">Day 4｜7/23（四）</div>
+        <h2>景福宮・北村・明洞・南山塔夜景</h2>
+        <div class="drive"><span class="dv-go">🚇 08:30 出發</span><span class="dv-sun">☀ 日落 19:48</span></div>
+      </div>
+      <p class="start">今天有兩個時間硬牆：<b>北村 17:00 後禁止觀光</b>（會罰款），以及南山塔要卡 19:48 的日落。中間的明洞購物是彈性段，可以壓縮。</p>
+      <ol class="tl">
+
+        <li class="stop"><div class="clock">09:10<small>2 小時 20 分</small><small class="via">🚇</small></div><div class="dot"></div>
+          <div class="card">
+            <a class="shot" href="https://niniyeh.com/gyeongbokgung/" target="_blank" rel="noopener">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Changing_of_the_Guard_at_Gyeongbokgung%2C_Seoul-01.jpg/960px-Changing_of_the_Guard_at_Gyeongbokgung%2C_Seoul-01.jpg" alt="景福宮守門將換崗" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+            </a>
+            <div class="name">景福宮 경복궁<span class="tag spot">古蹟</span></div>
+            <div class="meta">7 月開放 09:00–18:30。<b>守門將換崗儀式 10:00 和 14:00</b>（各約 20 分）——我們排 09:10 到，剛好趕上 10:00 那場。穿便服直接買票入場，不必租韓服。</div>
+            <div class="warn"><b>兩個小孩都免票。</b>外國人 18 歲以下免費，只要付爸媽各 ₩3,000（共 ₩6,000）。<b>務必帶護照正本</b>佐證年齡。<br><b>景福宮週二公休</b>——今天週四正常開放，你原本的筆記已經避開了。<br>換崗儀式<b>遇雨或酷暑會取消</b>，7 月首爾常有酷暑警報，當天上午先看官網或現場公告，別當成保證看得到。</div>
+            <div class="acts">
+              <a class="nav" href="https://www.google.com/maps/dir/?api=1&amp;destination=37.57988,126.97680&amp;travelmode=transit" target="_blank" rel="noopener">Google Maps</a>
+              <a class="nav naver" href="https://map.naver.com/p/search/%EA%B2%BD%EB%B3%B5%EA%B6%81" target="_blank" rel="noopener">Naver Map</a>
+            </div>
+            <div class="next">↓ 🚶 步行約 15 分 → 三清洞・北村</div>
+          </div></li>
+
+        <li class="stop"><div class="clock">11:45<small>75 分</small><small class="via">🚶</small></div><div class="dot"></div>
+          <div class="card">
+            <div class="name">三清洞 午餐<span class="tag food">午餐</span></div>
+            <div class="meta">景福宮東側的巷弄區，咖啡廳和餐廳密集，往北村的路上順路。</div>
+            <div class="next">↓ 🚶 步行約 10 分</div>
+          </div></li>
+
+        <li class="stop"><div class="clock">13:15<small>105 分</small><small class="via">🚶</small></div><div class="dot"></div>
+          <div class="card">
+            <a class="shot" href="https://bobbytravel.tw/bukchon-hanok-village/" target="_blank" rel="noopener">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Traditional_hanok_houses_at_golden_hour_in_Bukchon_Hanok_Village_in_Seoul.jpg/960px-Traditional_hanok_houses_at_golden_hour_in_Bukchon_Hanok_Village_in_Seoul.jpg" alt="北村韓屋村" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+            </a>
+            <div class="name">北村韓屋村<span class="tag spot">古蹟</span></div>
+            <div class="meta">保存完整的傳統韓屋聚落，最經典的斜坡拍照點在北村路 11 街。</div>
+            <div class="warn"><b>這裡現在有法定觀光時段限制，違規罰 ₩100,000。</b>鍾路區自 2025/3 起把北村路 11 街一帶劃為「紅區」，<b>只准 10:00–17:00 觀光</b>，17:00 之後拍照、錄影、閒逛都會被罰（居民與住宿旅客除外）。<br>我把這段排在 13:15–15:00，並讓整段北村行程<b>在 16:30 前結束</b>，留足緩衝。這是今天最硬的一道時間牆。</div>
+            <div class="acts">
+              <a class="nav" href="https://www.google.com/maps/dir/?api=1&amp;destination=37.58306,126.98361&amp;travelmode=transit" target="_blank" rel="noopener">Google Maps</a>
+              <a class="nav naver" href="https://map.naver.com/p/search/%EB%B6%81%EC%B4%8C%ED%95%9C%EC%98%A5%EB%A7%88%EC%9D%84" target="_blank" rel="noopener">Naver Map</a>
+            </div>
+            <div class="next">↓ 🚶 步行約 12 分 → 仁寺洞</div>
+          </div></li>
+
+        <li class="stop"><div class="clock">15:15<small>75 分</small><small class="via">🚶</small></div><div class="dot"></div>
+          <div class="card">
+            <a class="shot" href="https://gototravel.tw/seoul-insa-dong/" target="_blank" rel="noopener">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Ssamzigil_in_Insadong.jpg/960px-Ssamzigil_in_Insadong.jpg" alt="仁寺洞" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+            </a>
+            <div class="name">仁寺洞・韓國龍鬚糖<span class="tag shop">老街</span></div>
+            <div class="meta">傳統巷弄與文創小店，地標是「쌈지길 Ssamziegil」（10:30–20:30）。<b>궁중꿀타래 龍鬚糖攤</b>就在仁寺洞街上，多國語言搞笑叫賣＋現場拉糖表演，一份約 ₩5,000，小孩會很愛。（攤位性質，查不到固定營業時間，一般 11:00–20:00 出攤。）</div>
+            <div class="acts">
+              <a class="nav" href="https://www.google.com/maps/dir/?api=1&amp;destination=37.57422,126.98473&amp;travelmode=transit" target="_blank" rel="noopener">Google Maps</a>
+              <a class="nav naver" href="https://map.naver.com/p/search/%EC%9D%B8%EC%82%AC%EB%8F%99%20%EC%8C%88%EC%A7%80%EA%B8%B8" target="_blank" rel="noopener">Naver Map</a>
+            </div>
+            <div class="next">↓ 🚇 地鐵約 15 分 → 明洞</div>
+          </div></li>
+
+        <li class="stop"><div class="clock">16:50<small>85 分</small><small class="via">🚇</small></div><div class="dot"></div>
+          <div class="card">
+            <a class="shot" href="https://creatrip.com/blog/2561" target="_blank" rel="noopener">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/OliveYoung_store.png/960px-OliveYoung_store.png" alt="Olive Young 明洞旗艦店" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+            </a>
+            <div class="name">明洞逛街・Olive Young・大創<span class="tag shop">購物</span></div>
+            <div class="meta"><b>Olive Young 明洞旗艦店</b> 10:00–22:30，美妝伴手禮一次買齊。<b>大創明洞站店</b> 10:00–22:00，12 層樓。</div>
+            <div class="warn"><b>Olive Young 可以現場即時退稅</b>，門檻是<b>單筆 ₩15,000 以上</b>（不是常聽說的 3 萬），帶<b>護照正本</b>到 2 樓 Global Service Lounge 辦，結帳當下直接扣，不用去機場排隊。<br>伴手禮今天買齊——<b>最後一天早上完全沒有購物時間</b>。</div>
+            <div class="acts">
+              <a class="nav" href="https://www.google.com/maps/dir/?api=1&amp;destination=37.56412,126.98517&amp;travelmode=transit" target="_blank" rel="noopener">Google Maps</a>
+              <a class="nav naver" href="https://map.naver.com/p/search/%EC%98%AC%EB%A6%AC%EB%B8%8C%EC%98%81%20%EB%AA%85%EB%8F%99%ED%83%80%EC%9A%B4" target="_blank" rel="noopener">Naver Map</a>
+            </div>
+            <div class="next">↓ 🚶 步行至明洞大街</div>
+          </div></li>
+
+        <li class="stop"><div class="clock">18:15<small>35 分</small><small class="via">🚶</small></div><div class="dot"></div>
+          <div class="card">
+            <a class="shot" href="https://www.bigfang.tw/blog/post/street-vendors-myeongdong" target="_blank" rel="noopener">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Myeongdong_night_market_seoul_1.jpg/960px-Myeongdong_night_market_seoul_1.jpg" alt="明洞夜市" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+            </a>
+            <div class="name">明洞夜市 街邊小吃<span class="tag food">晚餐</span></div>
+            <div class="meta">約 16:00 開始擺攤、17:30–18:00 全面營運。雞蛋糕、糖餅、烤起司龍蝦等等，當晚餐吃剛好，也不會太撐（等下要上塔）。目前約 350 個攤位，採輪流出攤制，不是每天全部都出來。</div>
+            <div class="acts">
+              <a class="nav" href="https://www.google.com/maps/dir/?api=1&amp;destination=37.56370,126.98500&amp;travelmode=transit" target="_blank" rel="noopener">Google Maps</a>
+            </div>
+            <div class="next">↓ 🚌 免費接駁車（明洞站 1 號出口附近）約 10 分 → 纜車站</div>
+          </div></li>
+
+        <li class="stop"><div class="clock">19:10<small>2 小時</small><small class="via">🚌</small></div><div class="dot"></div>
+          <div class="card">
+            <a class="shot" href="https://gototravel.tw/seoul-tower/" target="_blank" rel="noopener">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Namsan_Seoul_Tower_at_night_%2849175252042%29.jpg/960px-Namsan_Seoul_Tower_at_night_%2849175252042%29.jpg" alt="N 首爾塔夜景" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+            </a>
+            <div class="name">南山纜車 → N 首爾塔<span class="tag night">夜景</span></div>
+            <div class="meta"><b>今日日落 19:48</b>——19:10 搭纜車上山，剛好趕上藍色時刻與華燈初上。纜車 10:00–23:00（往返末班 22:30），展望台平日到 22:30（最後入場 22:00）。</div>
+            <div class="warn"><b>從明洞站到纜車站是 10–15 分鐘的上坡</b>，帶爸媽建議搭<b>免費接駁車</b>（明洞站 1 號出口附近，末班 20:30），或搭「南山 오르미」免費斜行電梯。<br><b>票價</b>：纜車往返成人 ₩15,000／兒童 ₩11,500（姊姊算成人、弟弟算兒童）。展望台官網 ₩29,000／₩23,000，但 <b>Klook、KKday 等平台實售常只要 ₩16,000–20,000，出發前先線上比價買好</b>，還能省掉現場排隊。<br>夏季夜間要排三段隊（纜車、售票、電梯），有心理準備。</div>
+            <div class="acts">
+              <a class="nav" href="https://www.google.com/maps/dir/?api=1&amp;destination=37.55669,126.98412&amp;travelmode=transit" target="_blank" rel="noopener">纜車站</a>
+              <a class="nav naver" href="https://map.naver.com/p/search/%EB%82%A8%EC%82%B0%EC%BC%80%EC%9D%B4%EB%B8%94%EC%B9%B4" target="_blank" rel="noopener">Naver Map</a>
+            </div>
+            <div class="next">↓ 🚡 纜車下山 → 地鐵回 DMC，約 22:30 到家</div>
+          </div></li>
+
+      </ol>
+      <aside class="backup">
+        <h3>◇ 備用</h3>
+        <div class="bitem"><b>今天最容易超時。</b>如果景福宮或北村拖到，優先砍明洞逛街的時間（Olive Young 快速掃貨即可），<b>不要犧牲南山塔的日落</b>——那是固定時刻，錯過就沒了。</div>
+        <div class="bitem"><b>下雨的話</b>：南山塔看不到夜景，改成在明洞逛街吃小吃，塔挪到別天或放棄。</div>
+        <div class="bitem"><b>Café Onion 安國店、倫敦貝果博物館</b>：都在北村／安國一帶，排隊名店，時間夠再排。</div>
+      </aside>
+    </section>
+
+    <!-- ================= DAY 5 ================= -->
+    <section class="day" id="d5">
+      <div class="dayhead">
+        <div class="date">Day 5｜7/24（五）</div>
+        <h2>返程</h2>
+        <div class="drive"><span class="dv-go">🚇 08:40 出發</span><span class="dv-sun">✈ 12:45 起飛</span></div>
+      </div>
+      <p class="start">今天只有一個任務：順利上飛機。不排任何行程，伴手禮昨天已經買齊。</p>
+      <ol class="tl">
+
+        <li class="stop"><div class="clock">07:30<small>60 分</small><small class="via">🚇</small></div><div class="dot"></div>
+          <div class="card">
+            <div class="name">起床・打包・便利商店早餐<span class="tag food">早餐</span></div>
+            <div class="meta">行李昨晚先整理好。早餐在樓下便利商店解決，別花時間找店。</div>
+            <div class="next">↓ 🚶 08:40 出門，步行 5 分到 DMC 站</div>
+          </div></li>
+
+        <li class="stop"><div class="clock">08:55<small>約 50 分</small><small class="via">🚶</small></div><div class="dot"></div>
+          <div class="card">
+            <div class="name">AREX 一般車 → 仁川機場<span class="tag move">交通</span></div>
+            <div class="meta">DMC → T1 約 48 分（₩4,550）；→ T2 約 54 分（₩5,150）。離峰班距約 12 分。</div>
+            <div class="warn"><b>比你原本規劃的 09:30 出發提早了 35 分鐘，這是刻意的。</b>12:45 的班機，櫃檯約 <b>11:45 關閉</b>（行李同時截止）。09:30 出發只比官方建議的「提前 2 小時」多 20 分鐘，中間沒有算走到車站、買票、或錯過一班車的餘裕。<br><b>直通車不停 DMC</b>，只能搭一般車，沒有更快的選項。<br>08:00–09:00 是往機場方向的通勤尖峰（麻谷渡口一帶上班族），四人加行李會比較擠。</div>
+            <div class="acts">
+              <a class="nav" href="https://www.google.com/maps/dir/?api=1&amp;destination=37.44745,126.45253&amp;travelmode=transit" target="_blank" rel="noopener">第 1 航廈</a>
+              <a class="nav" href="https://www.google.com/maps/dir/?api=1&amp;destination=37.46766,126.43415&amp;travelmode=transit" target="_blank" rel="noopener">第 2 航廈</a>
+            </div>
+            <div class="next">↓ 約 09:50 抵達機場</div>
+          </div></li>
+
+        <li class="stop"><div class="clock">09:50<small>報到</small><small class="via">🚄</small></div><div class="dot"></div>
+          <div class="card">
+            <div class="name">仁川機場 報到・託運行李<span class="tag move">機場</span></div>
+            <div class="meta">國際線櫃檯於起飛前 3 小時開放、通常起飛前 60 分關閉（部分航空 90 分）。09:50 抵達 = 起飛前約 3 小時，符合暑假旺季的建議。</div>
+            <div class="warn"><b>務必先確認你們在 T1 還是 T2。</b>T1 和 T2 相距 5 公里，走錯要再花 20 分鐘接駁。長榮 BR／星宇 JX／台灣虎航 IT 在 <b>T1</b>；中華航空 CI 自 2026/1/14 起改至 <b>T2</b>。</div>
+            <div class="next">↓ 安檢、出境審查</div>
+          </div></li>
+
+        <li class="stop"><div class="clock">12:45<small>返程</small><small class="via">🚄</small></div><div class="dot"></div>
+          <div class="card">
+            <div class="name">ICN 12:45 → TPE 14:20<span class="tag move">返程</span></div>
+            <div class="meta">飛行約 2 小時 35 分（台韓無時差）。</div>
+          </div></li>
+
+      </ol>
+      <aside class="notes">
+        <h3>◇ 出發前必辦清單</h3>
+        <ul>
+          <li><b>e-Arrival Card</b>（四人各一份，抵達前 3 天內填）— 2026 起強制，紙本已廢除。或改申請 K-ETA（持有效 K-ETA 可免填）。<b>二選一，不能都不做。</b></li>
+          <li><b>訂位：목구멍</b>（Day 3 晚餐，0507-1418-2930）— 弘大人氣烤肉店，四人現場排隊風險高。</li>
+          <li><b>線上購票</b>：SEOUL SKY（Day 2）、N 首爾塔＋纜車（Day 4）。兩者線上都比現場便宜，也能省下排隊。</li>
+          <li><b>裝 배달의민족 Baemin</b>（Day 1 叫炸雞）— 唯一支援外國信用卡、免韓國手機號的外送 App。建議在機場先買 SIM／eSIM 拿韓國號碼，註冊會更順。</li>
+          <li><b>護照正本隨身</b>：景福宮小孩免票要驗年齡、Olive Young 現場退稅要用。</li>
+          <li><b>確認航廈 T1／T2</b>：決定 Day 1 和 Day 5 的車程與票價。</li>
+          <li><b>帶輕便雨具</b>：7/20–24 落在首爾梅雨季尾巴（平均 7/26 結束），7 月是全年最多雨的月份（月雨量約 395mm、降雨日 16 天）。通常是短時強降雨而非整日雨。</li>
+        </ul>
+      </aside>
+    </section>
+
+    <aside class="notes tripinfo">
+      <h3>◇ 行程基本資料</h3>
+      <dl>
+        <dt>日期</dt><dd>2026/7/20（一）–7/24（五），5 天 4 夜</dd>
+        <dt>同行</dt><dd>爸媽 + 高一女生（追星）+ 小六男生（不吃辣）</dd>
+        <dt>住宿</dt><dd>Neverland DMC（上岩洞）· DMC 站 9 號出口平地步行 5 分 · 有電梯</dd>
+        <dt>交通</dt><dd>全程大眾運輸。先買 T-money 卡。AREX 直通車不停 DMC，一律搭一般車。</dd>
+        <dt>去程</dt><dd>7/20（一）TPE 15:30 → ICN 19:05</dd>
+        <dt>回程</dt><dd>7/24（五）ICN 12:45 → TPE 14:20（台韓無時差）· JX／BR／IT 在第 1 航廈、CI 在第 2 航廈</dd>
+      </dl>
+    </aside>
+
+    <footer>
+      初步規劃｜所有營業時間、票價、交通與活動資訊均須以出發前最新官方公告與天候為準。此頁不含房號、航班座位或訂位個資。<br>
+      景點照片來自 Wikimedia Commons（CC BY／CC BY-SA）與各店家官方網站、部落格；點圖可開啟該景點的介紹文章。地圖圖磚 © OpenStreetMap 貢獻者。
+    </footer>
+  </main>
+
+  <button class="mapfab" id="mapfab" aria-label="開啟全程地圖">
+    <svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><path fill="currentColor" d="M12 2a7 7 0 00-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 00-7-7zm0 9.5A2.5 2.5 0 1112 6.5a2.5 2.5 0 010 5z"/></svg>
+    地圖
+  </button>
+
+  <div class="mapmodal" id="mapmodal" role="dialog" aria-modal="true" aria-label="全程地圖">
+    <div class="mapbar">
+      <div class="mapbar-t">
+        <b>全程地圖</b>
+        <span>點 Day 標題可顯示／隱藏該天，點景點看時間與導航</span>
+      </div>
+      <button class="mapclose" id="mapclose" aria-label="關閉地圖">✕</button>
+    </div>
+    <div class="mapbody">
+      <div id="map"></div>
+      <aside class="maplist" id="maplist"></aside>
     </div>
   </div>
-</header>
 
-<div class="wrap">
+  <button class="mapfab menufab" id="menufab" aria-label="開啟餐飲與購票總覽">
+    <svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><path fill="currentColor" d="M8.1 2v6.5c0 .8-.5 1.4-1.1 1.6V22H5.5V10.1C4.9 9.9 4.4 9.3 4.4 8.5V2h1.2v5.6h.6V2h1.2v5.6h.6V2h1.5zM15 2c-1.4 0-2.5 1.9-2.5 4.3 0 2 .8 3.6 1.9 4V22H16V2h-1z"/></svg>
+    餐飲
+  </button>
 
-  <!-- DAY 1 -->
-  <section class="day active" id="d1">
-    <div class="dayhead"><div class="date">7/20(一)</div><h2>抵達(晚)</h2></div>
-    <div class="startleg">✈️ 班機 15:30 出發 → 19:05 抵達仁川機場</div>
-    <ol class="tl">
-      <li class="stop move"><div class="num">1</div><div class="card">
-        <div class="name">仁川機場 抵達<span class="tag t-move">交通</span></div>
-        <div class="meta">TPE 15:30 → ICN 19:05</div>
-        <div class="next">↓ 前往住宿　<span class="m">🚄 AREX 機場鐵路約 50 分 → DMC 站</span></div>
-      </div></li>
-      <li class="stop move"><div class="num">2</div><div class="card">
-        <div class="name">AREX → DMC 站入住<span class="tag t-move">交通</span></div>
-        <div class="addr">🏨 Neverland DMC · DMC 站 9 號出口 5 分<span class="ko">서울 마포구 상암동 11-9 아트빌 501호</span></div>
-        <div class="meta">🚄 AREX 約 50 分 · 約 21:00 到住宿</div>
-        <a class="map" href="https://map.naver.com/p/search/서울 마포구 상암동 11-9" target="_blank" rel="noopener">地圖</a>
-        <div class="next">↓ 晚餐　<span class="m">🛵 PURADAK 外送到房（免移動）</span></div>
-      </div></li>
-      <li class="stop meal"><div class="num">3</div><div class="card">
-        <div class="name">PURADAK 푸라닭 炸雞（外送到房）<span class="tag t-food">晚餐</span></div>
-        <div class="addr">明洞店 · 中區明洞7街 21 號<span class="ko">서울 중구 명동7길 21</span></div>
-        <div class="meta">飛一天累了，房內吃、洗澡休息</div>
-        <a class="map" href="https://map.naver.com/p/search/서울 중구 명동7길 21" target="_blank" rel="noopener">地圖</a>
-        <a class="site" href="https://puradakchicken.com" target="_blank" rel="noopener">官網</a>
-      </div></li>
-    </ol>
-    <div class="backup"><h4>◇ 備用（順路）</h4><div class="none">本日無備用，好好休息 😴</div></div>
-  </section>
-
-  <!-- DAY 2 -->
-  <section class="day" id="d2">
-    <div class="dayhead"><div class="date">7/21(二)</div><h2>樂天世界塔 + 東大門</h2></div>
-    <div class="startleg">🏨 住宿 DMC 出發（早餐先在附近解決）→ 樂天世界塔　🚇 地鐵約 50 分（DMC 6 號線→合井轉 2 號線→蠶室）</div>
-    <ol class="tl">
-      <li class="stop meal"><div class="num">1</div><div class="card">
-        <div class="name">早餐：住宿附近 / 便利商店<span class="tag t-food">早餐</span></div>
-        <div class="meta">DMC 樓下便利商店或咖啡，簡單吃飽再出發</div>
-        <div class="next">↓ <span class="m">🚇 地鐵約 50 分 → 蠶室 樂天世界塔</span></div>
-      </div></li>
-      <li class="stop"><div class="num">2</div><div class="card">
-        <div class="name">樂天世界塔 Seoul Sky 展望台<span class="tag t-sight">展望</span></div>
-        <div class="meta">잠실 · 高空俯瞰首爾全景</div>
-        <a class="map" href="https://map.naver.com/p/search/롯데월드타워 서울스카이" target="_blank" rel="noopener">地圖</a>
-        <div class="next">↓ <span class="m">🚶 步行 3 分（同棟相連）</span></div>
-      </div></li>
-      <li class="stop meal"><div class="num">3</div><div class="card">
-        <div class="name">午餐：樂天世界購物中心<span class="tag t-food">午餐·逛街</span></div>
-        <div class="meta">잠실 站直結 · 商場美食街</div>
-        <div class="next">↓ <span class="m">🚇 2 號線約 20 分（蠶室→東大門歷史文化公園）</span></div>
-      </div></li>
-      <li class="stop sight"><div class="num">4</div><div class="card">
-        <div class="name">東大門 DDP<span class="tag t-sight">景點</span></div>
-        <div class="meta">未來感建築、好拍</div>
-        <a class="map" href="https://map.naver.com/p/search/DDP 동대문디자인플라자" target="_blank" rel="noopener">地圖</a>
-        <div class="next">↓ <span class="m">🚶 步行 5 分</span></div>
-      </div></li>
-      <li class="stop shop"><div class="num">5</div><div class="card">
-        <div class="name">東大門購物商城<span class="tag t-shop">逛街</span></div>
-        <div class="meta">營業到深夜</div>
-        <div class="next">↓ <span class="m">🚶 步行（東大門周邊）</span></div>
-      </div></li>
-      <li class="stop meal"><div class="num">6</div><div class="card">
-        <div class="name">晚餐：部隊鍋 / 炸雞續攤<span class="tag t-food">晚餐</span></div>
-        <div class="meta">東大門周邊</div>
-        <div class="next">↩ 回住宿　<span class="m">🚇 地鐵約 40 分（東大門→合井轉 6 號線→DMC）</span></div>
-      </div></li>
-    </ol>
-    <div class="backup"><h4>◇ 備用（順路）</h4>
-      <div class="bitem"><b>自然島鹽麵包 聖水洞店</b> 🥐<span class="ko">서울 성동구 성수동2가 321-74</span>
-        <div class="meta">聖水站 3 出口 5 分 · 由東大門搭 2 號線約 3 站 · 09:00–22:00</div>
-        <a class="map" href="https://map.naver.com/p/search/서울 성동구 성수동2가 321-74" target="_blank" rel="noopener">地圖</a>
-        <a class="site" href="https://alinalife.tw/jayeondo-saltbread-seoul/" target="_blank" rel="noopener">介紹</a>
+  <div class="mapmodal" id="menumodal" role="dialog" aria-modal="true" aria-label="餐飲與購票總覽">
+    <div class="mapbar">
+      <div class="mapbar-t">
+        <b>餐飲・購票總覽</b>
+        <span>每天三餐與點心，以及行前建議先線上買的門票</span>
       </div>
+      <button class="mapclose" id="menuclose" aria-label="關閉總覽">✕</button>
     </div>
-  </section>
-
-  <!-- DAY 3 -->
-  <section class="day" id="d3">
-    <div class="dayhead"><div class="date">7/22(三)</div><h2>弘大追星日</h2></div>
-    <div class="startleg">🏨 住宿 DMC → 弘大　🚇 京義中央線/機場鐵路 1 站約 5 分（DMC→弘大入口）</div>
-    <ol class="tl">
-      <li class="stop meal"><div class="num">1</div><div class="card">
-        <div class="name">早餐：Egg Drop 에그드랍（韓式蛋吐司）<span class="tag t-food">早餐</span></div>
-        <div class="addr">弘大店 · 麻浦區弘益路 15<span class="ko">서울 마포구 홍익로 15</span></div>
-        <div class="meta">弘大入口站 9 出口 6 分 · 08:00–22:00 · 蛋吐司輕食，孩子最愛（Isaac Toast 이삭토스트 와우산로 93 亦可）</div>
-        <a class="map" href="https://map.naver.com/p/search/서울 마포구 홍익로 15 에그드랍" target="_blank" rel="noopener">地圖</a>
-        <div class="next">↓ <span class="m">🚶 步行到弘大商圈</span></div>
-      </div></li>
-      <li class="stop shop"><div class="num">2</div><div class="card">
-        <div class="name">弘大商圈逛街<span class="tag t-shop">逛街</span></div>
-        <div class="meta">潮流店、街頭藝人表演</div>
-        <div class="next">↓ <span class="m">🚶 步行 5 分</span></div>
-      </div></li>
-      <li class="stop meal"><div class="num">3</div><div class="card">
-        <div class="name">午餐：두끼 Dookki 弘大店<span class="tag t-food">午餐·可不辣</span></div>
-        <div class="addr">麻浦區弘益路6街 8 號<span class="ko">서울 마포구 홍익로6길 8</span></div>
-        <div class="meta">弘大入口站 · 12:00–22:00 · 醬料自選可全不辣</div>
-        <a class="map" href="https://map.naver.com/p/search/서울 마포구 홍익로6길 8 두끼" target="_blank" rel="noopener">地圖</a>
-        <a class="site" href="https://www.dookki.co.kr" target="_blank" rel="noopener">官網</a>
-        <div class="next">↓ <span class="m">🚶 步行 8 分</span></div>
-      </div></li>
-      <li class="stop star"><div class="num">4</div><div class="card">
-        <div class="name">Ducky World<span class="tag t-star">卡套</span></div>
-        <div class="addr">麻浦區臥牛山路29街 60，1 樓<span class="ko">서울 마포구 와우산로29길 60 1층</span></div>
-        <div class="meta">弘大入口站 7/9 出口步行 8 分</div>
-        <a class="map" href="https://map.naver.com/p/search/서울 마포구 와우산로29길 60" target="_blank" rel="noopener">地圖</a>
-        <a class="site" href="https://www.instagram.com/duckyworld_kr" target="_blank" rel="noopener">IG</a>
-        <div class="next">↓ <span class="m">🚶 步行 5 分</span></div>
-      </div></li>
-      <li class="stop star"><div class="num">5</div><div class="card">
-        <div class="name">POCA SPOT 弘大店<span class="tag t-star">小卡</span></div>
-        <div class="addr">麻浦區西橋洞 328-28<span class="ko">서울 마포구 서교동 328-28</span></div>
-        <div class="meta">弘大入口站附近（以地圖為準）</div>
-        <a class="map" href="https://map.naver.com/p/search/서울 마포구 서교동 328-28 포카스팟" target="_blank" rel="noopener">地圖</a>
-        <a class="site" href="https://www.instagram.com/pocaspot" target="_blank" rel="noopener">IG</a>
-        <div class="next">↓ <span class="m">🚶 步行約 15 分（或弘大入口→合井 1 站）</span></div>
-      </div></li>
-      <li class="stop star"><div class="num">6</div><div class="card">
-        <div class="name">YG 娛樂 朝聖<span class="tag t-star">追星</span></div>
-        <div class="addr">麻浦區喜雨亭路1街 7 號<span class="ko">서울 마포구 희우정로1길 7</span></div>
-        <div class="meta">合井站 · 外觀拍照 + 附近咖啡</div>
-        <a class="map" href="https://map.naver.com/p/search/서울 마포구 희우정로1길 7 YG" target="_blank" rel="noopener">地圖</a>
-        <div class="next">↓ <span class="m">🚶 步行約 15 分（合井→延南洞）</span></div>
-      </div></li>
-      <li class="stop"><div class="num">7</div><div class="card">
-        <div class="name">延南洞 + 自然島鹽麵包<span class="tag t-food">咖啡·點心</span></div>
-        <div class="addr">延南洞店 · 麻浦區楊花路21街 33，1 樓<span class="ko">서울 마포구 양화로21길 33 1층</span></div>
-        <div class="meta">弘大入口站附近 · 09:00–22:00 · 現烤鹽可頌</div>
-        <a class="map" href="https://map.naver.com/p/search/서울 마포구 양화로21길 33 자연도소금빵" target="_blank" rel="noopener">地圖</a>
-        <a class="site" href="https://alinalife.tw/jayeondo-saltbread-seoul/" target="_blank" rel="noopener">介紹</a>
-        <div class="next">↓ <span class="m">🚶 步行 5 分</span></div>
-      </div></li>
-      <li class="stop meal"><div class="num">8</div><div class="card">
-        <div class="name">水芹菜烤肉<span class="tag t-food">晚餐</span></div>
-        <div class="addr">麻浦區世界盃北路4街 8 號 1 樓<span class="ko">서울 마포구 월드컵북로4길 8 1층</span></div>
-        <div class="meta">弘大入口站 1 出口步行 5 分 · 延南洞旁順路收尾</div>
-        <a class="map" href="https://map.naver.com/p/search/서울 마포구 월드컵북로4길 8" target="_blank" rel="noopener">地圖</a>
-        <div class="next">↩ 回住宿　<span class="m">🚇 弘大入口→DMC 1 站約 5 分</span></div>
-      </div></li>
-    </ol>
-    <div class="backup"><h4>◇ 備用（順路）</h4>
-      <div class="bitem"><b>申李道家 신이도가</b> ☕ 韓屋咖啡<span class="ko">서울 마포구 잔다리로 20-12（서교동 367-31）</span>
-        <div class="meta">弘大入口站9/合井站3/上水站1 · 11:00–22:00 · 可替代延南洞咖啡</div>
-        <a class="map" href="https://map.naver.com/p/search/서울 마포구 잔다리로 20-12 신이도가" target="_blank" rel="noopener">地圖</a>
-        <a class="site" href="https://www.instagram.com/sinleedoga" target="_blank" rel="noopener">IG</a>
-      </div>
-      <div class="bitem"><b>PURADAK 弘大店</b> 🍗 炸雞<span class="ko">地址待現場確認（搜「푸라닭 홍대」）</span>
-        <div class="meta">客服 1599-9206</div>
-        <a class="site" href="https://puradakchicken.com" target="_blank" rel="noopener">官網</a>
-      </div>
-      <div class="bitem"><b>Myth Jokbal 미쓰족발 弘大本店</b> 🐷 豬腳<span class="ko">서울 마포구 어울마당로 123-1</span>
-        <div class="meta">弘大入口站 8/9 出口 · 12:00–04:00 · 滷豬腳配啤酒</div>
-        <a class="map" href="https://map.naver.com/p/search/서울 마포구 어울마당로 123-1 미쓰족발" target="_blank" rel="noopener">地圖</a>
-        <a class="site" href="https://tisshuang.com/blog/post/myth-jokbal" target="_blank" rel="noopener">介紹</a>
-      </div>
-      <div class="bitem"><b>豚壽百 돈수백 弘大直營店</b> 🍲 豬肉湯飯（早餐備案）<span class="ko">서울 마포구 동교동 168-3</span>
-        <div class="meta">弘大入口站步行數分 · 24 小時 · 想吃韓式湯飯早餐可改這家</div>
-        <a class="map" href="https://map.naver.com/p/search/서울 마포구 동교동 168-3 돈수백" target="_blank" rel="noopener">地圖</a>
-        <a class="site" href="https://www.bigfang.tw/blog/post/donsoobaek-hongdae" target="_blank" rel="noopener">介紹</a>
-      </div>
+    <div class="ovbody">
+      <section class="ovsec">
+        <h4>🍽 每日餐飲</h4>
+        <div class="ovwrap">
+          <table class="ovtable">
+            <thead><tr><th>日</th><th>早餐</th><th>午餐</th><th>晚餐</th><th>點心・宵夜</th></tr></thead>
+            <tbody>
+              <tr><td class="dcol">Day 1<br>7/20 一</td><td>—<br><small>晚班機</small></td><td>—<br><small>機上</small></td><td class="din">PURADAK 炸雞<br><small>外送到房</small></td><td>—</td></tr>
+              <tr><td class="dcol">Day 2<br>7/21 二</td><td>便利商店<br><small>DMC 樓下</small></td><td class="din">진옥화할매 一隻雞<br><small>元祖닭한마리</small></td><td class="din">樂天世界購物中心<br><small>商場美食</small></td><td>—</td></tr>
+              <tr><td class="dcol">Day 3<br>7/22 三</td><td>Egg Drop 弘大<br><small>蛋吐司</small></td><td class="din">두끼 Dookki<br><small>年糕火鍋</small></td><td class="din">목구멍<br><small>水芹菜烤肉</small></td><td>자연도 소금빵<br><small>鹽麵包</small></td></tr>
+              <tr><td class="dcol">Day 4<br>7/23 四</td><td>便利商店<br><small>自理</small></td><td>三清洞<br><small>巷弄餐廳</small></td><td class="din">明洞夜市<br><small>街邊小吃</small></td><td>仁寺洞 龍鬚糖</td></tr>
+              <tr><td class="dcol">Day 5<br>7/24 五</td><td>便利商店</td><td>機場／機上</td><td>—</td><td>—</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="ovnote">韓식당大多走入座、免訂位：一隻雞刻意排中午避開晚餐排隊，목구멍到場現場候位登記即可。</p>
+      </section>
+      <section class="ovsec">
+        <h4>🎟 行前建議先線上買（門票）</h4>
+        <div class="ovwrap">
+          <table class="ovtable">
+            <thead><tr><th>項目</th><th>日期</th><th>方式</th><th>備註</th></tr></thead>
+            <tbody>
+              <tr><td class="din">SEOUL SKY 展望台</td><td class="dcol">7/21 二<br>傍晚</td><td>官網／Klook 線上票</td><td>線上通常比現場便宜、可省排隊；傍晚上塔看日落＋夜景，人多先購票較穩</td></tr>
+              <tr><td class="din">N 首爾塔＋南山纜車</td><td class="dcol">7/23 四<br>傍晚</td><td>官網／Klook 套票</td><td>纜車＋觀景台套票；日落前上山人潮多，先買票上山較快</td></tr>
+              <tr><td class="din">景福宮</td><td class="dcol">7/23 四<br>上午</td><td>現場購票、免預約</td><td>18 歲以下免票——需帶<b>護照正本</b>驗齡；週二公休（當天週四正常）</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="ovnote">實際票價與販售方式以各官網為準；Olive Young 明洞可現場即時退稅（單筆 ₩15,000 以上、帶護照到 2 樓 Global Service Lounge）。</p>
+      </section>
     </div>
-  </section>
+  </div>
 
-  <!-- DAY 4 -->
-  <section class="day" id="d4">
-    <div class="dayhead"><div class="date">7/23(四)</div><h2>景福宮 + 明洞 + 南山塔</h2></div>
-    <div class="startleg">🏨 住宿 DMC → 安國 / 景福宮　🚇 地鐵約 35–40 分（DMC 6 號線→佛光轉 3 號線）</div>
-    <ol class="tl">
-      <li class="stop meal"><div class="num">1</div><div class="card">
-        <div class="name">早餐：安國 Café Onion 어니언<span class="tag t-food">早餐</span></div>
-        <div class="addr">安國店 · 鐘路區桂洞街 5<span class="ko">서울 종로구 계동길 5</span></div>
-        <div class="meta">安國站 · 北村；韓屋咖啡+麵包，早上開（想吃貝果→倫敦貝果博物館 북촌로4길 20，需排隊）</div>
-        <a class="map" href="https://map.naver.com/p/search/서울 종로구 계동길 5 어니언 안국" target="_blank" rel="noopener">地圖</a>
-        <a class="site" href="https://onionkr.com" target="_blank" rel="noopener">官網</a>
-        <div class="next">↓ <span class="m">🚶 步行約 10 分 → 景福宮</span></div>
-      </div></li>
-      <li class="stop sight"><div class="num">2</div><div class="card">
-        <div class="name">景福宮<span class="tag t-sight">景點</span></div>
-        <div class="meta">穿便服入場 · 週四有開（週二公休已避開）</div>
-        <a class="map" href="https://map.naver.com/p/search/경복궁" target="_blank" rel="noopener">地圖</a>
-        <div class="next">↓ <span class="m">🚶 步行約 12 分（往北村）</span></div>
-      </div></li>
-      <li class="stop sight"><div class="num">3</div><div class="card">
-        <div class="name">北村韓屋村 / 仁寺洞<span class="tag t-sight">散步</span></div>
-        <div class="meta">傳統巷弄 + 文創</div>
-        <div class="next">↓ <span class="m">🚶 步行 5 分（仁寺洞內）</span></div>
-      </div></li>
-      <li class="stop"><div class="num">4</div><div class="card">
-        <div class="name">韓國龍鬚糖小哥 궁중꿀타래<span class="tag t-sight">體驗</span></div>
-        <div class="meta">仁寺洞攤 · 多國語言搞笑叫賣表演</div>
-        <div class="next">↓ <span class="m">🚶 就近覓食</span></div>
-      </div></li>
-      <li class="stop meal"><div class="num">5</div><div class="card">
-        <div class="name">午餐：仁寺洞 / 益善洞一帶<span class="tag t-food">午餐</span></div>
-        <div class="meta">仁寺洞韓定食，或益善洞韓屋巷弄餐廳/咖啡</div>
-        <a class="map" href="https://map.naver.com/p/search/익선동 맛집" target="_blank" rel="noopener">地圖</a>
-        <div class="next">↓ <span class="m">🚇 約 10 分（或步行 15 分）→ 明洞</span></div>
-      </div></li>
-      <li class="stop shop"><div class="num">6</div><div class="card">
-        <div class="name">明洞逛街 + Olive Young 美妝<span class="tag t-shop">逛街·退稅</span></div>
-        <div class="addr">Olive Young 明洞旗艦 · 中區明洞街 53 號<span class="ko">서울 중구 명동길 53</span></div>
-        <div class="meta">明洞站 · 10:00–22:30 · 伴手禮先買齊</div>
-        <a class="map" href="https://map.naver.com/p/search/서울 중구 명동길 53 올리브영" target="_blank" rel="noopener">地圖</a>
-        <a class="site" href="https://myeongdongtown.oliveyoung.com" target="_blank" rel="noopener">官網</a>
-        <div class="next">↓ <span class="m">🚶 步行（明洞商圈內）</span></div>
-      </div></li>
-      <li class="stop meal"><div class="num">7</div><div class="card">
-        <div class="name">晚餐：王妃家 韓牛烤肉 / Myth Jokbal 豬腳<span class="tag t-food">晚餐</span></div>
-        <div class="meta">明洞；地址見下方備用（王妃家 명동8가길 26 / Myth Jokbal 명동3길 21）</div>
-        <div class="next">↓ <span class="m">🚶 明洞街邊小吃</span></div>
-      </div></li>
-      <li class="stop meal"><div class="num">8</div><div class="card">
-        <div class="name">明洞夜市（宵夜小吃）<span class="tag t-food">小吃</span></div>
-        <div class="meta">雞蛋糕、糖餅、街邊小吃</div>
-        <div class="next">↓ <span class="m">🚶 步行 10 分 + 🚡 纜車 3 分 → 南山塔</span></div>
-      </div></li>
-      <li class="stop sight"><div class="num">9</div><div class="card">
-        <div class="name">南山 N 首爾塔<span class="tag t-sight">夜景</span></div>
-        <div class="meta">搭纜車上塔看夜景</div>
-        <a class="map" href="https://map.naver.com/p/search/남산서울타워" target="_blank" rel="noopener">地圖</a>
-        <div class="next">↩ 回住宿　<span class="m">🚇 地鐵約 40 分</span></div>
-      </div></li>
-    </ol>
-    <div class="backup"><h4>◇ 備用（順路）</h4>
-      <div class="bitem"><b>大創 Daiso 明洞站店</b> 🛍️ 雜貨<span class="ko">서울 중구 퇴계로 134-1</span>
-        <div class="meta">明洞站 1 出口 · 12 層樓 · 10:00–22:00</div>
-        <a class="map" href="https://map.naver.com/p/search/서울 중구 퇴계로 134-1 다이소" target="_blank" rel="noopener">地圖</a>
-      </div>
-      <div class="bitem"><b>POCA SPOT 明洞店</b> 🃏 小卡<span class="ko">서울 중구 명동8나길 33</span>
-        <div class="meta">明洞站 5 出口步行 200m</div>
-        <a class="map" href="https://map.naver.com/p/search/서울 중구 명동8나길 33 포카스팟" target="_blank" rel="noopener">地圖</a>
-        <a class="site" href="https://www.pocaspot.com/myeongdong" target="_blank" rel="noopener">官網</a>
-      </div>
-      <div class="bitem"><b>두끼 明洞店</b> 🍚 不辣年糕<span class="ko">서울 중구 명동10길 35-3 2층</span>
-        <div class="meta">11:00–22:30</div>
-        <a class="map" href="https://map.naver.com/p/search/서울 중구 명동10길 35-3 두끼" target="_blank" rel="noopener">地圖</a>
-        <a class="site" href="https://www.dookki.co.kr" target="_blank" rel="noopener">官網</a>
-      </div>
-      <div class="bitem"><b>自然島鹽麵包 益善洞店</b> 🥐（有內用）<span class="ko">서울 종로구 수표로28길 21-17 1층</span>
-        <div class="meta">近仁寺洞/鐘路 · 內用需點飲料</div>
-        <a class="map" href="https://map.naver.com/p/search/서울 종로구 수표로28길 21-17 자연도소금빵" target="_blank" rel="noopener">地圖</a>
-        <a class="site" href="https://alinalife.tw/jayeondo-saltbread-seoul/" target="_blank" rel="noopener">介紹</a>
-      </div>
-      <div class="bitem"><b>Café Onion 어니언 安國店</b> ☕ 韓屋咖啡<span class="ko">서울 종로구 계동길 5</span>
-        <div class="meta">安國站 · 北村；麵包排隊名店</div>
-        <a class="map" href="https://map.naver.com/p/search/서울 종로구 계동길 5 어니언 안국" target="_blank" rel="noopener">地圖</a>
-        <a class="site" href="https://onionkr.com" target="_blank" rel="noopener">官網</a>
-      </div>
-      <div class="bitem"><b>倫敦貝果博物館 안국점</b> 🥯 貝果<span class="ko">서울 종로구 북촌로4길 20</span>
-        <div class="meta">安國站 · 北村；超人氣、需排隊/候位</div>
-        <a class="map" href="https://map.naver.com/p/search/서울 종로구 북촌로4길 20 런던베이글뮤지엄" target="_blank" rel="noopener">地圖</a>
-        <a class="site" href="https://www.instagram.com/london.bagel.museum" target="_blank" rel="noopener">IG</a>
-        <a class="site" href="https://whereamber.com/london-bagel-museum/" target="_blank" rel="noopener">介紹</a>
-      </div>
-      <div class="bitem"><b>Blue Bottle 三清店</b> ☕ 咖啡<span class="ko">서울 종로구 북촌로5길 76</span>
-        <div class="meta">安國站 · 三清/北村；韓屋門市</div>
-        <a class="map" href="https://map.naver.com/p/search/서울 종로구 북촌로5길 76 블루보틀 삼청" target="_blank" rel="noopener">地圖</a>
-        <a class="site" href="https://kr.bluebottlecoffee.com" target="_blank" rel="noopener">官網</a>
-      </div>
-      <div class="bitem"><b>JO&amp;DAWSON 조앤도슨 光化門店</b> 🍞 法式吐司（早餐備案）<span class="ko">서울 종로구 종로 33 타워1 2F</span>
-        <div class="meta">鐘閣站 · 光化門/鐘路；平日 07:30 開 · 人氣排隊法式吐司</div>
-        <a class="map" href="https://map.naver.com/p/search/조앤도슨 광화문" target="_blank" rel="noopener">地圖</a>
-        <a class="site" href="https://hiseoul.pixnet.net/blog/posts/896687845638665362" target="_blank" rel="noopener">介紹</a>
-      </div>
-      <div class="bitem"><b>Myth Jokbal 미쓰족발 明洞店</b> 🐷 豬腳<span class="ko">서울 중구 명동3길 21</span>
-        <div class="meta">乙支路入口/明洞站 · 11:30–02:00 · 明洞排隊豬腳</div>
-        <a class="map" href="https://map.naver.com/p/search/서울 중구 명동3길 21 미쓰족발" target="_blank" rel="noopener">地圖</a>
-        <a class="site" href="https://tisshuang.com/blog/post/myth-jokbal" target="_blank" rel="noopener">介紹</a>
-      </div>
-      <div class="bitem"><b>樂天超市 롯데마트 首爾站店</b> 🛒 伴手禮/超市<span class="ko">서울 중구 한강대로 405</span>
-        <div class="meta">首爾站 1 出口 · 10:00–24:00 · 現場退稅(滿₩15,000)；明洞搭 1 站</div>
-        <a class="map" href="https://map.naver.com/p/search/서울 중구 한강대로 405 롯데마트" target="_blank" rel="noopener">地圖</a>
-        <a class="site" href="https://creatrip.com/zh-TW/blog/2" target="_blank" rel="noopener">介紹</a>
-      </div>
-      <div class="bitem"><b>王妃家 왕비집 明洞店</b> 🥩 韓牛烤肉<span class="ko">서울 중구 명동8가길 26 2F</span>
-        <div class="meta">明洞站步行 5 分 · 11:30–22:00 · 藍絲帶獎韓牛烤肉</div>
-        <a class="map" href="https://map.naver.com/p/search/서울 중구 명동8가길 26 왕비집" target="_blank" rel="noopener">地圖</a>
-        <a class="site" href="https://alinalife.tw/41375770-myongdong-wangbijib/" target="_blank" rel="noopener">介紹</a>
-      </div>
-    </div>
-  </section>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+          integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="anonymous"></script>
+  <script>
+    const HOME = [37.57707, 126.89308];   // 住宿（上岩 DMC）
 
-  <!-- DAY 5 -->
-  <section class="day" id="d5">
-    <div class="dayhead"><div class="date">7/24(五)</div><h2>返程</h2></div>
-    <div class="startleg">🧳 退房前把伴手禮打包好（Olive Young / 大創 建議 Day4 先買齊）</div>
-    <ol class="tl">
-      <li class="stop"><div class="num">1</div><div class="card">
-        <div class="name">打包 + 便利商店早餐 / 補貨<span class="tag t-shop">整理</span></div>
-        <div class="meta">住宿樓下便利商店解決早餐</div>
-        <div class="next">↓ <span class="m">🚶 住宿 → DMC 站步行 5 分</span></div>
-      </div></li>
-      <li class="stop move"><div class="num">2</div><div class="card">
-        <div class="name">DMC 出發 → AREX → 仁川機場<span class="tag t-move">交通</span></div>
-        <div class="meta">🚄 AREX 約 50 分 · 約 09:30 出發 · 預留 2 小時</div>
-        <div class="next">↓ <span class="m">✈️ 抵達仁川機場、辦理登機/退稅</span></div>
-      </div></li>
-      <li class="stop move"><div class="num">3</div><div class="card">
-        <div class="name">ICN 12:45 → TPE 14:20<span class="tag t-move">航班</span></div>
-        <div class="meta">回家 ✈️</div>
-      </div></li>
-    </ol>
-    <div class="backup"><h4>◇ 備用（順路）</h4><div class="none">返程日，無備用</div></div>
-  </section>
+    const TRIP = [
+      { id: 'd1', label: 'Day 1', color: '#e0483c',
+        pts: [
+          { t: '19:05', n: '仁川機場 ICN 抵達', c: [37.44745, 126.45253] },
+          { t: '21:50', n: '住宿 Neverland DMC 入住', c: HOME, home: true },
+          { t: '22:15', n: 'PURADAK 북가좌점（外送）', c: [37.57524, 126.90822] },
+        ] },
 
-  <footer>首爾 5 天 4 夜 · 上岩 DMC · ★ 排定　◇ 備用<br>交通時間為預估，實際以 Naver / Kakao Map 即時為準</footer>
-</div>
+      { id: 'd2', label: 'Day 2', color: '#e0803a',
+        pts: [
+          { t: '09:30', n: '住宿 出發', c: HOME, home: true },
+          { t: '10:30', n: '東大門設計廣場 DDP', c: [37.56707, 127.00990] },
+          { t: '12:15', n: '진옥화할매 一隻雞 午餐', c: [37.57038, 127.00573] },
+          { t: '13:45', n: 'Doota Mall 購物', c: [37.56876, 127.00873] },
+          { t: '16:50', n: '樂天世界購物中心 晚餐', c: [37.51283, 127.10202] },
+          { t: '18:45', n: 'SEOUL SKY 展望台 夜景', c: [37.51255, 127.10268] },
+        ] },
 
-<script>
-  const tabs=document.querySelectorAll('.tab');
-  const days=document.querySelectorAll('.day');
-  tabs.forEach(t=>t.addEventListener('click',()=>{
-    tabs.forEach(x=>x.classList.remove('active'));
-    days.forEach(x=>x.classList.remove('active'));
-    t.classList.add('active');
-    document.getElementById(t.dataset.day).classList.add('active');
-    window.scrollTo({top:0,behavior:'smooth'});
-  }));
-</script>
+      { id: 'd3', label: 'Day 3', color: '#1a9182',
+        pts: [
+          { t: '09:00', n: '住宿 出發', c: HOME, home: true },
+          { t: '09:20', n: 'Egg Drop 弘大 早餐', c: [37.55378, 126.92293] },
+          { t: '10:10', n: '弘大商圈', c: [37.55671, 126.92456] },
+          { t: '11:30', n: '두끼 Dookki 年糕火鍋 午餐', c: [37.55491, 126.92250] },
+          { t: '13:15', n: 'Ducky World（卡套）', c: [37.55615, 126.92702] },
+          { t: '14:20', n: 'POCA SPOT（小卡）', c: [37.55600, 126.92780] },
+          { t: '15:50', n: 'YG 娛樂總部', c: [37.54892, 126.90770] },
+          { t: '16:50', n: '자연도 소금빵 鹽麵包', c: [37.55955, 126.92442] },
+          { t: '17:20', n: '京義線林蔭道 散步', c: [37.55848, 126.92539] },
+          { t: '18:40', n: '목구멍 水芹菜烤肉 晚餐', c: [37.55673, 126.92051] },
+        ] },
+
+      { id: 'd4', label: 'Day 4', color: '#2f6fb0',
+        pts: [
+          { t: '08:30', n: '住宿 出發', c: HOME, home: true },
+          { t: '09:10', n: '景福宮（換崗 10:00）', c: [37.57988, 126.97680] },
+          { t: '13:15', n: '北村韓屋村（17:00 前）', c: [37.58306, 126.98361] },
+          { t: '15:15', n: '仁寺洞・龍鬚糖', c: [37.57422, 126.98473] },
+          { t: '16:50', n: 'Olive Young 明洞', c: [37.56412, 126.98517] },
+          { t: '18:15', n: '明洞夜市 晚餐', c: [37.56370, 126.98500] },
+          { t: '19:10', n: '南山纜車 → N 首爾塔', c: [37.55669, 126.98412] },
+        ] },
+
+      { id: 'd5', label: 'Day 5', color: '#7a55a8',
+        pts: [
+          { t: '08:40', n: '住宿 退房', c: HOME, home: true },
+          { t: '09:50', n: '仁川機場 報到', c: [37.44745, 126.45253] },
+        ] },
+    ];
+
+    const tabs = document.querySelectorAll('.tab');
+    const days = document.querySelectorAll('.day');
+    let map = null;
+    let mapBounds = null;
+    let mapFitted = false;
+
+    function buildMap() {
+      map = L.map('map', { scrollWheelZoom: false });
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 18,
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+      }).addTo(map);
+
+      const list = document.getElementById('maplist');
+      const bounds = [];
+
+      const pinSvg = (color) =>
+        `<svg viewBox="0 0 24 24" width="13" height="16" aria-hidden="true">` +
+        `<path fill="${color}" d="M12 0C7 0 3 4 3 9c0 6.5 9 15 9 15s9-8.5 9-15c0-5-4-9-9-9zm0 12.5a3.5 3.5 0 110-7 3.5 3.5 0 010 7z"/></svg>`;
+
+      TRIP.forEach((day) => {
+        const layer = L.layerGroup().addTo(map);
+
+        const group = document.createElement('div');
+        group.className = 'mlgroup';
+
+        const head = document.createElement('button');
+        head.className = 'mlday';
+        head.style.color = day.color;
+        head.innerHTML =
+          `<span class="swatch" style="background:${day.color}"></span>` +
+          `<span>${day.label}</span>` +
+          `<span class="mlcount">${day.pts.filter((x) => !x.home).length} 站</span>`;
+        head.addEventListener('click', () => {
+          const on = map.hasLayer(layer);
+          on ? map.removeLayer(layer) : map.addLayer(layer);
+          group.classList.toggle('off', on);
+        });
+        group.appendChild(head);
+
+        let stopNo = 0;
+        day.pts.forEach((p) => {
+          bounds.push(p.c);
+          const no = p.home ? '⌂' : ++stopNo;
+
+          const marker = L.marker(p.c, {
+            icon: L.divIcon({
+              className: 'pin' + (p.home ? ' home' : ''),
+              html: `<span style="background:${day.color}">${no}</span>`,
+              iconSize: [25, 25], iconAnchor: [12, 12], popupAnchor: [0, -13],
+            }),
+          }).bindPopup(
+            `<div class="pop-t">${day.label}　${p.t}</div>` +
+            `<div class="pop-n">${p.n}</div>` +
+            `<a href="https://www.google.com/maps/dir/?api=1&destination=${p.c[0]},${p.c[1]}&travelmode=transit" target="_blank" rel="noopener">Google Maps 導航 ↗</a>`
+          ).addTo(layer);
+
+          const item = document.createElement('button');
+          item.className = 'mlitem';
+          item.innerHTML =
+            pinSvg(day.color) +
+            `<span class="mlno">${no}</span>` +
+            `<span class="mlname">${p.n}</span>` +
+            `<span class="mlt">${p.t}</span>`;
+          item.title = p.n;
+          item.addEventListener('click', () => {
+            if (!map.hasLayer(layer)) return;
+            map.setView(p.c, Math.max(map.getZoom(), 14), { animate: true });
+            marker.openPopup();
+          });
+          group.appendChild(item);
+        });
+
+        list.appendChild(group);
+      });
+
+      const tip = document.createElement('div');
+      tip.className = 'mltip';
+      tip.innerHTML =
+        '<b>看地圖會發現的三件事</b>' +
+        '<p>住宿在上岩 DMC（左上角），弘大只有兩站——所以 Day 3 是最省交通的一天。</p>' +
+        '<p>Day 2 的樂天世界塔（右下角）離住處最遠，地鐵要 60 分，所以整天只排那一個區域。</p>' +
+        '<p>Day 4 的景福宮、北村、仁寺洞、明洞連成一條線，幾乎都用走的，只有最後上南山塔要搭車。</p>';
+      list.appendChild(tip);
+
+      mapBounds = bounds;
+    }
+
+    tabs.forEach((tab) => tab.addEventListener('click', () => {
+      tabs.forEach((item) => item.classList.remove('active'));
+      days.forEach((item) => item.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById(tab.dataset.day).classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }));
+
+    const modal = document.getElementById('mapmodal');
+
+    function openMap() {
+      modal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      if (!map) buildMap();
+      // 地圖在隱藏容器裡量不到尺寸，要等它顯示後才能算縮放範圍
+      setTimeout(() => {
+        map.invalidateSize();
+        if (!mapFitted) {
+          map.fitBounds(mapBounds, { padding: [34, 34] });
+          mapFitted = true;
+        }
+      }, 0);
+    }
+
+    function closeMap() {
+      modal.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    document.getElementById('mapfab').addEventListener('click', openMap);
+    document.getElementById('mapclose').addEventListener('click', closeMap);
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('open')) closeMap();
+    });
+
+    const menuModal = document.getElementById('menumodal');
+    function openMenu() { menuModal.classList.add('open'); document.body.style.overflow = 'hidden'; }
+    function closeMenu() { menuModal.classList.remove('open'); document.body.style.overflow = ''; }
+    document.getElementById('menufab').addEventListener('click', openMenu);
+    document.getElementById('menuclose').addEventListener('click', closeMenu);
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && menuModal.classList.contains('open')) closeMenu();
+    });
+
+    // 韓文地址點一下複製 — 給計程車司機看最準
+    document.querySelectorAll('.ko').forEach((el) => {
+      el.addEventListener('click', () => {
+        navigator.clipboard.writeText(el.dataset.copy).then(() => {
+          const old = el.style.background;
+          el.style.background = '#d8f0dd';
+          setTimeout(() => { el.style.background = old; }, 700);
+        });
+      });
+    });
+  </script>
+</body>
+</html>
