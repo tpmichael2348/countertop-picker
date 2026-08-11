@@ -18,7 +18,9 @@
     h1 { margin:0; font-size:clamp(1.55rem,4.6vw,2.35rem); letter-spacing:.02em; }
     .sub-dates { margin-left:11px; color:var(--muted); font-size:.92rem; font-weight:600; letter-spacing:0; white-space:nowrap; }
     .hdr-row { display:flex; align-items:baseline; justify-content:space-between; gap:12px; flex-wrap:wrap; }
-    .updated { flex:none; text-align:right; color:var(--muted); font-size:.72rem; font-weight:600; line-height:1.35; letter-spacing:0; white-space:nowrap; }
+    .hdr-row h1 { flex:0 1 auto; min-width:0; }
+    .updated { flex:0 0 auto; text-align:right; color:var(--muted); font-size:.72rem; font-weight:600; line-height:1.35; letter-spacing:0; white-space:nowrap; }
+    .updated .u-t { white-space:nowrap; }
     .updated small { display:block; font-size:.66rem; font-weight:500; opacity:.75; }
 
     .tripinfo { margin-top:18px; }
@@ -150,8 +152,9 @@
       .dot { left:-21px; }
       .shot { width:88px; height:62px; margin-left:10px; }
       .sub-dates { display:block; margin:2px 0 0; font-size:.85rem; }
-      .updated { width:100%; text-align:left; margin-top:4px; }
-      .updated small { display:inline; margin-left:6px; }
+      .hdr-row { align-items:flex-start; flex-wrap:nowrap; gap:8px; }
+      .updated { margin-top:5px; font-size:.62rem; line-height:1.3; }
+      .updated small { font-size:.58rem; }
       .tripinfo dl { grid-template-columns:1fr; gap:1px 0; }
       .tripinfo dd { margin-bottom:8px; }
     }
@@ -162,7 +165,7 @@
     <div class="trip-header">
       <header class="hdr-row">
         <h1>宮古島 5天4夜<span class="sub-dates">2026/8/12–8/16</span></h1>
-        <span class="updated">最後更新 2026/8/11 22:17<small>天氣・颱風・潮汐</small></span>
+        <span class="updated"><span class="u-t">最後更新 2026/8/11 22:17</span><small>天氣・颱風・潮汐</small></span>
       </header>
       <nav class="tabs" aria-label="每日行程">
         <button class="tab active" data-day="d1"><span class="tab-day">Day 1</span><span class="tab-date">8/12 三</span></button>
