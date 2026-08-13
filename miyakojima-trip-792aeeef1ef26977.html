@@ -58,7 +58,7 @@
     .card { background:var(--card); padding:15px; border-radius:14px; box-shadow:0 3px 16px #17314a0c; }
     .name { font-size:1.05rem; font-weight:750; }
     .tag { display:inline-block; margin-left:7px; border-radius:999px; padding:2px 8px; color:#fff; font-size:.74rem; font-weight:650; vertical-align:1px; }
-    .food { background:var(--orange); } .sea { background:var(--teal); } .spot { background:var(--blue); } .night { background:var(--violet); } .move { background:#8296ab; }
+    .food { background:var(--orange); } .sea { background:var(--teal); } .spot { background:var(--blue); } .night { background:var(--violet); } .move { background:#8296ab; } .free { background:#4a9a5e; }
     .tag.must { background:#f0b400; color:#4a3200; }
     .card:has(.tag.must) { background:#fff8e6; box-shadow:inset 4px 0 0 #f0b400, 0 3px 16px #17314a0c; }
     .meta,.next { color:var(--muted); font-size:.92rem; margin-top:5px; }
@@ -165,7 +165,7 @@
     <div class="trip-header">
       <header class="hdr-row">
         <h1>宮古島 5天4夜<span class="sub-dates">2026/8/12–8/16</span></h1>
-        <span class="updated"><span class="u-t">最後更新 2026/8/13 22:26</span><small>新增 ハート岩</small></span>
+        <span class="updated"><span class="u-t">最後更新 2026/8/13 22:42</span><small>Day 3 調整</small></span>
       </header>
       <nav class="tabs" aria-label="每日行程">
         <button class="tab active" data-day="d1"><span class="tab-day">Day 1</span><span class="tab-date">8/12 三</span></button>
@@ -430,10 +430,20 @@
           <div class="card">
             <div class="name">飯店早餐<span class="tag food">早餐</span></div>
             <div class="meta">今天走北部環線、節奏輕鬆，可以睡飽一點。</div>
-            <div class="next"><span class="depart">🚗 09:30 出發</span> · 開車約 30 分，往北 → 雪鹽 Museum</div>
+            <div class="next"><span class="depart">🚗 09:30 出發</span> · 開車約 2–3 分（約 300 公尺，含停車）→ 宮古神社</div>
           </div></li>
 
-        <li class="stop"><div class="clock">10:00<small>30 分</small><small class="via">🚗</small></div><div class="dot"></div>
+        <li class="stop"><div class="clock">09:35<small>20 分</small><small class="via">🚗</small></div><div class="dot"></div>
+          <div class="card">
+            <div class="name">宮古神社<span class="tag spot">參拜</span></div>
+            <div class="meta"><b>日本最南端的神社</b>，紅瓦社殿、境內小巧。離飯店僅約 300 公尺，<b>開車 2–3 分即到</b>；參拜、求個御守約 20 分即可。<b>兩台車直接開過來、參拜完從神社直接北上</b>，不用再折返飯店。</div>
+            <div class="warn"><b>改為當天第一站（原排 16:00）</b>：<b>社務所（御守／御朱印）9:00–17:00</b>，09:35 抵達已開門，不必擔心傍晚趕不上；也把下午空出來、不用擔心回程太晚。境內全天可自由參拜。</div>
+            <div class="warn"><b>停車</b>：神社有<b>免費參拜者停車場</b>（縣道 78 號北上、平良港前），但網路評價對車位數說法不一——有說「腹地大、不擁擠」，也有說「很窄、只能停幾台」。<b>兩台車建議一前一後進場</b>；萬一停不下，飯店距離僅 300 公尺，把車留在飯店走過來 4–5 分也很快。</div>
+            <div class="acts"><a class="nav" href="https://www.google.com/maps/dir/?api=1&amp;destination=24.80768,125.28050" target="_blank" rel="noopener">Google Maps 導航</a></div>
+            <div class="next"><span class="depart">🚗 09:55 出發</span> · 自神社直接北上，開車約 30 分 → 雪鹽 Museum</div>
+          </div></li>
+
+        <li class="stop"><div class="clock">10:30<small>30 分</small><small class="via">🚗</small></div><div class="dot"></div>
           <div class="card">
             <a class="shot" href="https://taiwantour.net/miyakojima-island-2/" target="_blank" rel="noopener">
               <img src="https://museum.yukishio.com/assets/img/top/img_museum-1.jpg" alt="雪鹽霜淇淋" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
@@ -444,7 +454,7 @@
             <div class="next">↓ 🚗 開車約 5 分 → 西平安名岬展望台</div>
           </div></li>
 
-        <li class="stop"><div class="clock">10:35<small>20 分</small><small class="via">🚗</small></div><div class="dot"></div>
+        <li class="stop"><div class="clock">11:05<small>20 分</small><small class="via">🚗</small></div><div class="dot"></div>
           <div class="card">
             <a class="shot" href="https://commons.wikimedia.org/wiki/File:Cape_Nishihenna,_Miyako_Island,_Okinawa.jpg" target="_blank" rel="noopener">
               <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Cape_Nishihenna%2C_Miyako_Island%2C_Okinawa.jpg/960px-Cape_Nishihenna%2C_Miyako_Island%2C_Okinawa.jpg" alt="西平安名岬展望台" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
@@ -455,7 +465,7 @@
             <div class="next">↓ 🚗 開車約 3 分 → HARRY'S（11:00 開賣）</div>
           </div></li>
 
-        <li class="stop"><div class="clock">11:00<small>10 分</small><small class="via">🚗</small></div><div class="dot"></div>
+        <li class="stop"><div class="clock">11:30<small>10 分</small><small class="via">🚗</small></div><div class="dot"></div>
           <div class="card">
             <a class="shot" href="https://www.harrys.fun/" target="_blank" rel="noopener">
               <img src="https://static.wixstatic.com/media/b6ebbf_05e35a4239f14ad698f0aee260f7d5eaf000.jpg" alt="HARRY'S Shrimp Truck" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
@@ -467,7 +477,7 @@
             <div class="next">↓ 🚗 開車約 5 分 → 池間大橋</div>
           </div></li>
 
-        <li class="stop"><div class="clock">11:15<small>約 55 分</small><small class="via">🚗</small></div><div class="dot"></div>
+        <li class="stop"><div class="clock">11:45<small>約 55 分</small><small class="via">🚗</small></div><div class="dot"></div>
           <div class="card">
             <a class="shot" href="https://co-trip.jp/article/660294" target="_blank" rel="noopener">
               <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Ikema_Ohashi_Bridge_%2851923938941%29.jpg/960px-Ikema_Ohashi_Bridge_%2851923938941%29.jpg" alt="池間大橋" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
@@ -475,10 +485,19 @@
             <div class="name">池間大橋・狩俣展望（配蝦飯）<span class="tag must">★必去</span><span class="tag sea">跳島</span></div>
             <div class="meta">先在<b>狩俣側橋頭免費展望停車場</b>停車拍照、把剛買的 HARRY'S 蝦飯配海景吃掉；再開過全長 1,425m 的<b>池間大橋</b>到池間島。橋上請由駕駛專心開、拍照交給乘客。</div>
             <div class="acts"><a class="nav" href="https://www.google.com/maps/dir/?api=1&amp;destination=%E6%B1%A0%E9%96%93%E5%A4%A7%E6%A9%8B" target="_blank" rel="noopener">Google Maps 導航（池間大橋）</a></div>
-            <div class="next">↓ 🚗 開車約 5 分，到島西側 → gelato Cafe Ninufa</div>
+            <div class="next">↓ 🚗 開車約 5 分，過橋落地 → 海美来 屋頂展望台</div>
           </div></li>
 
-        <li class="stop"><div class="clock">12:15<small>約 50 分</small><small class="via">🚗</small></div><div class="dot"></div>
+        <li class="stop"><div class="clock">12:45<small>20 分</small><small class="via">🚗</small></div><div class="dot"></div>
+          <div class="card">
+            <div class="name">海美来（かいみーる）屋頂展望台<span class="tag spot">展望</span><span class="tag free">免費</span></div>
+            <div class="meta">過橋落地右手第一棟<b>粉紅色建築</b>，<b>不消費也能免費上屋頂</b>，居高回望整座池間大橋。順手吃個紅芋もち，<b>有廁所與停車場</b>——剛在橋頭吃完蝦飯，正好在這裡上洗手間再繼續。9:00 起、全年無休。</div>
+            <div class="warn"><b>和狩俣展望台不重複</b>：狩俣是站在宮古島側「往北看」大橋，這裡是從池間島側「回望」整座橋，<b>兩個角度相反</b>，加起來才算把池間大橋看完整。</div>
+            <div class="acts"><a class="nav" href="https://www.google.com/maps/dir/?api=1&amp;destination=24.92489,125.25497" target="_blank" rel="noopener">Google Maps 導航</a></div>
+            <div class="next">↓ 🚗 開車約 6 分，往島西側 → gelato Cafe Ninufa</div>
+          </div></li>
+
+        <li class="stop"><div class="clock">13:15<small>約 50 分</small><small class="via">🚗</small></div><div class="dot"></div>
           <div class="card">
             <div class="name">gelato Cafe Ninufa（海景冰）<span class="tag must">★必去</span><span class="tag food">冰品・咖啡</span></div>
             <div class="meta">池間島西側的 <b>Ikemajima gelato cafe Ninufa</b>，海景露台、義式冰淇淋＋pizza／taco rice，吹海風吃冰、跳島午後收尾。10:00–17:00（L.O.16:30）、週三公休，8/14 週五有營業。</div>
@@ -487,16 +506,16 @@
             <div class="next">↓ 🚶 步行約 1–2 分（約 60 公尺）→ ハート岩</div>
           </div></li>
 
-        <li class="stop"><div class="clock">13:05<small>20 分</small><small class="via">🚶</small></div><div class="dot"></div>
+        <li class="stop"><div class="clock">14:05<small>20 分</small><small class="via">🚶</small></div><div class="dot"></div>
           <div class="card">
             <div class="name">ハート岩（池間島）<span class="tag must">★必去</span><span class="tag sea">海景</span></div>
             <div class="meta">イキヅービーチ 南端（面海左側）的心形岩，隆起珊瑚礁被風浪長年侵蝕而成的天然造型，是池間島的人氣拍照點。就在 Ninufa 店前沙灘，<b>從咖啡廳走過去約 1–2 分</b>，不用開車。地址：宮古島市平良字前里976-1。</div>
-            <div class="warn"><b>✅ 這個時段看得到（潮汐已核對）</b>：愛心岩只在<b>干潮前後約 2–3 小時</b>才露出海面。8/14 干潮為 <b>14:32（24cm）</b>，13:05 抵達時已進入可視窗口、且潮位持續下降——<b>愈待愈清楚</b>。反之上午 08:04 是全日最高潮（215cm），那時來會完全沉在水裡。<b>沙灘濕滑、有礁石，請穿防滑鞋、勿踩踏珊瑚。</b></div>
+            <div class="warn"><b>✅ 這個時段看得到（潮汐已核對）</b>：愛心岩只在<b>干潮前後約 2–3 小時</b>才露出海面。8/14 干潮為 <b>14:32（24cm）</b>，14:05 抵達時已進入可視窗口、且潮位持續下降——<b>愈待愈清楚</b>。反之上午 08:04 是全日最高潮（215cm），那時來會完全沉在水裡。<b>沙灘濕滑、有礁石，請穿防滑鞋、勿踩踏珊瑚。</b></div>
             <div class="acts"><a class="nav" href="https://www.google.com/maps/dir/?api=1&amp;destination=24.93037,125.23280" target="_blank" rel="noopener">Google Maps 導航</a></div>
             <div class="next">↓ 🚗 開車約 12 分，往東南 → 宮古島海中公園</div>
           </div></li>
 
-        <li class="stop"><div class="clock">13:35<small>60 分</small><small class="via">🚗</small></div><div class="dot"></div>
+        <li class="stop"><div class="clock">14:40<small>60 分</small><small class="via">🚗</small></div><div class="dot"></div>
           <div class="card">
             <a class="shot" href="https://ms-aquabase.com/column/kiji087/" target="_blank" rel="noopener">
               <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Miyako_miyakojima_kaichukoen.jpg/960px-Miyako_miyakojima_kaichukoen.jpg" alt="宮古島海中公園" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
@@ -507,7 +526,7 @@
             <div class="next">↓ 🚗 開車約 5 分 → 島尻マングローブ林</div>
           </div></li>
 
-        <li class="stop"><div class="clock">14:40<small>20 分</small><small class="via">🚗</small></div><div class="dot"></div>
+        <li class="stop"><div class="clock">15:45<small>20 分</small><small class="via">🚗</small></div><div class="dot"></div>
           <div class="card">
             <a class="shot" href="https://flickr.com/photo.gne?id=138184955" target="_blank" rel="noopener">
               <img src="https://live.staticflickr.com/56/138184955_bac11189fb_b.jpg" alt="島尻マングローブ林" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
@@ -518,7 +537,7 @@
             <div class="next">↓ 🚗 開車約 10 分，往南 → 砂山海灘</div>
           </div></li>
 
-        <li class="stop"><div class="clock">15:10<small>45 分</small><small class="via">🚗</small></div><div class="dot"></div>
+        <li class="stop"><div class="clock">16:15<small>45 分</small><small class="via">🚗</small></div><div class="dot"></div>
           <div class="card">
             <a class="shot" href="https://stancylife.com/sunayama/" target="_blank" rel="noopener">
               <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Sunayama_Beach_in_Miyako_Island_%2C_Okinawa_Pref._-_panoramio.jpg/960px-Sunayama_Beach_in_Miyako_Island_%2C_Okinawa_Pref._-_panoramio.jpg" alt="砂山海灘拱門岩" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
@@ -526,18 +545,10 @@
             <div class="name">砂山海灘<span class="tag sea">海灘</span></div>
             <div class="meta">招牌是天然的拱門岩。從停車場要先走一段沙丘上坡再下到海灘，穿好走的鞋。這時段陽光已轉柔，適合拍照。</div>
             <div class="acts"><a class="nav" href="https://www.google.com/maps/dir/?api=1&amp;destination=24.83939,125.28056" target="_blank" rel="noopener">Google Maps 導航</a></div>
-            <div class="next">↓ 🚗 開車約 9 分，往南回市區 → 宮古神社</div>
+            <div class="next">↓ 🚗 開車約 10 分，往南回市區 → 飯店</div>
           </div></li>
 
-        <li class="stop"><div class="clock">16:00<small>約 25 分</small><small class="via">🚗</small></div><div class="dot"></div>
-          <div class="card">
-            <div class="name">宮古神社<span class="tag spot">參拜</span></div>
-            <div class="meta"><b>日本最南端的神社</b>，紅瓦社殿、境內小巧，離飯店僅約 300 公尺、走路 4–5 分。順路參拜、求個御守約 20–25 分即可。<b>社務所（御守／御朱印）約 9:00–17:00</b>，趁 17:00 前到剛好；境內全天可自由參拜。</div>
-            <div class="acts"><a class="nav" href="https://www.google.com/maps/dir/?api=1&amp;destination=24.80768,125.28050" target="_blank" rel="noopener">Google Maps 導航</a></div>
-            <div class="next">↓ 🚶 步行／開車 4 分 → 飯店休息</div>
-          </div></li>
-
-        <li class="stop"><div class="clock">16:30<small>約 2.5 小時</small><small class="via">🚶</small></div><div class="dot"></div>
+        <li class="stop"><div class="clock">17:10<small>約 2 小時</small><small class="via">🚶</small></div><div class="dot"></div>
           <div class="card">
             <div class="name">回飯店 休息<span class="tag move">休息</span></div>
             <div class="meta">北環線午後收工，回飯店沖澡、泳池、補眠都好。今晚是<b>觀星第一備位日</b>——若 Day 2 因雲雨沒看到星空，今晚可補（8/14 月相仍細，條件尚可）。<b>要補就 21:00 後再出門</b>：8/11 預報顯示今晚雲量 19–20:00 近乎全遮，21:00 後才降到約 77%、23:00 約 70%。</div>
@@ -573,7 +584,7 @@
       <aside class="backup">
         <h3>◇ 備用</h3>
         <div class="bitem"><b>晚餐備案</b>（さんご家訂不到時）：<a href="https://tabelog.com/okinawa/A4705/A470503/47016348/" target="_blank" rel="noopener">一魚一会 宮古島店</a>——海鮮居酒屋，主打宮古近海刺身，52 席、有個室，17:00–23:00（<b>22:00 後不接待兒童</b>），人均 ¥5,000–5,999，同樣建議先訂位（0980-79-0188）。</div>
-        <div class="bitem"><b>池間島加碼（免費順路）</b>：過橋落地右手第一棟粉紅建築 <b>海美来（かいみーる）屋頂展望台</b>——不消費也能免費上屋頂居高看整座大橋，順手吃紅芋もち、有廁所停車（9:00 起、全年無休）。<a href="https://www.google.com/maps/dir/?api=1&amp;destination=24.92489,125.25497&amp;travelmode=driving" target="_blank" rel="noopener">導航</a></div>
+        <div class="bitem"><b>海美来已排進正式行程</b>（12:45，過橋落地第一站），不再列為備用。若當天想省時間，這站可以直接跳過——它是免費、隨到隨走的展望台，砍掉不影響後續訂位。</div>
         <div class="bitem"><b>下午空檔太多</b>：可把晚上的 Don Quijote 採買提前到 17:00 左右先去，或在池間島多待久一點（フナクス／イキヅー沙灘玩水，但屬無教練自主海灘、有海流，帶小孩請靠岸邊淺水）。</div>
         <div class="bitem"><b>San-A 宮古島城市店</b>：想補飲料、水果與隔天路上的東西，可在 Don Quijote 之後順道過去（開車 5–10 分）。</div>
         <div class="bitem"><b>今天是觀星的第一備位日</b>：若 Day 2 因雲雨取消，改排今晚，行程往前壓縮即可。</div>
@@ -759,7 +770,7 @@
           <li>Visit Japan Web 事先登錄，加快入境。</li>
           <li><b>天氣膠囊已更新為實際逐日預報</b>（資料時間 <b>2026/8/11 23:00 JST</b>，來源 Open-Meteo，座標 24.81°N 125.28°E）：五天高溫都在 30° 上下、低溫 27–28°，體感悶熱。<b>降雨機率逐日差很多</b>——8/12（75%）最濕、8/13（19%）最乾，排戶外重點請優先靠向 8/13。日均風力平緩（陣風 30–46 km/h），無強風日。</li>
           <li><b>颱風：目前無威脅</b>（8/11 23:00 查證日本氣象廳）。上週影響宮古的<b>台風13號 ドルフィン已登陸中國內陸、正在消散</b>；另有 3 個熱帶氣旋活動中——<b>台風15號 チャンホン</b>在本州上空西行（影響日本本土，不影響宮古與台灣↔宮古航線）、<b>台風16號 ペイロー</b>與 1 個熱帶低壓均位於遠東太平洋且持續向東北遠離。<b>8/12–8/16 五天內無任何系統接近宮古島。</b>惟颱風季生成快，仍請每日早上看一次氣象廳最新資訊，海上活動一律以業者判斷為準。</li>
-          <li><b>潮汐已查（日本氣象廳「平良」驗潮站 2026 年推算表，24°49'N 125°17'E）</b>，每日膠囊已標當日干潮／滿潮：8/12 干潮 13:17｜8/13 干潮 <b>13:56（16cm，五天最低）</b>｜8/14 干潮 14:32｜8/15 滿潮 08:47・干潮 15:05｜8/16 滿潮 09:28。<b>三個潮汐敏感點的結論</b>：17END 白沙洲（8/13 14:35）與新城海岸浮潛（8/15 10:35）<b>時間都抓得剛好、不需調整</b>；<b>愛心岩原本的「上午較有機會」是反的、已更正為下午</b>，並已於 Day 3 <b>13:05 獨立成一站（停留 20 分）</b>，正好落在干潮 14:32 前的可視窗口內。</li>
+          <li><b>潮汐已查（日本氣象廳「平良」驗潮站 2026 年推算表，24°49'N 125°17'E）</b>，每日膠囊已標當日干潮／滿潮：8/12 干潮 13:17｜8/13 干潮 <b>13:56（16cm，五天最低）</b>｜8/14 干潮 14:32｜8/15 滿潮 08:47・干潮 15:05｜8/16 滿潮 09:28。<b>三個潮汐敏感點的結論</b>：17END 白沙洲（8/13 14:35）與新城海岸浮潛（8/15 10:35）<b>時間都抓得剛好、不需調整</b>；<b>愛心岩原本的「上午較有機會」是反的、已更正為下午</b>，並已於 Day 3 <b>14:05 獨立成一站（停留 20 分）</b>，正好卡在干潮 14:32 前後，是全天可視條件最好的時段。</li>
           <li><b>紫外線是這幾天真正該防的</b>：8/12、8/15、8/16 UV 指數達 <b>9（極高）</b>，8/15 又是新城海岸浮潛日，防曬乳、防曬衣、帽子務必備齊，中午前後盡量有遮蔽。8/13、8/14 因雲層厚，UV 反而只有 3–4。</li>
         </ul>
       </aside>
@@ -880,17 +891,18 @@
       { id: 'd3', label: 'Day 3', color: '#129a91',
         pts: [
           { t: '09:30', n: '宮古島微笑飯店 出發', c: HOTEL, home: true },
-          { t: '10:00', n: '★ 雪鹽 Museum', c: [24.90221, 125.26821] },
-          { t: '10:35', n: '★ 西平安名岬展望台', c: [24.91023, 125.25521] },
-          { t: '11:00', n: "★ HARRY'S 蝦飯 外帶", c: [24.90809, 125.25826] },
-          { t: '11:15', n: '★ 池間大橋・狩俣展望（配蝦飯）', c: [24.91680, 125.24720] },
-          { t: '12:15', n: '★ gelato Cafe Ninufa（海景冰）', c: [24.92991, 125.23348] },
-          { t: '13:05', n: '★ ハート岩（池間島）', c: [24.93037, 125.23280] },
-          { t: '13:35', n: '宮古島海中公園', c: [24.87875, 125.27472] },
-          { t: '14:40', n: '島尻マングローブ林', c: [24.87691, 125.28797] },
-          { t: '15:10', n: '砂山海灘', c: [24.83939, 125.28056] },
-          { t: '16:00', n: '宮古神社（參拜）', c: [24.80768, 125.28050] },
-          { t: '16:30', n: '回飯店 休息', c: HOTEL, home: true },
+          { t: '09:35', n: '宮古神社（參拜）', c: [24.80768, 125.28050] },
+          { t: '10:30', n: '★ 雪鹽 Museum', c: [24.90221, 125.26821] },
+          { t: '11:05', n: '★ 西平安名岬展望台', c: [24.91023, 125.25521] },
+          { t: '11:30', n: "★ HARRY'S 蝦飯 外帶", c: [24.90809, 125.25826] },
+          { t: '11:45', n: '★ 池間大橋・狩俣展望（配蝦飯）', c: [24.91680, 125.24720] },
+          { t: '12:45', n: '海美来 屋頂展望台', c: [24.92489, 125.25497] },
+          { t: '13:15', n: '★ gelato Cafe Ninufa（海景冰）', c: [24.92991, 125.23348] },
+          { t: '14:05', n: '★ ハート岩（池間島）', c: [24.93037, 125.23280] },
+          { t: '14:40', n: '宮古島海中公園', c: [24.87875, 125.27472] },
+          { t: '15:45', n: '島尻マングローブ林', c: [24.87691, 125.28797] },
+          { t: '16:15', n: '砂山海灘', c: [24.83939, 125.28056] },
+          { t: '17:10', n: '回飯店 休息', c: HOTEL, home: true },
           { t: '19:15', n: '★ 琉球王国さんご家 晚餐', c: [24.80481, 125.28080] },
           { t: '21:00', n: '★ Don Quijote 採買', c: [24.79254, 125.30156] },
         ] },
